@@ -16,24 +16,29 @@ module CyberSource
     # The value for this field is a four-digit number that the payment card industry uses to  classify merchants into market segments. A payment card company assigned one or more of  these values to your business when you started accepting the payment card company's cards.  When you do not include this field in your request, CyberSource uses the value in your CyberSource account. 
     attr_accessor :category_code
 
+    attr_accessor :merchant_descriptor
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'category_code' => :'categoryCode'
+        :'category_code' => :'categoryCode',
+        :'merchant_descriptor' => :'merchantDescriptor'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'category_code' => :'category_code'
+        :'category_code' => :'category_code',
+        :'merchant_descriptor' => :'merchant_descriptor'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'category_code' => :'String'
+        :'category_code' => :'Integer',
+        :'merchant_descriptor' => :'Ptsv1pushfundstransferMerchantInformationMerchantDescriptor'
       }
     end
 
@@ -48,33 +53,28 @@ module CyberSource
       if attributes.has_key?(:'categoryCode')
         self.category_code = attributes[:'categoryCode']
       end
+
+      if attributes.has_key?(:'merchantDescriptor')
+        self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      #if !@category_code.nil? && @category_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
-        #invalid_properties.push('invalid value for "category_code", must conform to the pattern /^(\\s{0,4}|\\d{4})$/.')
-      #end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      #return false if !@category_code.nil? && @category_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category_code Value to be assigned
     def category_code=(category_code)
-      #if !category_code.nil? && category_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
-        #fail ArgumentError, 'invalid value for "category_code", must conform to the pattern /^(\\s{0,4}|\\d{4})$/.'
-      #end
-
       @category_code = category_code
     end
 
@@ -83,7 +83,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          category_code == o.category_code
+          category_code == o.category_code &&
+          merchant_descriptor == o.merchant_descriptor
     end
 
     # @see the `==` method
@@ -95,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [category_code].hash
+      [category_code, merchant_descriptor].hash
     end
 
     # Builds the object from hash

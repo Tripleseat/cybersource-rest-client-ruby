@@ -142,7 +142,9 @@ public
 
       validateMerchantDetails()
       validateMLEConfiguration(cybsPropertyObj)
-      @p12KeyFilePath = File.join(@keysDirectory, @keyFilename + ".p12")
+      if !@keysDirectory.nil? && !@keysDirectory.to_s.empty? && !@keyFilename.nil? && !@keyFilename.to_s.empty?
+        @p12KeyFilePath = File.join(@keysDirectory, @keyFilename + ".p12")
+      end
       logAllProperties(cybsPropertyObj)
     end
 
@@ -232,9 +234,14 @@ public
           @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_ALIAS_NULL_EMPTY)
         elsif !@keyAlias.instance_of? String
           @keyAlias=@keyAlias.to_s
-        elsif @keyAlias != @merchantId
+        end
+        if !@useMetaKey && @keyAlias != @merchantId
           @keyAlias = @merchantId
           @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS)
+        end
+        if @useMetaKey && @keyAlias != @portfolioID
+          @keyAlias = @portfolioID
+          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS_USE_METAKEY)
         end
         if @keyPass.to_s.empty?
           @keyPass = @merchantId

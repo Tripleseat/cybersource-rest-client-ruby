@@ -82,11 +82,20 @@ module CyberSource
     # This field indicates if the payment instrument is eligible for Standing Instructions (recurring payments). Possible values:     - `true`     - `false` 
     attr_accessor :si_eligible
 
-    # This field indicates if the card is eligible for Equated Monthly Installments (EMI). Possible values:     - `true`     - `false` 
+    # This field indicates if the payment instrument is eligible for Equated Monthly Installments (EMI). Possible values:     - `true`     - `false` 
     attr_accessor :emi_eligible
 
     # This field indicates if the BIN is designated for fuel/fleet usage. These specialized BINs support additional Level2/Level 3 transaction data. Possible values:     - `true`     - `false` 
     attr_accessor :fleet_card
+
+    # This field indicates if the payment instrument is enabled for ATM usage. Possible values:     - `true`     - `false` 
+    attr_accessor :atm_enabled
+
+    # This field indicates if the payment instrument is enabled for POS usage. Possible values:     - `true`     - `false` 
+    attr_accessor :pos_enabled
+
+    # This field indicates if the payment instrument is enabled for ECOM usage. Possible values:     - `true`     - `false` 
+    attr_accessor :ecom_enabled
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -115,7 +124,10 @@ module CyberSource
         :'three_ds_support' => :'threeDSSupport',
         :'si_eligible' => :'siEligible',
         :'emi_eligible' => :'emiEligible',
-        :'fleet_card' => :'fleetCard'
+        :'fleet_card' => :'fleetCard',
+        :'atm_enabled' => :'atmEnabled',
+        :'pos_enabled' => :'posEnabled',
+        :'ecom_enabled' => :'ecomEnabled'
       }
     end
 
@@ -146,7 +158,10 @@ module CyberSource
         :'three_ds_support' => :'three_ds_support',
         :'si_eligible' => :'si_eligible',
         :'emi_eligible' => :'emi_eligible',
-        :'fleet_card' => :'fleet_card'
+        :'fleet_card' => :'fleet_card',
+        :'atm_enabled' => :'atm_enabled',
+        :'pos_enabled' => :'pos_enabled',
+        :'ecom_enabled' => :'ecom_enabled'
       }
     end
 
@@ -177,7 +192,10 @@ module CyberSource
         :'three_ds_support' => :'BOOLEAN',
         :'si_eligible' => :'BOOLEAN',
         :'emi_eligible' => :'BOOLEAN',
-        :'fleet_card' => :'BOOLEAN'
+        :'fleet_card' => :'BOOLEAN',
+        :'atm_enabled' => :'BOOLEAN',
+        :'pos_enabled' => :'BOOLEAN',
+        :'ecom_enabled' => :'BOOLEAN'
       }
     end
 
@@ -288,6 +306,18 @@ module CyberSource
       if attributes.has_key?(:'fleetCard')
         self.fleet_card = attributes[:'fleetCard']
       end
+
+      if attributes.has_key?(:'atmEnabled')
+        self.atm_enabled = attributes[:'atmEnabled']
+      end
+
+      if attributes.has_key?(:'posEnabled')
+        self.pos_enabled = attributes[:'posEnabled']
+      end
+
+      if attributes.has_key?(:'ecomEnabled')
+        self.ecom_enabled = attributes[:'ecomEnabled']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -374,7 +404,10 @@ module CyberSource
           three_ds_support == o.three_ds_support &&
           si_eligible == o.si_eligible &&
           emi_eligible == o.emi_eligible &&
-          fleet_card == o.fleet_card
+          fleet_card == o.fleet_card &&
+          atm_enabled == o.atm_enabled &&
+          pos_enabled == o.pos_enabled &&
+          ecom_enabled == o.ecom_enabled
     end
 
     # @see the `==` method
@@ -386,7 +419,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card, shared_bin, pos_domestic_only, gambling_allowed, commercial_card_level2, commercial_card_level3, exempt_bin, account_level_management, online_gambling_block, auto_substantiation, flex_credential, product_id, product_id_subtype, three_ds_support, si_eligible, emi_eligible, fleet_card].hash
+      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card, shared_bin, pos_domestic_only, gambling_allowed, commercial_card_level2, commercial_card_level3, exempt_bin, account_level_management, online_gambling_block, auto_substantiation, flex_credential, product_id, product_id_subtype, three_ds_support, si_eligible, emi_eligible, fleet_card, atm_enabled, pos_enabled, ecom_enabled].hash
     end
 
     # Builds the object from hash

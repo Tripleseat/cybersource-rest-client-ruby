@@ -18,11 +18,14 @@ module CyberSource
     # tenantConfigurations is an array of objects that includes the tenant information this merchant is associated with.
     attr_accessor :tenant_configurations
 
+    attr_accessor :msd
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'oauth2' => :'oauth2',
-        :'tenant_configurations' => :'tenantConfigurations'
+        :'tenant_configurations' => :'tenantConfigurations',
+        :'msd' => :'msd'
       }
     end
 
@@ -30,7 +33,8 @@ module CyberSource
     def self.json_map
       {
         :'oauth2' => :'oauth2',
-        :'tenant_configurations' => :'tenant_configurations'
+        :'tenant_configurations' => :'tenant_configurations',
+        :'msd' => :'msd'
       }
     end
 
@@ -38,7 +42,8 @@ module CyberSource
     def self.swagger_types
       {
         :'oauth2' => :'Array<Boardingv1registrationsIntegrationInformationOauth2>',
-        :'tenant_configurations' => :'Array<Boardingv1registrationsIntegrationInformationTenantConfigurations>'
+        :'tenant_configurations' => :'Array<Boardingv1registrationsIntegrationInformationTenantConfigurations>',
+        :'msd' => :'Boardingv1registrationsIntegrationInformationMsd'
       }
     end
 
@@ -61,6 +66,10 @@ module CyberSource
           self.tenant_configurations = value
         end
       end
+
+      if attributes.has_key?(:'msd')
+        self.msd = attributes[:'msd']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -82,7 +91,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           oauth2 == o.oauth2 &&
-          tenant_configurations == o.tenant_configurations
+          tenant_configurations == o.tenant_configurations &&
+          msd == o.msd
     end
 
     # @see the `==` method
@@ -94,7 +104,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [oauth2, tenant_configurations].hash
+      [oauth2, tenant_configurations, msd].hash
     end
 
     # Builds the object from hash

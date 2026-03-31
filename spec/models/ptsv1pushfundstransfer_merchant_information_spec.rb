@@ -37,4 +37,10 @@ describe 'Ptsv1pushfundstransferMerchantInformation' do
     end
   end
 
+  describe 'test attribute "merchant_descriptor"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

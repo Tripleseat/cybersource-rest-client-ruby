@@ -16,7 +16,7 @@ module CyberSource
     # Processor transaction ID.  This value identifies the transaction on a host system. This value is supported only for Moneris. It contains this information:   - Terminal used to process the transaction  - Shift during which the transaction took place  - Batch number  - Transaction number within the batch  You must store this value. If you give the customer a receipt, display this value on the receipt.  Example For the value 66012345001069003:   - Terminal ID = 66012345  - Shift number = 001  - Batch number = 069  - Transaction number = 003 
     attr_accessor :transaction_id
 
-    # Network Transaction Identifier Applicable for online capture transactions only. 
+    # Same value as `processorInformation.transactionId`
     attr_accessor :network_transaction_id
 
     # The processor code that describes why the transaction state is pending or reversed. 

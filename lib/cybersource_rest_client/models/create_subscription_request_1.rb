@@ -52,7 +52,7 @@ module CyberSource
         :'processing_information' => :'Rbsv1subscriptionsProcessingInformation',
         :'plan_information' => :'Rbsv1subscriptionsPlanInformation',
         :'subscription_information' => :'Rbsv1subscriptionsSubscriptionInformation',
-        :'order_information' => :'GetAllPlansResponseOrderInformation'
+        :'order_information' => :'Rbsv1subscriptionsOrderInformation'
       }
     end
 

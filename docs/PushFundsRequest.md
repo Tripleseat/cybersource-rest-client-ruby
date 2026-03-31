@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **recipient_information** | [**Ptsv1pushfundstransferRecipientInformation**](Ptsv1pushfundstransferRecipientInformation.md) |  | [optional] 
 **sender_information** | [**Ptsv1pushfundstransferSenderInformation**](Ptsv1pushfundstransferSenderInformation.md) |  | [optional] 
 **merchant_information** | [**Ptsv1pushfundstransferMerchantInformation**](Ptsv1pushfundstransferMerchantInformation.md) |  | [optional] 
+**payment_information** | [**Ptsv1pushfundstransferPaymentInformation**](Ptsv1pushfundstransferPaymentInformation.md) |  | [optional] 
 **point_of_service_information** | [**Ptsv1pushfundstransferPointOfServiceInformation**](Ptsv1pushfundstransferPointOfServiceInformation.md) |  | [optional] 
 
 

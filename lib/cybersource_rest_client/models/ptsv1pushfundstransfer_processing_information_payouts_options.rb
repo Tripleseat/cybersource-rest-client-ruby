@@ -25,7 +25,7 @@ module CyberSource
     # Unique reference number returned by the processor that identifies the transaction at the network. 
     attr_accessor :retrieval_reference_number
 
-    # Visa-generated transaction identifier (TID) that is unique for each original authorization and financial request. 
+    # Visa (maxLength of 15) or MasterCard (maxLength of 40) generated transaction identifier (TID) that is unique for each original authorization and financial request. 
     attr_accessor :account_funding_reference_id
 
     # Attribute mapping from ruby-style variable name to JSON key.

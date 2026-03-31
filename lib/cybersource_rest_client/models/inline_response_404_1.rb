@@ -13,29 +13,17 @@ require 'date'
 
 module CyberSource
   class InlineResponse4041
-    # The time the response was submitted
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # The status code of the response
+    # The status of the submitted transaction.  Possible values:  - NOT_FOUND 
     attr_accessor :status
-
-    # The reason for the response
-    attr_accessor :reason
-
-    # The message of the response
-    attr_accessor :message
-
-    # The details of the validation error
-    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'reason' => :'reason',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'status' => :'status'
       }
     end
 
@@ -43,10 +31,7 @@ module CyberSource
     def self.json_map
       {
         :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
-        :'reason' => :'reason',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'status' => :'status'
       }
     end
 
@@ -54,10 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'submit_time_utc' => :'String',
-        :'status' => :'Integer',
-        :'reason' => :'String',
-        :'message' => :'String',
-        :'details' => :'Array<InlineResponse4041Details>'
+        :'status' => :'String'
       }
     end
 
@@ -75,20 +57,6 @@ module CyberSource
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
-      end
-
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
       end
     end
 
@@ -111,10 +79,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          reason == o.reason &&
-          message == o.message &&
-          details == o.details
+          status == o.status
     end
 
     # @see the `==` method
@@ -126,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [submit_time_utc, status].hash
     end
 
     # Builds the object from hash
