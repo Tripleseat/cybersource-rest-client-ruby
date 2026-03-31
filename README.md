@@ -12,7 +12,7 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 
 ## System Requirements
 
-* Ruby 2.5.0 or higher
+* Ruby 3.0 or higher
 
 ## Installation
 

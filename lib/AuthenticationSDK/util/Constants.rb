@@ -146,6 +146,8 @@
 
       INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value' unless const_defined?(:INCORRECT_KEY_ALIAS)
 
+      INCORRECT_KEY_ALIAS_USE_METAKEY = 'The Entered KeyAlias is Incorrect with useMetaKey set to true. Assigining portfolioID value' unless const_defined?(:INCORRECT_KEY_ALIAS_USE_METAKEY)
+
       ENABLE_CLIENT_CERT_EMPTY = 'Enable Clientcert is Empty/Null.' unless const_defined?(:ENABLE_CLIENT_CERT_EMPTY)
 
       CLIENT_CERT_DIR_EMPTY = 'Client Cert Directory is Empty/Null' unless const_defined?(:CLIENT_CERT_DIR_EMPTY)

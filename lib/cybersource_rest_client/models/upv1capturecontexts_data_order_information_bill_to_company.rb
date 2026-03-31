@@ -22,20 +22,20 @@ module CyberSource
     # Used for additional address information. For example: _Attention: Accounts Payable_ Optional field. 
     attr_accessor :address2
 
-    # Additional address information (third line of the billing address)
+    # Additional address information (third line of the billing address) Optional field. 
     attr_accessor :address3
 
-    # Additional address information (fourth line of the billing address) 
+    # Additional address information (fourth line of the billing address) Optional field 
     attr_accessor :address4
 
     # State or province of the billing address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf). 
     attr_accessor :administrative_area
 
-    # Building number in the street address. 
-    attr_accessor :building_number
-
     # Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). 
     attr_accessor :country
+
+    # Building number in the street address. 
+    attr_accessor :building_number
 
     # Customer's neighborhood, community, or region (a barrio in Brazil) within the city or municipality 
     attr_accessor :district
@@ -55,8 +55,8 @@ module CyberSource
         :'address3' => :'address3',
         :'address4' => :'address4',
         :'administrative_area' => :'administrativeArea',
-        :'building_number' => :'buildingNumber',
         :'country' => :'country',
+        :'building_number' => :'buildingNumber',
         :'district' => :'district',
         :'locality' => :'locality',
         :'postal_code' => :'postalCode'
@@ -72,8 +72,8 @@ module CyberSource
         :'address3' => :'address3',
         :'address4' => :'address4',
         :'administrative_area' => :'administrative_area',
-        :'building_number' => :'building_number',
         :'country' => :'country',
+        :'building_number' => :'building_number',
         :'district' => :'district',
         :'locality' => :'locality',
         :'postal_code' => :'postal_code'
@@ -89,8 +89,8 @@ module CyberSource
         :'address3' => :'String',
         :'address4' => :'String',
         :'administrative_area' => :'String',
-        :'building_number' => :'String',
         :'country' => :'String',
+        :'building_number' => :'String',
         :'district' => :'String',
         :'locality' => :'String',
         :'postal_code' => :'String'
@@ -129,12 +129,12 @@ module CyberSource
         self.administrative_area = attributes[:'administrativeArea']
       end
 
-      if attributes.has_key?(:'buildingNumber')
-        self.building_number = attributes[:'buildingNumber']
-      end
-
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'buildingNumber')
+        self.building_number = attributes[:'buildingNumber']
       end
 
       if attributes.has_key?(:'district')
@@ -200,15 +200,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] building_number Value to be assigned
-    def building_number=(building_number)
-      @building_number = building_number
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
       @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] building_number Value to be assigned
+    def building_number=(building_number)
+      @building_number = building_number
     end
 
     # Custom attribute writer method with validation
@@ -240,8 +240,8 @@ module CyberSource
           address3 == o.address3 &&
           address4 == o.address4 &&
           administrative_area == o.administrative_area &&
-          building_number == o.building_number &&
           country == o.country &&
+          building_number == o.building_number &&
           district == o.district &&
           locality == o.locality &&
           postal_code == o.postal_code
@@ -256,7 +256,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, address1, address2, address3, address4, administrative_area, building_number, country, district, locality, postal_code].hash
+      [name, address1, address2, address3, address4, administrative_area, country, building_number, district, locality, postal_code].hash
     end
 
     # Builds the object from hash

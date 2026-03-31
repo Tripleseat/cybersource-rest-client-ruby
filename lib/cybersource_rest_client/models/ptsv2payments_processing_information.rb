@@ -87,6 +87,9 @@ module CyberSource
     # Supplementary domestic transaction information provided by the acquirer for National Net Settlement Service (NNSS) transactions. NNSS is a settlement service that Visa provides. For transactions on CyberSource through VisaNet in countries that subscribe to NNSS: VisaNet clears transactions; VisaNet transfers funds to the acquirer after deducting processing fees and interchange fees. VisaNet settles transactions in the local pricing currency through a local financial institution. This field is supported only on CyberSource through VisaNet for domestic data in Colombia 
     attr_accessor :national_net_domestic_data
 
+    # The override value of the Merchant Verification Value (MVV) received by various card brands. MVV refers to the value assigned by the card brand/network to identify participation in select merchant programs.  Sample value for Visa: `101010` 
+    attr_accessor :merchant_verification_value
+
     attr_accessor :japan_payment_options
 
     # Type of payment initiated from a cardholder's mobile device. Possible values: - `1` :  Consumer-initiated remote purchase, face-to-face - `2` :  Consumer-initiated remote purchase, e-commerce - `3` :  Consumer-initiated remote purchase, mail order / telephone order - `4` :  Consumer-initiated bill pay - `5` :  Consumer-initiated top up - `6` :  Consumer-initiated cash out - `7` :  ATM triggered or agent-initiated cash out - `8` :  Merchant-initiated remote purchase, face-to-face - `9` :  Merchant-initiated remote purchase, e-commerce  This field is supported only for Mastercard transactions on CyberSource through VisaNet.  Optional field.  **Note** On CyberSource through VisaNet, the value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR6 - Position: 94 - Field: Mastercard Mobile Remote Payment Program Indicator  The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant's acquirer, who uses this information to facilitate end-of-day clearing processing with payment networks. 
@@ -161,6 +164,7 @@ module CyberSource
         :'loan_options' => :'loanOptions',
         :'wallet_type' => :'walletType',
         :'national_net_domestic_data' => :'nationalNetDomesticData',
+        :'merchant_verification_value' => :'merchantVerificationValue',
         :'japan_payment_options' => :'japanPaymentOptions',
         :'mobile_remote_payment_type' => :'mobileRemotePaymentType',
         :'extended_credit_total_count' => :'extendedCreditTotalCount',
@@ -209,6 +213,7 @@ module CyberSource
         :'loan_options' => :'loan_options',
         :'wallet_type' => :'wallet_type',
         :'national_net_domestic_data' => :'national_net_domestic_data',
+        :'merchant_verification_value' => :'merchant_verification_value',
         :'japan_payment_options' => :'japan_payment_options',
         :'mobile_remote_payment_type' => :'mobile_remote_payment_type',
         :'extended_credit_total_count' => :'extended_credit_total_count',
@@ -257,6 +262,7 @@ module CyberSource
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
         :'wallet_type' => :'String',
         :'national_net_domestic_data' => :'String',
+        :'merchant_verification_value' => :'String',
         :'japan_payment_options' => :'Ptsv2paymentsProcessingInformationJapanPaymentOptions',
         :'mobile_remote_payment_type' => :'String',
         :'extended_credit_total_count' => :'String',
@@ -395,6 +401,10 @@ module CyberSource
 
       if attributes.has_key?(:'nationalNetDomesticData')
         self.national_net_domestic_data = attributes[:'nationalNetDomesticData']
+      end
+
+      if attributes.has_key?(:'merchantVerificationValue')
+        self.merchant_verification_value = attributes[:'merchantVerificationValue']
       end
 
       if attributes.has_key?(:'japanPaymentOptions')
@@ -556,6 +566,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] merchant_verification_value Value to be assigned
+    def merchant_verification_value=(merchant_verification_value)
+      @merchant_verification_value = merchant_verification_value
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] mobile_remote_payment_type Value to be assigned
     def mobile_remote_payment_type=(mobile_remote_payment_type)
       @mobile_remote_payment_type = mobile_remote_payment_type
@@ -653,6 +669,7 @@ module CyberSource
           loan_options == o.loan_options &&
           wallet_type == o.wallet_type &&
           national_net_domestic_data == o.national_net_domestic_data &&
+          merchant_verification_value == o.merchant_verification_value &&
           japan_payment_options == o.japan_payment_options &&
           mobile_remote_payment_type == o.mobile_remote_payment_type &&
           extended_credit_total_count == o.extended_credit_total_count &&
@@ -679,7 +696,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id].hash
     end
 
     # Builds the object from hash

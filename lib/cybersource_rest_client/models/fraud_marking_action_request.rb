@@ -37,7 +37,7 @@ module CyberSource
     def self.swagger_types
       {
         :'risk_information' => :'Riskv1decisionsidmarkingRiskInformation',
-        :'client_reference_information' => :'Riskv1liststypeentriesClientReferenceInformation'
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation'
       }
     end
 

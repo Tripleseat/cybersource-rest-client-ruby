@@ -42,7 +42,7 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'Upv1capturecontextsOrderInformationAmountDetails',
-        :'bill_to' => :'Upv1capturecontextsDataOrderInformationBillTo',
+        :'bill_to' => :'Upv1capturecontextsOrderInformationBillTo',
         :'ship_to' => :'Upv1capturecontextsDataOrderInformationShipTo'
       }
     end

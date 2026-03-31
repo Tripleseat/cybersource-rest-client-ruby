@@ -41,7 +41,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Kmsegressv2keysasymClientReferenceInformation',
+        :'client_reference_information' => :'Kmsegressv2keyssymClientReferenceInformation',
         :'client_request_action' => :'String',
         :'key_information' => :'Kmsegressv2keysasymKeyInformation'
       }

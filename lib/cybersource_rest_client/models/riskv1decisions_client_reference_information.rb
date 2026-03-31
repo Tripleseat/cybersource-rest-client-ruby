@@ -83,27 +83,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @code.nil?
-        invalid_properties.push('invalid value for "code", code cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @code.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] code Value to be assigned
     def code=(code)
-      #if code.nil?
-        #fail ArgumentError, 'code cannot be nil'
-      #end
-
       @code = code
     end
 

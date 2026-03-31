@@ -33,6 +33,9 @@ module CyberSource
     # This will send purpose of funds code for original credit transactions (OCTs). 
     attr_accessor :purpose_of_payment
 
+    # Transaction's reference number.
+    attr_accessor :reconciliation_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -42,7 +45,8 @@ module CyberSource
         :'network_partner_id' => :'networkPartnerId',
         :'processing_code' => :'processingCode',
         :'sharing_group_code' => :'sharingGroupCode',
-        :'purpose_of_payment' => :'purposeOfPayment'
+        :'purpose_of_payment' => :'purposeOfPayment',
+        :'reconciliation_id' => :'reconciliationId'
       }
     end
 
@@ -55,7 +59,8 @@ module CyberSource
         :'network_partner_id' => :'network_partner_id',
         :'processing_code' => :'processing_code',
         :'sharing_group_code' => :'sharing_group_code',
-        :'purpose_of_payment' => :'purpose_of_payment'
+        :'purpose_of_payment' => :'purpose_of_payment',
+        :'reconciliation_id' => :'reconciliation_id'
       }
     end
 
@@ -68,7 +73,8 @@ module CyberSource
         :'network_partner_id' => :'String',
         :'processing_code' => :'String',
         :'sharing_group_code' => :'String',
-        :'purpose_of_payment' => :'String'
+        :'purpose_of_payment' => :'String',
+        :'reconciliation_id' => :'String'
       }
     end
 
@@ -106,6 +112,10 @@ module CyberSource
 
       if attributes.has_key?(:'purposeOfPayment')
         self.purpose_of_payment = attributes[:'purposeOfPayment']
+      end
+
+      if attributes.has_key?(:'reconciliationId')
+        self.reconciliation_id = attributes[:'reconciliationId']
       end
     end
 
@@ -185,6 +195,12 @@ module CyberSource
       @purpose_of_payment = purpose_of_payment
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id Value to be assigned
+    def reconciliation_id=(reconciliation_id)
+      @reconciliation_id = reconciliation_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -196,7 +212,8 @@ module CyberSource
           network_partner_id == o.network_partner_id &&
           processing_code == o.processing_code &&
           sharing_group_code == o.sharing_group_code &&
-          purpose_of_payment == o.purpose_of_payment
+          purpose_of_payment == o.purpose_of_payment &&
+          reconciliation_id == o.reconciliation_id
     end
 
     # @see the `==` method
@@ -208,7 +225,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment].hash
+      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment, reconciliation_id].hash
     end
 
     # Builds the object from hash

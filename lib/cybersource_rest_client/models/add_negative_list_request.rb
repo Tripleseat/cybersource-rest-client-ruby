@@ -54,7 +54,7 @@ module CyberSource
       {
         :'order_information' => :'Riskv1liststypeentriesOrderInformation',
         :'payment_information' => :'Riskv1liststypeentriesPaymentInformation',
-        :'client_reference_information' => :'Riskv1liststypeentriesClientReferenceInformation',
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'device_information' => :'Riskv1liststypeentriesDeviceInformation',
         :'risk_information' => :'Riskv1liststypeentriesRiskInformation',
         :'buyer_information' => :'Riskv1liststypeentriesBuyerInformation'

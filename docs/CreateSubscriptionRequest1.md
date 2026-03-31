@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **processing_information** | [**Rbsv1subscriptionsProcessingInformation**](Rbsv1subscriptionsProcessingInformation.md) |  | [optional] 
 **plan_information** | [**Rbsv1subscriptionsPlanInformation**](Rbsv1subscriptionsPlanInformation.md) |  | [optional] 
 **subscription_information** | [**Rbsv1subscriptionsSubscriptionInformation**](Rbsv1subscriptionsSubscriptionInformation.md) |  | [optional] 
-**order_information** | [**GetAllPlansResponseOrderInformation**](GetAllPlansResponseOrderInformation.md) |  | [optional] 
+**order_information** | [**Rbsv1subscriptionsOrderInformation**](Rbsv1subscriptionsOrderInformation.md) |  | [optional] 
 
 

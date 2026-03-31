@@ -27,6 +27,8 @@ module CyberSource
 
     attr_accessor :merchant_information
 
+    attr_accessor :payment_information
+
     attr_accessor :point_of_service_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -39,6 +41,7 @@ module CyberSource
         :'recipient_information' => :'recipientInformation',
         :'sender_information' => :'senderInformation',
         :'merchant_information' => :'merchantInformation',
+        :'payment_information' => :'paymentInformation',
         :'point_of_service_information' => :'pointOfServiceInformation'
       }
     end
@@ -53,6 +56,7 @@ module CyberSource
         :'recipient_information' => :'recipient_information',
         :'sender_information' => :'sender_information',
         :'merchant_information' => :'merchant_information',
+        :'payment_information' => :'payment_information',
         :'point_of_service_information' => :'point_of_service_information'
       }
     end
@@ -67,6 +71,7 @@ module CyberSource
         :'recipient_information' => :'Ptsv1pushfundstransferRecipientInformation',
         :'sender_information' => :'Ptsv1pushfundstransferSenderInformation',
         :'merchant_information' => :'Ptsv1pushfundstransferMerchantInformation',
+        :'payment_information' => :'Ptsv1pushfundstransferPaymentInformation',
         :'point_of_service_information' => :'Ptsv1pushfundstransferPointOfServiceInformation'
       }
     end
@@ -107,6 +112,10 @@ module CyberSource
         self.merchant_information = attributes[:'merchantInformation']
       end
 
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
+      end
+
       if attributes.has_key?(:'pointOfServiceInformation')
         self.point_of_service_information = attributes[:'pointOfServiceInformation']
       end
@@ -142,6 +151,7 @@ module CyberSource
           recipient_information == o.recipient_information &&
           sender_information == o.sender_information &&
           merchant_information == o.merchant_information &&
+          payment_information == o.payment_information &&
           point_of_service_information == o.point_of_service_information
     end
 
@@ -154,7 +164,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aggregator_information, client_reference_information, order_information, processing_information, recipient_information, sender_information, merchant_information, point_of_service_information].hash
+      [aggregator_information, client_reference_information, order_information, processing_information, recipient_information, sender_information, merchant_information, payment_information, point_of_service_information].hash
     end
 
     # Builds the object from hash

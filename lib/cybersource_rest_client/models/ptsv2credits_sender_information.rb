@@ -28,6 +28,9 @@ module CyberSource
     # Country of the sender of the funds. For Gaming Payment of Winnings transactions these are the merchant details. * Required for Mastercard Payment of Winnings (POW) transactions. * Must be a valid three character ISO country code as defined by ISO 3166. * Must not be greater than 3 characters. * Required for POW on Barclays. 
     attr_accessor :country_code
 
+    # The state or province of the sender. This field is applicable for AFT transactions when the sender country is US or CA. Else it is optional.  Must be a two character value 
+    attr_accessor :administrative_area
+
     attr_accessor :account
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -38,6 +41,7 @@ module CyberSource
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'country_code' => :'countryCode',
+        :'administrative_area' => :'administrativeArea',
         :'account' => :'account'
       }
     end
@@ -50,6 +54,7 @@ module CyberSource
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'country_code' => :'country_code',
+        :'administrative_area' => :'administrative_area',
         :'account' => :'account'
       }
     end
@@ -62,6 +67,7 @@ module CyberSource
         :'address1' => :'String',
         :'locality' => :'String',
         :'country_code' => :'String',
+        :'administrative_area' => :'String',
         :'account' => :'Ptsv2creditsSenderInformationAccount'
       }
     end
@@ -92,6 +98,10 @@ module CyberSource
 
       if attributes.has_key?(:'countryCode')
         self.country_code = attributes[:'countryCode']
+      end
+
+      if attributes.has_key?(:'administrativeArea')
+        self.administrative_area = attributes[:'administrativeArea']
       end
 
       if attributes.has_key?(:'account')
@@ -142,6 +152,12 @@ module CyberSource
       @country_code = country_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] administrative_area Value to be assigned
+    def administrative_area=(administrative_area)
+      @administrative_area = administrative_area
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -152,6 +168,7 @@ module CyberSource
           address1 == o.address1 &&
           locality == o.locality &&
           country_code == o.country_code &&
+          administrative_area == o.administrative_area &&
           account == o.account
     end
 
@@ -164,7 +181,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, address1, locality, country_code, account].hash
+      [first_name, last_name, address1, locality, country_code, administrative_area, account].hash
     end
 
     # Builds the object from hash

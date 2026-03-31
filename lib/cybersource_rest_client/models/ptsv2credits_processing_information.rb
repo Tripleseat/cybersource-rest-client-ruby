@@ -66,6 +66,9 @@ module CyberSource
 
     attr_accessor :refund_options
 
+    # The override value of the Merchant Verification Value (MVV) received by various card brands. MVV refers to the value assigned by the card brand/network to identify participation in select merchant programs.  Sample value for Visa: `101010` 
+    attr_accessor :merchant_verification_value
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -88,7 +91,8 @@ module CyberSource
         :'electronic_benefits_transfer' => :'electronicBenefitsTransfer',
         :'loan_options' => :'loanOptions',
         :'japan_payment_options' => :'japanPaymentOptions',
-        :'refund_options' => :'refundOptions'
+        :'refund_options' => :'refundOptions',
+        :'merchant_verification_value' => :'merchantVerificationValue'
       }
     end
 
@@ -114,7 +118,8 @@ module CyberSource
         :'electronic_benefits_transfer' => :'electronic_benefits_transfer',
         :'loan_options' => :'loan_options',
         :'japan_payment_options' => :'japan_payment_options',
-        :'refund_options' => :'refund_options'
+        :'refund_options' => :'refund_options',
+        :'merchant_verification_value' => :'merchant_verification_value'
       }
     end
 
@@ -140,7 +145,8 @@ module CyberSource
         :'electronic_benefits_transfer' => :'Ptsv2creditsProcessingInformationElectronicBenefitsTransfer',
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
         :'japan_payment_options' => :'Ptsv2creditsProcessingInformationJapanPaymentOptions',
-        :'refund_options' => :'Ptsv2creditsProcessingInformationRefundOptions'
+        :'refund_options' => :'Ptsv2creditsProcessingInformationRefundOptions',
+        :'merchant_verification_value' => :'String'
       }
     end
 
@@ -233,6 +239,10 @@ module CyberSource
       if attributes.has_key?(:'refundOptions')
         self.refund_options = attributes[:'refundOptions']
       end
+
+      if attributes.has_key?(:'merchantVerificationValue')
+        self.merchant_verification_value = attributes[:'merchantVerificationValue']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -320,6 +330,12 @@ module CyberSource
       @network_routing_order = network_routing_order
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_verification_value Value to be assigned
+    def merchant_verification_value=(merchant_verification_value)
+      @merchant_verification_value = merchant_verification_value
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -344,7 +360,8 @@ module CyberSource
           electronic_benefits_transfer == o.electronic_benefits_transfer &&
           loan_options == o.loan_options &&
           japan_payment_options == o.japan_payment_options &&
-          refund_options == o.refund_options
+          refund_options == o.refund_options &&
+          merchant_verification_value == o.merchant_verification_value
     end
 
     # @see the `==` method
@@ -356,7 +373,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options, refund_options].hash
+      [action_list, commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options, refund_options, merchant_verification_value].hash
     end
 
     # Builds the object from hash

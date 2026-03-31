@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative './Cache'
+require 'stringio'
 require 'jose'
 
 public

@@ -15,24 +15,124 @@ module CyberSource
   class PaymentsProductsUnifiedCheckoutSubscriptionInformationFeatures
     attr_accessor :paze_for_unified_checkout
 
+    attr_accessor :token_management
+
+    attr_accessor :pay_pal
+
+    attr_accessor :venmo
+
+    attr_accessor :apple_pay
+
+    attr_accessor :google_pay
+
+    attr_accessor :tink_pay_by_bank
+
+    attr_accessor :e_check
+
+    attr_accessor :p24
+
+    attr_accessor :my_bank
+
+    attr_accessor :konbini
+
+    attr_accessor :dragon_pay
+
+    attr_accessor :decision_manager
+
+    attr_accessor :payer_authentication
+
+    attr_accessor :after_pay
+
+    attr_accessor :ideal
+
+    attr_accessor :multibanco
+
+    attr_accessor :bancontact
+
+    attr_accessor :click_to_pay
+
+    attr_accessor :unified_click_to_pay_sdk
+
+    attr_accessor :portfolio_accessof_sensitive_data
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'paze_for_unified_checkout' => :'pazeForUnifiedCheckout'
+        :'paze_for_unified_checkout' => :'pazeForUnifiedCheckout',
+        :'token_management' => :'tokenManagement',
+        :'pay_pal' => :'payPal',
+        :'venmo' => :'venmo',
+        :'apple_pay' => :'applePay',
+        :'google_pay' => :'googlePay',
+        :'tink_pay_by_bank' => :'tinkPayByBank',
+        :'e_check' => :'eCheck',
+        :'p24' => :'p24',
+        :'my_bank' => :'myBank',
+        :'konbini' => :'konbini',
+        :'dragon_pay' => :'dragonPay',
+        :'decision_manager' => :'decisionManager',
+        :'payer_authentication' => :'payerAuthentication',
+        :'after_pay' => :'afterPay',
+        :'ideal' => :'ideal',
+        :'multibanco' => :'multibanco',
+        :'bancontact' => :'bancontact',
+        :'click_to_pay' => :'clickToPay',
+        :'unified_click_to_pay_sdk' => :'unifiedClickToPaySDK',
+        :'portfolio_accessof_sensitive_data' => :'portfolioAccessofSensitiveData'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'paze_for_unified_checkout' => :'paze_for_unified_checkout'
+        :'paze_for_unified_checkout' => :'paze_for_unified_checkout',
+        :'token_management' => :'token_management',
+        :'pay_pal' => :'pay_pal',
+        :'venmo' => :'venmo',
+        :'apple_pay' => :'apple_pay',
+        :'google_pay' => :'google_pay',
+        :'tink_pay_by_bank' => :'tink_pay_by_bank',
+        :'e_check' => :'e_check',
+        :'p24' => :'p24',
+        :'my_bank' => :'my_bank',
+        :'konbini' => :'konbini',
+        :'dragon_pay' => :'dragon_pay',
+        :'decision_manager' => :'decision_manager',
+        :'payer_authentication' => :'payer_authentication',
+        :'after_pay' => :'after_pay',
+        :'ideal' => :'ideal',
+        :'multibanco' => :'multibanco',
+        :'bancontact' => :'bancontact',
+        :'click_to_pay' => :'click_to_pay',
+        :'unified_click_to_pay_sdk' => :'unified_click_to_pay_sdk',
+        :'portfolio_accessof_sensitive_data' => :'portfolio_accessof_sensitive_data'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'paze_for_unified_checkout' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesPazeForUnifiedCheckout'
+        :'paze_for_unified_checkout' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesPazeForUnifiedCheckout',
+        :'token_management' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesTokenManagement',
+        :'pay_pal' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesPayPal',
+        :'venmo' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesVenmo',
+        :'apple_pay' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesApplePay',
+        :'google_pay' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesGooglePay',
+        :'tink_pay_by_bank' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesTinkPayByBank',
+        :'e_check' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesECheck',
+        :'p24' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesP24',
+        :'my_bank' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesMyBank',
+        :'konbini' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesKonbini',
+        :'dragon_pay' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesDragonPay',
+        :'decision_manager' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesDecisionManager',
+        :'payer_authentication' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesPayerAuthentication',
+        :'after_pay' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesAfterPay',
+        :'ideal' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesIdeal',
+        :'multibanco' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesMultibanco',
+        :'bancontact' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesBancontact',
+        :'click_to_pay' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesClickToPay',
+        :'unified_click_to_pay_sdk' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesUnifiedClickToPaySDK',
+        :'portfolio_accessof_sensitive_data' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeaturesPortfolioAccessofSensitiveData'
       }
     end
 
@@ -46,6 +146,86 @@ module CyberSource
 
       if attributes.has_key?(:'pazeForUnifiedCheckout')
         self.paze_for_unified_checkout = attributes[:'pazeForUnifiedCheckout']
+      end
+
+      if attributes.has_key?(:'tokenManagement')
+        self.token_management = attributes[:'tokenManagement']
+      end
+
+      if attributes.has_key?(:'payPal')
+        self.pay_pal = attributes[:'payPal']
+      end
+
+      if attributes.has_key?(:'venmo')
+        self.venmo = attributes[:'venmo']
+      end
+
+      if attributes.has_key?(:'applePay')
+        self.apple_pay = attributes[:'applePay']
+      end
+
+      if attributes.has_key?(:'googlePay')
+        self.google_pay = attributes[:'googlePay']
+      end
+
+      if attributes.has_key?(:'tinkPayByBank')
+        self.tink_pay_by_bank = attributes[:'tinkPayByBank']
+      end
+
+      if attributes.has_key?(:'eCheck')
+        self.e_check = attributes[:'eCheck']
+      end
+
+      if attributes.has_key?(:'p24')
+        self.p24 = attributes[:'p24']
+      end
+
+      if attributes.has_key?(:'myBank')
+        self.my_bank = attributes[:'myBank']
+      end
+
+      if attributes.has_key?(:'konbini')
+        self.konbini = attributes[:'konbini']
+      end
+
+      if attributes.has_key?(:'dragonPay')
+        self.dragon_pay = attributes[:'dragonPay']
+      end
+
+      if attributes.has_key?(:'decisionManager')
+        self.decision_manager = attributes[:'decisionManager']
+      end
+
+      if attributes.has_key?(:'payerAuthentication')
+        self.payer_authentication = attributes[:'payerAuthentication']
+      end
+
+      if attributes.has_key?(:'afterPay')
+        self.after_pay = attributes[:'afterPay']
+      end
+
+      if attributes.has_key?(:'ideal')
+        self.ideal = attributes[:'ideal']
+      end
+
+      if attributes.has_key?(:'multibanco')
+        self.multibanco = attributes[:'multibanco']
+      end
+
+      if attributes.has_key?(:'bancontact')
+        self.bancontact = attributes[:'bancontact']
+      end
+
+      if attributes.has_key?(:'clickToPay')
+        self.click_to_pay = attributes[:'clickToPay']
+      end
+
+      if attributes.has_key?(:'unifiedClickToPaySDK')
+        self.unified_click_to_pay_sdk = attributes[:'unifiedClickToPaySDK']
+      end
+
+      if attributes.has_key?(:'portfolioAccessofSensitiveData')
+        self.portfolio_accessof_sensitive_data = attributes[:'portfolioAccessofSensitiveData']
       end
     end
 
@@ -67,7 +247,27 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          paze_for_unified_checkout == o.paze_for_unified_checkout
+          paze_for_unified_checkout == o.paze_for_unified_checkout &&
+          token_management == o.token_management &&
+          pay_pal == o.pay_pal &&
+          venmo == o.venmo &&
+          apple_pay == o.apple_pay &&
+          google_pay == o.google_pay &&
+          tink_pay_by_bank == o.tink_pay_by_bank &&
+          e_check == o.e_check &&
+          p24 == o.p24 &&
+          my_bank == o.my_bank &&
+          konbini == o.konbini &&
+          dragon_pay == o.dragon_pay &&
+          decision_manager == o.decision_manager &&
+          payer_authentication == o.payer_authentication &&
+          after_pay == o.after_pay &&
+          ideal == o.ideal &&
+          multibanco == o.multibanco &&
+          bancontact == o.bancontact &&
+          click_to_pay == o.click_to_pay &&
+          unified_click_to_pay_sdk == o.unified_click_to_pay_sdk &&
+          portfolio_accessof_sensitive_data == o.portfolio_accessof_sensitive_data
     end
 
     # @see the `==` method
@@ -79,7 +279,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [paze_for_unified_checkout].hash
+      [paze_for_unified_checkout, token_management, pay_pal, venmo, apple_pay, google_pay, tink_pay_by_bank, e_check, p24, my_bank, konbini, dragon_pay, decision_manager, payer_authentication, after_pay, ideal, multibanco, bancontact, click_to_pay, unified_click_to_pay_sdk, portfolio_accessof_sensitive_data].hash
     end
 
     # Builds the object from hash

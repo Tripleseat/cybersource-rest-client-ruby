@@ -19,11 +19,14 @@ module CyberSource
     # Subscription setup fee 
     attr_accessor :setup_fee
 
+    attr_accessor :surcharge
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'billing_amount' => :'billingAmount',
-        :'setup_fee' => :'setupFee'
+        :'setup_fee' => :'setupFee',
+        :'surcharge' => :'surcharge'
       }
     end
 
@@ -31,7 +34,8 @@ module CyberSource
     def self.json_map
       {
         :'billing_amount' => :'billing_amount',
-        :'setup_fee' => :'setup_fee'
+        :'setup_fee' => :'setup_fee',
+        :'surcharge' => :'surcharge'
       }
     end
 
@@ -39,7 +43,8 @@ module CyberSource
     def self.swagger_types
       {
         :'billing_amount' => :'String',
-        :'setup_fee' => :'String'
+        :'setup_fee' => :'String',
+        :'surcharge' => :'GetAllSubscriptionsResponseOrderInformationAmountDetailsSurcharge'
       }
     end
 
@@ -57,6 +62,10 @@ module CyberSource
 
       if attributes.has_key?(:'setupFee')
         self.setup_fee = attributes[:'setupFee']
+      end
+
+      if attributes.has_key?(:'surcharge')
+        self.surcharge = attributes[:'surcharge']
       end
     end
 
@@ -91,7 +100,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           billing_amount == o.billing_amount &&
-          setup_fee == o.setup_fee
+          setup_fee == o.setup_fee &&
+          surcharge == o.surcharge
     end
 
     # @see the `==` method
@@ -103,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [billing_amount, setup_fee].hash
+      [billing_amount, setup_fee, surcharge].hash
     end
 
     # Builds the object from hash

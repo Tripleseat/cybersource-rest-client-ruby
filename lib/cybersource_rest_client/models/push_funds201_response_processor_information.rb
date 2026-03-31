@@ -41,6 +41,8 @@ module CyberSource
 
     attr_accessor :settlement
 
+    attr_accessor :merchant_advice
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +55,8 @@ module CyberSource
         :'fee_program_indicator' => :'feeProgramIndicator',
         :'name' => :'name',
         :'routing' => :'routing',
-        :'settlement' => :'settlement'
+        :'settlement' => :'settlement',
+        :'merchant_advice' => :'merchantAdvice'
       }
     end
 
@@ -69,7 +72,8 @@ module CyberSource
         :'fee_program_indicator' => :'fee_program_indicator',
         :'name' => :'name',
         :'routing' => :'routing',
-        :'settlement' => :'settlement'
+        :'settlement' => :'settlement',
+        :'merchant_advice' => :'merchant_advice'
       }
     end
 
@@ -85,7 +89,8 @@ module CyberSource
         :'fee_program_indicator' => :'String',
         :'name' => :'String',
         :'routing' => :'PushFunds201ResponseProcessorInformationRouting',
-        :'settlement' => :'PushFunds201ResponseProcessorInformationSettlement'
+        :'settlement' => :'PushFunds201ResponseProcessorInformationSettlement',
+        :'merchant_advice' => :'PushFunds201ResponseProcessorInformationMerchantAdvice'
       }
     end
 
@@ -135,6 +140,10 @@ module CyberSource
 
       if attributes.has_key?(:'settlement')
         self.settlement = attributes[:'settlement']
+      end
+
+      if attributes.has_key?(:'merchantAdvice')
+        self.merchant_advice = attributes[:'merchantAdvice']
       end
     end
 
@@ -207,7 +216,8 @@ module CyberSource
           fee_program_indicator == o.fee_program_indicator &&
           name == o.name &&
           routing == o.routing &&
-          settlement == o.settlement
+          settlement == o.settlement &&
+          merchant_advice == o.merchant_advice
     end
 
     # @see the `==` method
@@ -219,7 +229,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, system_trace_audit_number, retrieval_reference_number, action_code, approval_code, fee_program_indicator, name, routing, settlement].hash
+      [transaction_id, response_code, system_trace_audit_number, retrieval_reference_number, action_code, approval_code, fee_program_indicator, name, routing, settlement, merchant_advice].hash
     end
 
     # Builds the object from hash

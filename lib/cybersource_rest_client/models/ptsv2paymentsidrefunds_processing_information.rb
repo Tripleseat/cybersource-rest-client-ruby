@@ -47,6 +47,9 @@ module CyberSource
     # This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only. Possible values: - 201- Mastercard Rebate - 202- rePower Load Value - 203- Gaming Re-pay - 204- General Person-to-Person - 205- General Transfer to Own Account - 206- Agent Cash Out - 207- Payment of Own Credit Card Bill - 208- Business Disbursement - 209- Government/Non-Profit Disbursement - 210- Rapid Merchant Settlement - 211- Cash in at ATM (Usage limited to specific countries) - 212- Cash in at Point of Sale (Usage limited to specific countries) - 213- General Business to Business Transfer - 214- Mastercard Merchant Presented QR - 215- Mastercard Merchant Presented QR Refund Payment - 216- Utility Payments (for Brazil domestic use only) - 217- Government Services (for Brazil domestic use only) - 218- Mobile phone top-ups (for Brazil domestic use only) - 219- Coupon booklet payments (for Brazil domestic use only) - 220- General Person-to-Person Transfer - 221- Person-to-Person Transfer to Card Account - 222- General Transfer to Own Account - 223- Agent Cash Out - 224- Payment of Own Credit Card Bill - 225- Business Disbursement - 226- Transfer to Own Staged Digital Wallet Account - 227- Transfer to Own Debit or Prepaid Account - 228- General Business-to-Business Transfer - 229- Installment-based repayment - 230- Mastercard ATM Cash Pick-Up Transaction - 231- Cryptocurrency - 232- High-risk Securities 
     attr_accessor :transaction_type_indicator
 
+    # The override value of the Merchant Verification Value (MVV) received by various card brands. MVV refers to the value assigned by the card brand/network to identify participation in select merchant programs.  Sample value for Visa: `101010` 
+    attr_accessor :merchant_verification_value
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -61,7 +64,8 @@ module CyberSource
         :'industry_data_type' => :'industryDataType',
         :'payment_type' => :'paymentType',
         :'refund_options' => :'refundOptions',
-        :'transaction_type_indicator' => :'transactionTypeIndicator'
+        :'transaction_type_indicator' => :'transactionTypeIndicator',
+        :'merchant_verification_value' => :'merchantVerificationValue'
       }
     end
 
@@ -79,7 +83,8 @@ module CyberSource
         :'industry_data_type' => :'industry_data_type',
         :'payment_type' => :'payment_type',
         :'refund_options' => :'refund_options',
-        :'transaction_type_indicator' => :'transaction_type_indicator'
+        :'transaction_type_indicator' => :'transaction_type_indicator',
+        :'merchant_verification_value' => :'merchant_verification_value'
       }
     end
 
@@ -97,7 +102,8 @@ module CyberSource
         :'industry_data_type' => :'String',
         :'payment_type' => :'String',
         :'refund_options' => :'Ptsv2paymentsidrefundsProcessingInformationRefundOptions',
-        :'transaction_type_indicator' => :'String'
+        :'transaction_type_indicator' => :'String',
+        :'merchant_verification_value' => :'String'
       }
     end
 
@@ -157,6 +163,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionTypeIndicator')
         self.transaction_type_indicator = attributes[:'transactionTypeIndicator']
+      end
+
+      if attributes.has_key?(:'merchantVerificationValue')
+        self.merchant_verification_value = attributes[:'merchantVerificationValue']
       end
     end
 
@@ -221,6 +231,12 @@ module CyberSource
       @transaction_type_indicator = transaction_type_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_verification_value Value to be assigned
+    def merchant_verification_value=(merchant_verification_value)
+      @merchant_verification_value = merchant_verification_value
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -237,7 +253,8 @@ module CyberSource
           industry_data_type == o.industry_data_type &&
           payment_type == o.payment_type &&
           refund_options == o.refund_options &&
-          transaction_type_indicator == o.transaction_type_indicator
+          transaction_type_indicator == o.transaction_type_indicator &&
+          merchant_verification_value == o.merchant_verification_value
     end
 
     # @see the `==` method
@@ -249,7 +266,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, recurring_options, industry_data_type, payment_type, refund_options, transaction_type_indicator].hash
+      [action_list, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, recurring_options, industry_data_type, payment_type, refund_options, transaction_type_indicator, merchant_verification_value].hash
     end
 
     # Builds the object from hash
