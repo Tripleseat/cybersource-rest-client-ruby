@@ -28,9 +28,11 @@ public
       @keyAlias = cybsPropertyObj['keyAlias']
       @keyPass = cybsPropertyObj['keyPass']
       @keyFilename = cybsPropertyObj['keyFilename']
+      @jwtKeyType = cybsPropertyObj['jwtKeyType'] ? cybsPropertyObj['jwtKeyType'].to_s.upcase : Constants::JWT_KEY_TYPE_P12
       @useMetaKey = cybsPropertyObj['useMetaKey']
       @portfolioID = cybsPropertyObj['portfolioID']
       @solutionId = cybsPropertyObj['solutionId']
+      @isSDK = cybsPropertyObj['isSDK'] == true || cybsPropertyObj['isSDK'].to_s.strip.casecmp?('true')
       @p12KeyFilePath = nil
       # MutualAuth & OAuth Parameters
       @enableClientCert = cybsPropertyObj['enableClientCert']
@@ -229,40 +231,52 @@ public
         elsif !@merchantId.instance_of? String
           @merchantId=@merchantId.to_s
         end
-        if @keyAlias.to_s.empty?
-          @keyAlias = @merchantId
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_ALIAS_NULL_EMPTY)
-        elsif !@keyAlias.instance_of? String
-          @keyAlias=@keyAlias.to_s
-        end
-        if !@useMetaKey && @keyAlias != @merchantId
-          @keyAlias = @merchantId
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS)
-        end
-        if @useMetaKey && @keyAlias != @portfolioID
-          @keyAlias = @portfolioID
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS_USE_METAKEY)
-        end
-        if @keyPass.to_s.empty?
-          @keyPass = @merchantId
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_PASS_NULL)
-        elsif !@keyPass.instance_of? String
-          @keyPass=@keyPass.to_s
-        end
-        if @keysDirectory.to_s.empty?
-          @keysDirectory = Constants::DEFAULT_KEY_DIRECTORY
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_DIRECTORY_EMPTY + @keysDirectory)
-        elsif !@keysDirectory.instance_of? String
-          @keysDirectory=@keysDirectory.to_s
-        end
-        if @keyFilename.to_s.empty?
-          @keyFilename = @merchantId
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_FILE_NAME_NULL_EMPTY)
-        elsif !@keyFilename.instance_of? String
-          @keyFilename=@keyFilename.to_s
-        end
-        if !check_key_file
-          @log_obj.logger.error(ExceptionHandler.new.new_custom_error "Error finding or accessing the Key Directory or Key File. Please review the values in the merchant configuration.")
+
+        # Validate jwtKeyType
+        check_jwt_key_type
+
+        if is_shared_secret_key_type?
+          # Shared Secret validation — same credentials as HTTP_SIGNATURE
+          validateSharedSecretKeyCredentials()
+        else
+          # P12 validation (existing behavior)
+          if @keyAlias.to_s.empty?
+            @keyAlias = @merchantId
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_ALIAS_NULL_EMPTY)
+          elsif !@keyAlias.instance_of? String
+            @keyAlias=@keyAlias.to_s
+          end
+          if !@useMetaKey && @keyAlias != @merchantId
+            @keyAlias = @merchantId
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS)
+          end
+          if @useMetaKey && @keyAlias != @portfolioID
+            @keyAlias = @portfolioID
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::INCORRECT_KEY_ALIAS_USE_METAKEY)
+          end
+          if @keyPass.to_s.empty?
+            @keyPass = @merchantId
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_PASS_NULL)
+          elsif !@keyPass.instance_of? String
+            @keyPass=@keyPass.to_s
+          end
+          if @keysDirectory.to_s.empty?
+            @keysDirectory = Constants::DEFAULT_KEY_DIRECTORY
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_DIRECTORY_EMPTY + @keysDirectory)
+          elsif !@keysDirectory.instance_of? String
+            @keysDirectory=@keysDirectory.to_s
+          end
+          if @keyFilename.to_s.empty?
+            @keyFilename = @merchantId
+            @log_obj.logger.warn(ExceptionHandler.new.new_api_warning Constants::WARNING_PREFIX + Constants::KEY_FILE_NAME_NULL_EMPTY)
+          elsif !@keyFilename.instance_of? String
+            @keyFilename=@keyFilename.to_s
+          end
+          if !check_key_file
+            err = StandardError.new(Constants::ERROR_PREFIX + "Cannot find or access the Key Directory or Key File. Please review the values in the merchant configuration.")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
         end
       end
       if @authenticationType.upcase == Constants::AUTH_TYPE_MUTUAL_AUTH
@@ -305,20 +319,7 @@ public
         elsif !@merchantId.instance_of? String
           @merchantId=@merchantId.to_s
         end
-        if @merchantKeyId.to_s.empty?
-          err = StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_KEY_ID_MANDATORY)
-          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-          raise err
-        elsif !@merchantKeyId.instance_of? String
-          @merchantKeyId=@merchantKeyId.to_s
-        end
-        if @merchantSecretKey.to_s.empty?
-          err = StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_SECRET_KEY_MANDATORY)
-          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-          raise err
-        elsif !@merchantSecretKey.instance_of? String
-          @merchantSecretKey=@merchantSecretKey.to_s
-        end
+        validateSharedSecretKeyCredentials()
       end
       if @useMetaKey && @portfolioID.to_s.empty?
         err = StandardError.new(Constants::ERROR_PREFIX+ Constants::PORTFOLIO_ID_MANDATORY)
@@ -334,6 +335,23 @@ public
       end
       unless @pemFileDirectory.instance_of? String
         @pemFileDirectory = @pemFileDirectory.to_s
+      end
+    end
+
+    def validateSharedSecretKeyCredentials()
+      if @merchantKeyId.to_s.empty?
+        err = StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_KEY_ID_MANDATORY)
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      elsif !@merchantKeyId.instance_of? String
+        @merchantKeyId=@merchantKeyId.to_s
+      end
+      if @merchantSecretKey.to_s.empty?
+        err = StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_SECRET_KEY_MANDATORY)
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      elsif !@merchantSecretKey.instance_of? String
+        @merchantSecretKey=@merchantSecretKey.to_s
       end
     end
 
@@ -588,6 +606,20 @@ public
       @log_obj.logger.info('Merchant Configuration :\n' + propertyObj.to_s)
     end
 
+    # Returns true when jwtKeyType is SHARED_SECRET
+    def is_shared_secret_key_type?
+      !@jwtKeyType.nil? && @jwtKeyType.upcase == Constants::JWT_KEY_TYPE_SHARED_SECRET
+    end
+
+    # Validates that jwtKeyType is either P12 or SHARED_SECRET
+    def check_jwt_key_type
+      unless @jwtKeyType.upcase == Constants::JWT_KEY_TYPE_P12 || @jwtKeyType.upcase == Constants::JWT_KEY_TYPE_SHARED_SECRET
+        err = StandardError.new(Constants::ERROR_PREFIX + Constants::INVALID_JWT_KEY_TYPE)
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+    end
+
     def check_key_file
       # Directory exists?
       unless Dir.exist?(@keysDirectory)
@@ -629,6 +661,7 @@ public
     attr_accessor :keyAlias
     attr_accessor :keyPass
     attr_accessor :keyFilename
+    attr_accessor :jwtKeyType
     attr_accessor :useMetaKey
     attr_accessor :portfolioID
     attr_accessor :keepAliveTime
@@ -652,6 +685,7 @@ public
     attr_accessor :requestTarget
     attr_accessor :log_obj
     attr_accessor :solutionId
+    attr_accessor :isSDK
     attr_accessor :defaultCustomHeaders
     attr_accessor :pemFileDirectory
     attr_accessor :useMLEGlobally

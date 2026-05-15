@@ -17,11 +17,15 @@ module CyberSource
 
     attr_accessor :issuer
 
+    # The creator of the Tokenized Card.
+    attr_accessor :creator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card_art' => :'cardArt',
-        :'issuer' => :'issuer'
+        :'issuer' => :'issuer',
+        :'creator' => :'creator'
       }
     end
 
@@ -29,7 +33,8 @@ module CyberSource
     def self.json_map
       {
         :'card_art' => :'card_art',
-        :'issuer' => :'issuer'
+        :'issuer' => :'issuer',
+        :'creator' => :'creator'
       }
     end
 
@@ -37,7 +42,8 @@ module CyberSource
     def self.swagger_types
       {
         :'card_art' => :'TmsCardArt',
-        :'issuer' => :'Tmsv2TokenizedCardMetadataIssuer'
+        :'issuer' => :'Tmsv2TokenizedCardMetadataIssuer',
+        :'creator' => :'String'
       }
     end
 
@@ -55,6 +61,10 @@ module CyberSource
 
       if attributes.has_key?(:'issuer')
         self.issuer = attributes[:'issuer']
+      end
+
+      if attributes.has_key?(:'creator')
+        self.creator = attributes[:'creator']
       end
     end
 
@@ -77,7 +87,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card_art == o.card_art &&
-          issuer == o.issuer
+          issuer == o.issuer &&
+          creator == o.creator
     end
 
     # @see the `==` method
@@ -89,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_art, issuer].hash
+      [card_art, issuer, creator].hash
     end
 
     # Builds the object from hash

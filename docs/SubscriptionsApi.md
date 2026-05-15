@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**get_all_subscriptions**](SubscriptionsApi.md#get_all_subscriptions) | **GET** /rbs/v1/subscriptions | Get a List of Subscriptions
 [**get_subscription**](SubscriptionsApi.md#get_subscription) | **GET** /rbs/v1/subscriptions/{id} | Get a Subscription
 [**get_subscription_code**](SubscriptionsApi.md#get_subscription_code) | **GET** /rbs/v1/subscriptions/code | Get a Subscription Code
+[**subscriptions_id_payments_get**](SubscriptionsApi.md#subscriptions_id_payments_get) | **GET** /rbs/v1/subscriptions/{id}/payments | Get Payments for a Subscription
+[**subscriptions_id_payments_put**](SubscriptionsApi.md#subscriptions_id_payments_put) | **PUT** /rbs/v1/subscriptions/{id}/payments | Update Payments for a subscription
 [**suspend_subscription**](SubscriptionsApi.md#suspend_subscription) | **POST** /rbs/v1/subscriptions/{id}/suspend | Suspend a Subscription
 [**update_subscription**](SubscriptionsApi.md#update_subscription) | **PATCH** /rbs/v1/subscriptions/{id} | Update a Subscription
 
@@ -178,7 +180,8 @@ opts = {
   limit: 56, # Integer | Number of items to be returned. Default - `20`, Max - `100` 
   code: 'code_example', # String | Filter by Subscription Code
   status: 'status_example', # String | Filter by Subscription Status
-  customer_id: 'customer_id_example' # String | Filter by Customer Id
+  customer_id: 'customer_id_example', # String | Filter by Customer Id
+  client_reference_information_code: 'client_reference_information_code_example' # String | Filter by Client Reference Information Code / Merchant Reference Number
 }
 
 begin
@@ -199,6 +202,7 @@ Name | Type | Description  | Notes
  **code** | **String**| Filter by Subscription Code | [optional] 
  **status** | **String**| Filter by Subscription Status | [optional] 
  **customer_id** | **String**| Filter by Customer Id | [optional] 
+ **client_reference_information_code** | **String**| Filter by Client Reference Information Code / Merchant Reference Number | [optional] 
 
 ### Return type
 
@@ -300,6 +304,111 @@ No authorization required
 
  - **Content-Type**: application/json;charset=utf-8
  - **Accept**: application/json, application/hal+json, application/json;charset=utf-8, application/hal+json;charset=utf-8
+
+
+
+# **subscriptions_id_payments_get**
+> GetSubscriptionsPaymentsResponse subscriptions_id_payments_get(id, opts)
+
+Get Payments for a Subscription
+
+Retrieve a list of payments for a specific subscription by its ID. 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SubscriptionsApi.new
+
+id = 'id_example' # String | Subscription Id
+
+opts = { 
+  offset: 56, # Integer | Page offset number.
+  limit: 56, # Integer | Number of items to be returned. Default - `20`, Max - `100` 
+  scheduled_payments_count: 56 # Integer | Number of existing scheduled payments to be returned. Default - `5`, Max - `9999` 
+}
+
+begin
+  #Get Payments for a Subscription
+  result = api_instance.subscriptions_id_payments_get(id, opts)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SubscriptionsApi->subscriptions_id_payments_get: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Subscription Id | 
+ **offset** | **Integer**| Page offset number. | [optional] 
+ **limit** | **Integer**| Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60;  | [optional] 
+ **scheduled_payments_count** | **Integer**| Number of existing scheduled payments to be returned. Default - &#x60;5&#x60;, Max - &#x60;9999&#x60;  | [optional] 
+
+### Return type
+
+[**GetSubscriptionsPaymentsResponse**](GetSubscriptionsPaymentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **subscriptions_id_payments_put**
+> GetSubscriptionsPaymentsResponse1 subscriptions_id_payments_put(id, update_payments)
+
+Update Payments for a subscription
+
+Modifies the state of a subscription's payments. Currently, the only possible modifications are \"skipping\" and \"restoring\" payments.  Marking a payment as \"skipped\" means it will not be processed when its scheduled time arrives. \"Restoring\" a payment removes it from the list of payments to be skipped. 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SubscriptionsApi.new
+
+id = 'id_example' # String | Subscription Id
+
+update_payments = CyberSource::UpdatePayments.new # UpdatePayments | Modify payments of a subscription
+
+
+begin
+  #Update Payments for a subscription
+  result = api_instance.subscriptions_id_payments_put(id, update_payments)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SubscriptionsApi->subscriptions_id_payments_put: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Subscription Id | 
+ **update_payments** | [**UpdatePayments**](UpdatePayments.md)| Modify payments of a subscription | 
+
+### Return type
+
+[**GetSubscriptionsPaymentsResponse1**](GetSubscriptionsPaymentsResponse1.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 

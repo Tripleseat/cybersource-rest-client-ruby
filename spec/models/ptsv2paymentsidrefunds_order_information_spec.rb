@@ -67,4 +67,10 @@ describe 'Ptsv2paymentsidrefundsOrderInformation' do
     end
   end
 
+  describe 'test attribute "digital_currency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

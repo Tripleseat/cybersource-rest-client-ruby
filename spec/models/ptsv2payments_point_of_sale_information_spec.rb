@@ -169,6 +169,12 @@ describe 'Ptsv2paymentsPointOfSaleInformation' do
     end
   end
 
+  describe 'test attribute "encrypted_key_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "partner_sdk_version"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

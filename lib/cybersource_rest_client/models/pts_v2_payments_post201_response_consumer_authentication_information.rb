@@ -140,6 +140,27 @@ module CyberSource
     # Enables the communication of trusted beneficiary/whitelist status between the ACS, the DS and the 3DS Requestor.  Possible Values:  Y - 3DS Requestor is whitelisted by cardholder  N - 3DS Requestor is not whitelisted by cardholder 
     attr_accessor :white_list_status
 
+    # 
+    attr_accessor :token
+
+    # Unique identifier assigned by the EMVCo Secretariat upon Testing and Approval.
+    attr_accessor :acs_reference_number
+
+    # Directory Server assigned ACS identifier.
+    attr_accessor :acs_operator_id
+
+    # Risk Assessment from Mastercard
+    attr_accessor :idci_score
+
+    # Decision on the Risk Assessment from Mastercard.
+    attr_accessor :idci_decision
+
+    # ReasonCode from Mastercard
+    attr_accessor :idci_reason_code1
+
+    # ReasonCode from Mastercard
+    attr_accessor :idci_reason_code2
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -185,7 +206,14 @@ module CyberSource
         :'authentication_status_msg' => :'authenticationStatusMsg',
         :'indicator' => :'indicator',
         :'interaction_counter' => :'interactionCounter',
-        :'white_list_status' => :'whiteListStatus'
+        :'white_list_status' => :'whiteListStatus',
+        :'token' => :'token',
+        :'acs_reference_number' => :'acsReferenceNumber',
+        :'acs_operator_id' => :'acsOperatorID',
+        :'idci_score' => :'idciScore',
+        :'idci_decision' => :'idciDecision',
+        :'idci_reason_code1' => :'idciReasonCode1',
+        :'idci_reason_code2' => :'idciReasonCode2'
       }
     end
 
@@ -234,7 +262,14 @@ module CyberSource
         :'authentication_status_msg' => :'authentication_status_msg',
         :'indicator' => :'indicator',
         :'interaction_counter' => :'interaction_counter',
-        :'white_list_status' => :'white_list_status'
+        :'white_list_status' => :'white_list_status',
+        :'token' => :'token',
+        :'acs_reference_number' => :'acs_reference_number',
+        :'acs_operator_id' => :'acs_operator_id',
+        :'idci_score' => :'idci_score',
+        :'idci_decision' => :'idci_decision',
+        :'idci_reason_code1' => :'idci_reason_code1',
+        :'idci_reason_code2' => :'idci_reason_code2'
       }
     end
 
@@ -283,7 +318,14 @@ module CyberSource
         :'authentication_status_msg' => :'String',
         :'indicator' => :'String',
         :'interaction_counter' => :'String',
-        :'white_list_status' => :'String'
+        :'white_list_status' => :'String',
+        :'token' => :'String',
+        :'acs_reference_number' => :'String',
+        :'acs_operator_id' => :'String',
+        :'idci_score' => :'Integer',
+        :'idci_decision' => :'String',
+        :'idci_reason_code1' => :'String',
+        :'idci_reason_code2' => :'String'
       }
     end
 
@@ -466,6 +508,34 @@ module CyberSource
       if attributes.has_key?(:'whiteListStatus')
         self.white_list_status = attributes[:'whiteListStatus']
       end
+
+      if attributes.has_key?(:'token')
+        self.token = attributes[:'token']
+      end
+
+      if attributes.has_key?(:'acsReferenceNumber')
+        self.acs_reference_number = attributes[:'acsReferenceNumber']
+      end
+
+      if attributes.has_key?(:'acsOperatorID')
+        self.acs_operator_id = attributes[:'acsOperatorID']
+      end
+
+      if attributes.has_key?(:'idciScore')
+        self.idci_score = attributes[:'idciScore']
+      end
+
+      if attributes.has_key?(:'idciDecision')
+        self.idci_decision = attributes[:'idciDecision']
+      end
+
+      if attributes.has_key?(:'idciReasonCode1')
+        self.idci_reason_code1 = attributes[:'idciReasonCode1']
+      end
+
+      if attributes.has_key?(:'idciReasonCode2')
+        self.idci_reason_code2 = attributes[:'idciReasonCode2']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -613,6 +683,30 @@ module CyberSource
       @white_list_status = white_list_status
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] acs_reference_number Value to be assigned
+    def acs_reference_number=(acs_reference_number)
+      @acs_reference_number = acs_reference_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] idci_decision Value to be assigned
+    def idci_decision=(idci_decision)
+      @idci_decision = idci_decision
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] idci_reason_code1 Value to be assigned
+    def idci_reason_code1=(idci_reason_code1)
+      @idci_reason_code1 = idci_reason_code1
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] idci_reason_code2 Value to be assigned
+    def idci_reason_code2=(idci_reason_code2)
+      @idci_reason_code2 = idci_reason_code2
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -660,7 +754,14 @@ module CyberSource
           authentication_status_msg == o.authentication_status_msg &&
           indicator == o.indicator &&
           interaction_counter == o.interaction_counter &&
-          white_list_status == o.white_list_status
+          white_list_status == o.white_list_status &&
+          token == o.token &&
+          acs_reference_number == o.acs_reference_number &&
+          acs_operator_id == o.acs_operator_id &&
+          idci_score == o.idci_score &&
+          idci_decision == o.idci_decision &&
+          idci_reason_code1 == o.idci_reason_code1 &&
+          idci_reason_code2 == o.idci_reason_code2
     end
 
     # @see the `==` method
@@ -672,7 +773,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, strong_authentication, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, data_quality_indicator, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status].hash
+      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, strong_authentication, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, data_quality_indicator, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status, token, acs_reference_number, acs_operator_id, idci_score, idci_decision, idci_reason_code1, idci_reason_code2].hash
     end
 
     # Builds the object from hash

@@ -147,6 +147,18 @@ module CyberSource
     # Applicable for Barclays (barclays2) processor.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Default Value</th></tr></thead> <tr><td>Barclays</td><td>cnp, cp, hybrid</td><td>No</td><td>Yes</td></tr> </table> 
     attr_accessor :enable_multi_currency_processing
 
+    # Transaction Type Identifier (TTI) field for Mastercard AFT transactions. Maps to ISO field F104.65.32. Used to ensure compliance with Mastercard's requirements for money send transactions when wallet classifications differ between Visa and Mastercard schemes. Takes priority over BAI values for Mastercard AFT transactions when present.
+    attr_accessor :transaction_type_identifier
+
+    # The Sub merchant ID, sometimes referred to as the 'Seller ID' is generally used and *required for Aggregators and OptBlue participants. The 'Sub Merchant' is the Merchant whose transactions are submitted by a payment aggregator.
+    attr_accessor :sub_merchant_id
+
+    # Sub Merchant Email of the Payment Facilitator's, OptBlue Participant
+    attr_accessor :sub_merchant_email
+
+    # Sub Merchant Phone Number of the Payment Facilitator's, OptBlue Participant's
+    attr_accessor :sub_merchant_phone_number
+
     # 'POS Network Switching' or 'Alternate Routing' means merchant can process PIN Debit transactions without a PIN. Set the value to 'Yes' if it is supported. Applicable for FDI Global (fdiglobal) processor.
     attr_accessor :enable_pos_network_switching
 
@@ -204,6 +216,10 @@ module CyberSource
         :'enable_least_cost_routing' => :'enableLeastCostRouting',
         :'enable_cvv_response_indicator' => :'enableCVVResponseIndicator',
         :'enable_multi_currency_processing' => :'enableMultiCurrencyProcessing',
+        :'transaction_type_identifier' => :'transactionTypeIdentifier',
+        :'sub_merchant_id' => :'subMerchantId',
+        :'sub_merchant_email' => :'subMerchantEmail',
+        :'sub_merchant_phone_number' => :'subMerchantPhoneNumber',
         :'enable_pos_network_switching' => :'enablePosNetworkSwitching',
         :'enable_dynamic_currency_conversion' => :'enableDynamicCurrencyConversion',
         :'merchant_tier' => :'merchantTier'
@@ -258,6 +274,10 @@ module CyberSource
         :'enable_least_cost_routing' => :'enable_least_cost_routing',
         :'enable_cvv_response_indicator' => :'enable_cvv_response_indicator',
         :'enable_multi_currency_processing' => :'enable_multi_currency_processing',
+        :'transaction_type_identifier' => :'transaction_type_identifier',
+        :'sub_merchant_id' => :'sub_merchant_id',
+        :'sub_merchant_email' => :'sub_merchant_email',
+        :'sub_merchant_phone_number' => :'sub_merchant_phone_number',
         :'enable_pos_network_switching' => :'enable_pos_network_switching',
         :'enable_dynamic_currency_conversion' => :'enable_dynamic_currency_conversion',
         :'merchant_tier' => :'merchant_tier'
@@ -312,6 +332,10 @@ module CyberSource
         :'enable_least_cost_routing' => :'BOOLEAN',
         :'enable_cvv_response_indicator' => :'BOOLEAN',
         :'enable_multi_currency_processing' => :'String',
+        :'transaction_type_identifier' => :'String',
+        :'sub_merchant_id' => :'String',
+        :'sub_merchant_email' => :'String',
+        :'sub_merchant_phone_number' => :'String',
         :'enable_pos_network_switching' => :'BOOLEAN',
         :'enable_dynamic_currency_conversion' => :'BOOLEAN',
         :'merchant_tier' => :'String'
@@ -512,6 +536,22 @@ module CyberSource
         self.enable_multi_currency_processing = attributes[:'enableMultiCurrencyProcessing']
       end
 
+      if attributes.has_key?(:'transactionTypeIdentifier')
+        self.transaction_type_identifier = attributes[:'transactionTypeIdentifier']
+      end
+
+      if attributes.has_key?(:'subMerchantId')
+        self.sub_merchant_id = attributes[:'subMerchantId']
+      end
+
+      if attributes.has_key?(:'subMerchantEmail')
+        self.sub_merchant_email = attributes[:'subMerchantEmail']
+      end
+
+      if attributes.has_key?(:'subMerchantPhoneNumber')
+        self.sub_merchant_phone_number = attributes[:'subMerchantPhoneNumber']
+      end
+
       if attributes.has_key?(:'enablePosNetworkSwitching')
         self.enable_pos_network_switching = attributes[:'enablePosNetworkSwitching']
       end
@@ -533,6 +573,22 @@ module CyberSource
         invalid_properties.push('invalid value for "merchant_id", merchant_id cannot be nil.')
       end
 
+      #if !@transaction_type_identifier.nil? && @transaction_type_identifier !~ Regexp.new(/^[0-9a-zA-Z]+$/)
+        #invalid_properties.push('invalid value for "transaction_type_identifier", must conform to the pattern /^[0-9a-zA-Z]+$/.')
+      #end
+
+      #if !@sub_merchant_id.nil? && @sub_merchant_id !~ Regexp.new(/^[0-9a-zA-Z\\_\\s]+$/)
+        #invalid_properties.push('invalid value for "sub_merchant_id", must conform to the pattern /^[0-9a-zA-Z\\_\\s]+$/.')
+      #end
+
+      #if !@sub_merchant_email.nil? && @sub_merchant_email !~ Regexp.new(/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,70})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$/)
+        #invalid_properties.push('invalid value for "sub_merchant_email", must conform to the pattern /^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,70})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$/.')
+      #end
+
+      #if !@sub_merchant_phone_number.nil? && @sub_merchant_phone_number !~ Regexp.new(/^[0-9a-zA-Z]+$/)
+        #invalid_properties.push('invalid value for "sub_merchant_phone_number", must conform to the pattern /^[0-9a-zA-Z]+$/.')
+      #end
+
       #if !@merchant_tier.nil? && @merchant_tier !~ Regexp.new(/^[0-9]+$/)
         #invalid_properties.push('invalid value for "merchant_tier", must conform to the pattern /^[0-9]+$/.')
       #end
@@ -544,8 +600,52 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @merchant_id.nil?
+      #return false if !@transaction_type_identifier.nil? && @transaction_type_identifier !~ Regexp.new(/^[0-9a-zA-Z]+$/)
+      #return false if !@sub_merchant_id.nil? && @sub_merchant_id !~ Regexp.new(/^[0-9a-zA-Z\\_\\s]+$/)
+      #return false if !@sub_merchant_email.nil? && @sub_merchant_email !~ Regexp.new(/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,70})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$/)
+      #return false if !@sub_merchant_phone_number.nil? && @sub_merchant_phone_number !~ Regexp.new(/^[0-9a-zA-Z]+$/)
       #return false if !@merchant_tier.nil? && @merchant_tier !~ Regexp.new(/^[0-9]+$/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_type_identifier Value to be assigned
+    def transaction_type_identifier=(transaction_type_identifier)
+      #if !transaction_type_identifier.nil? && transaction_type_identifier !~ Regexp.new(/^[0-9a-zA-Z]+$/)
+        #fail ArgumentError, 'invalid value for "transaction_type_identifier", must conform to the pattern /^[0-9a-zA-Z]+$/.'
+      #end
+
+      @transaction_type_identifier = transaction_type_identifier
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sub_merchant_id Value to be assigned
+    def sub_merchant_id=(sub_merchant_id)
+      #if !sub_merchant_id.nil? && sub_merchant_id !~ Regexp.new(/^[0-9a-zA-Z\\_\\s]+$/)
+        #fail ArgumentError, 'invalid value for "sub_merchant_id", must conform to the pattern /^[0-9a-zA-Z\\_\\s]+$/.'
+      #end
+
+      @sub_merchant_id = sub_merchant_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sub_merchant_email Value to be assigned
+    def sub_merchant_email=(sub_merchant_email)
+      #if !sub_merchant_email.nil? && sub_merchant_email !~ Regexp.new(/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,70})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$/)
+        #fail ArgumentError, 'invalid value for "sub_merchant_email", must conform to the pattern /^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,70})\\.([a-zA-Z]{2,6}(?:\\.[a-zA-Z]{2})?)$/.'
+      #end
+
+      @sub_merchant_email = sub_merchant_email
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sub_merchant_phone_number Value to be assigned
+    def sub_merchant_phone_number=(sub_merchant_phone_number)
+      #if !sub_merchant_phone_number.nil? && sub_merchant_phone_number !~ Regexp.new(/^[0-9a-zA-Z]+$/)
+        #fail ArgumentError, 'invalid value for "sub_merchant_phone_number", must conform to the pattern /^[0-9a-zA-Z]+$/.'
+      #end
+
+      @sub_merchant_phone_number = sub_merchant_phone_number
     end
 
     # Custom attribute writer method with validation
@@ -608,6 +708,10 @@ module CyberSource
           enable_least_cost_routing == o.enable_least_cost_routing &&
           enable_cvv_response_indicator == o.enable_cvv_response_indicator &&
           enable_multi_currency_processing == o.enable_multi_currency_processing &&
+          transaction_type_identifier == o.transaction_type_identifier &&
+          sub_merchant_id == o.sub_merchant_id &&
+          sub_merchant_email == o.sub_merchant_email &&
+          sub_merchant_phone_number == o.sub_merchant_phone_number &&
           enable_pos_network_switching == o.enable_pos_network_switching &&
           enable_dynamic_currency_conversion == o.enable_dynamic_currency_conversion &&
           merchant_tier == o.merchant_tier
@@ -622,7 +726,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, acquirers, merchant_id, terminal_id, payment_types, currencies, visa_aggregator_id, amex_aggregator_id, master_card_aggregator_id, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
+      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, acquirers, merchant_id, terminal_id, payment_types, currencies, visa_aggregator_id, amex_aggregator_id, master_card_aggregator_id, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, transaction_type_identifier, sub_merchant_id, sub_merchant_email, sub_merchant_phone_number, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
     end
 
     # Builds the object from hash

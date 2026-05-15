@@ -46,6 +46,8 @@ module CyberSource
     # Sub-merchant's telephone number.  **Maximum length for procesors**   - American Express Direct: 20  - CyberSource through VisaNet: 20  - FDC Compass: 13  - FDC Nashville Global: 10  #### CyberSource through VisaNet With American Express, the value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCRB - Position: 5-24 - Field: American Express Seller Telephone Number  **FDC Compass**\\ This value must consist of uppercase characters. Use one of these recommended formats:\\ `NNN-NNN-NNNN`\\ `NNN-AAAAAAA` 
     attr_accessor :phone_number
 
+    attr_accessor :merchant_category_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -59,7 +61,8 @@ module CyberSource
         :'postal_code' => :'postalCode',
         :'country' => :'country',
         :'email' => :'email',
-        :'phone_number' => :'phoneNumber'
+        :'phone_number' => :'phoneNumber',
+        :'merchant_category_code' => :'merchantCategoryCode'
       }
     end
 
@@ -76,7 +79,8 @@ module CyberSource
         :'postal_code' => :'postal_code',
         :'country' => :'country',
         :'email' => :'email',
-        :'phone_number' => :'phone_number'
+        :'phone_number' => :'phone_number',
+        :'merchant_category_code' => :'merchant_category_code'
       }
     end
 
@@ -93,7 +97,8 @@ module CyberSource
         :'postal_code' => :'String',
         :'country' => :'String',
         :'email' => :'String',
-        :'phone_number' => :'String'
+        :'phone_number' => :'String',
+        :'merchant_category_code' => :'Float'
       }
     end
 
@@ -147,6 +152,10 @@ module CyberSource
 
       if attributes.has_key?(:'phoneNumber')
         self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'merchantCategoryCode')
+        self.merchant_category_code = attributes[:'merchantCategoryCode']
       end
     end
 
@@ -244,7 +253,8 @@ module CyberSource
           postal_code == o.postal_code &&
           country == o.country &&
           email == o.email &&
-          phone_number == o.phone_number
+          phone_number == o.phone_number &&
+          merchant_category_code == o.merchant_category_code
     end
 
     # @see the `==` method
@@ -256,7 +266,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_acceptor_id, id, name, address1, locality, administrative_area, region, postal_code, country, email, phone_number].hash
+      [card_acceptor_id, id, name, address1, locality, administrative_area, region, postal_code, country, email, phone_number, merchant_category_code].hash
     end
 
     # Builds the object from hash

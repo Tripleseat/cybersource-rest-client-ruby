@@ -35,6 +35,12 @@ module CyberSource
     # This field might contain information about a decline. 
     attr_accessor :response_details
 
+    attr_accessor :customer
+
+    attr_accessor :electronic_verification_results
+
+    attr_accessor :card_verification
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +51,10 @@ module CyberSource
         :'consumer_authentication_response' => :'consumerAuthenticationResponse',
         :'retrieval_reference_number' => :'retrievalReferenceNumber',
         :'avs' => :'avs',
-        :'response_details' => :'responseDetails'
+        :'response_details' => :'responseDetails',
+        :'customer' => :'customer',
+        :'electronic_verification_results' => :'electronicVerificationResults',
+        :'card_verification' => :'cardVerification'
       }
     end
 
@@ -59,7 +68,10 @@ module CyberSource
         :'consumer_authentication_response' => :'consumer_authentication_response',
         :'retrieval_reference_number' => :'retrieval_reference_number',
         :'avs' => :'avs',
-        :'response_details' => :'response_details'
+        :'response_details' => :'response_details',
+        :'customer' => :'customer',
+        :'electronic_verification_results' => :'electronic_verification_results',
+        :'card_verification' => :'card_verification'
       }
     end
 
@@ -72,8 +84,11 @@ module CyberSource
         :'transaction_id' => :'String',
         :'consumer_authentication_response' => :'PullFunds201ResponseProcessorInformationConsumerAuthenticationResponse',
         :'retrieval_reference_number' => :'String',
-        :'avs' => :'PullFunds201ResponseProcessorInformationAvs',
-        :'response_details' => :'String'
+        :'avs' => :'PtsV2PayoutsPost201ResponseProcessorInformationAvs',
+        :'response_details' => :'String',
+        :'customer' => :'PtsV2PayoutsPost201ResponseProcessorInformationCustomer',
+        :'electronic_verification_results' => :'PtsV2PayoutsPost201ResponseProcessorInformationElectronicVerificationResults',
+        :'card_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationCardVerification'
       }
     end
 
@@ -115,6 +130,18 @@ module CyberSource
 
       if attributes.has_key?(:'responseDetails')
         self.response_details = attributes[:'responseDetails']
+      end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'electronicVerificationResults')
+        self.electronic_verification_results = attributes[:'electronicVerificationResults']
+      end
+
+      if attributes.has_key?(:'cardVerification')
+        self.card_verification = attributes[:'cardVerification']
       end
     end
 
@@ -179,7 +206,10 @@ module CyberSource
           consumer_authentication_response == o.consumer_authentication_response &&
           retrieval_reference_number == o.retrieval_reference_number &&
           avs == o.avs &&
-          response_details == o.response_details
+          response_details == o.response_details &&
+          customer == o.customer &&
+          electronic_verification_results == o.electronic_verification_results &&
+          card_verification == o.card_verification
     end
 
     # @see the `==` method
@@ -191,7 +221,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [system_trace_audit_number, approval_code, response_code, transaction_id, consumer_authentication_response, retrieval_reference_number, avs, response_details].hash
+      [system_trace_audit_number, approval_code, response_code, transaction_id, consumer_authentication_response, retrieval_reference_number, avs, response_details, customer, electronic_verification_results, card_verification].hash
     end
 
     # Builds the object from hash

@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Consumer Identity data.
+  # Consumer Identity data. Identifies the consumer using an email address or phone number.
   class Acpv1tokensConsumerIdentity
     # Type of Consumer Identity transmitted or collected.   Possible values:     - `EMAIL_ADDRESS`   - `MOBILE_PHONE_NUMBER` 
     attr_accessor :identity_type

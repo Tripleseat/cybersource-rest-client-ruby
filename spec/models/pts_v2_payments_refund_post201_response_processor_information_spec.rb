@@ -61,6 +61,12 @@ describe 'PtsV2PaymentsRefundPost201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "response_source_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "ach_verification"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

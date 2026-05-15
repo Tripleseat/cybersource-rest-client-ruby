@@ -25,6 +25,8 @@ module CyberSource
 
     attr_accessor :shipping_details
 
+    attr_accessor :digital_currency
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -33,7 +35,8 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
         :'invoice_details' => :'invoiceDetails',
-        :'shipping_details' => :'shippingDetails'
+        :'shipping_details' => :'shippingDetails',
+        :'digital_currency' => :'digitalCurrency'
       }
     end
 
@@ -45,7 +48,8 @@ module CyberSource
         :'ship_to' => :'ship_to',
         :'line_items' => :'line_items',
         :'invoice_details' => :'invoice_details',
-        :'shipping_details' => :'shipping_details'
+        :'shipping_details' => :'shipping_details',
+        :'digital_currency' => :'digital_currency'
       }
     end
 
@@ -57,7 +61,8 @@ module CyberSource
         :'ship_to' => :'Ptsv2paymentsidcapturesOrderInformationShipTo',
         :'line_items' => :'Array<Ptsv2paymentsidrefundsOrderInformationLineItems>',
         :'invoice_details' => :'Ptsv2paymentsidcapturesOrderInformationInvoiceDetails',
-        :'shipping_details' => :'Ptsv2paymentsidcapturesOrderInformationShippingDetails'
+        :'shipping_details' => :'Ptsv2paymentsidrefundsOrderInformationShippingDetails',
+        :'digital_currency' => :'Ptsv2paymentsOrderInformationDigitalCurrency'
       }
     end
 
@@ -94,6 +99,10 @@ module CyberSource
       if attributes.has_key?(:'shippingDetails')
         self.shipping_details = attributes[:'shippingDetails']
       end
+
+      if attributes.has_key?(:'digitalCurrency')
+        self.digital_currency = attributes[:'digitalCurrency']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -119,7 +128,8 @@ module CyberSource
           ship_to == o.ship_to &&
           line_items == o.line_items &&
           invoice_details == o.invoice_details &&
-          shipping_details == o.shipping_details
+          shipping_details == o.shipping_details &&
+          digital_currency == o.digital_currency
     end
 
     # @see the `==` method
@@ -131,7 +141,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, digital_currency].hash
     end
 
     # Builds the object from hash

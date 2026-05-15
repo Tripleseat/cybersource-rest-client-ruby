@@ -16,7 +16,14 @@ module CyberSource
     # The reconciliation ID
     attr_accessor :reconciliation_id
 
+    # This field is applicable for AFT and OCT transactions.  For list of supported values, please refer to Developer Guide. 
+    attr_accessor :purpose_of_payment
+
     attr_accessor :authorization_options
+
+    attr_accessor :recurring_options
+
+    attr_accessor :bank_transfer_options
 
     # The business application Id<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :business_application_id
@@ -31,7 +38,10 @@ module CyberSource
     def self.attribute_map
       {
         :'reconciliation_id' => :'reconciliationId',
+        :'purpose_of_payment' => :'purposeOfPayment',
         :'authorization_options' => :'authorizationOptions',
+        :'recurring_options' => :'recurringOptions',
+        :'bank_transfer_options' => :'bankTransferOptions',
         :'business_application_id' => :'businessApplicationId',
         :'commerce_indicator' => :'commerceIndicator',
         :'processing_instruction' => :'processingInstruction'
@@ -42,7 +52,10 @@ module CyberSource
     def self.json_map
       {
         :'reconciliation_id' => :'reconciliation_id',
+        :'purpose_of_payment' => :'purpose_of_payment',
         :'authorization_options' => :'authorization_options',
+        :'recurring_options' => :'recurring_options',
+        :'bank_transfer_options' => :'bank_transfer_options',
         :'business_application_id' => :'business_application_id',
         :'commerce_indicator' => :'commerce_indicator',
         :'processing_instruction' => :'processing_instruction'
@@ -53,7 +66,10 @@ module CyberSource
     def self.swagger_types
       {
         :'reconciliation_id' => :'String',
+        :'purpose_of_payment' => :'String',
         :'authorization_options' => :'Ucv1sessionsDataProcessingInformationAuthorizationOptions',
+        :'recurring_options' => :'Ucv1sessionsDataProcessingInformationRecurringOptions',
+        :'bank_transfer_options' => :'Ucv1sessionsDataProcessingInformationBankTransferOptions',
         :'business_application_id' => :'String',
         :'commerce_indicator' => :'String',
         :'processing_instruction' => :'String'
@@ -72,8 +88,20 @@ module CyberSource
         self.reconciliation_id = attributes[:'reconciliationId']
       end
 
+      if attributes.has_key?(:'purposeOfPayment')
+        self.purpose_of_payment = attributes[:'purposeOfPayment']
+      end
+
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
+      end
+
+      if attributes.has_key?(:'recurringOptions')
+        self.recurring_options = attributes[:'recurringOptions']
+      end
+
+      if attributes.has_key?(:'bankTransferOptions')
+        self.bank_transfer_options = attributes[:'bankTransferOptions']
       end
 
       if attributes.has_key?(:'businessApplicationId')
@@ -109,6 +137,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] purpose_of_payment Value to be assigned
+    def purpose_of_payment=(purpose_of_payment)
+      @purpose_of_payment = purpose_of_payment
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] business_application_id Value to be assigned
     def business_application_id=(business_application_id)
       @business_application_id = business_application_id
@@ -132,7 +166,10 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           reconciliation_id == o.reconciliation_id &&
+          purpose_of_payment == o.purpose_of_payment &&
           authorization_options == o.authorization_options &&
+          recurring_options == o.recurring_options &&
+          bank_transfer_options == o.bank_transfer_options &&
           business_application_id == o.business_application_id &&
           commerce_indicator == o.commerce_indicator &&
           processing_instruction == o.processing_instruction
@@ -147,7 +184,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reconciliation_id, authorization_options, business_application_id, commerce_indicator, processing_instruction].hash
+      [reconciliation_id, purpose_of_payment, authorization_options, recurring_options, bank_transfer_options, business_application_id, commerce_indicator, processing_instruction].hash
     end
 
     # Builds the object from hash

@@ -23,6 +23,8 @@ module CyberSource
 
     attr_accessor :sender_information
 
+    attr_accessor :buyer_information
+
     attr_accessor :aggregator_information
 
     attr_accessor :merchant_information
@@ -35,6 +37,7 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'recipient_information' => :'recipientInformation',
         :'sender_information' => :'senderInformation',
+        :'buyer_information' => :'buyerInformation',
         :'aggregator_information' => :'aggregatorInformation',
         :'merchant_information' => :'merchantInformation'
       }
@@ -48,6 +51,7 @@ module CyberSource
         :'processing_information' => :'processing_information',
         :'recipient_information' => :'recipient_information',
         :'sender_information' => :'sender_information',
+        :'buyer_information' => :'buyer_information',
         :'aggregator_information' => :'aggregator_information',
         :'merchant_information' => :'merchant_information'
       }
@@ -61,6 +65,7 @@ module CyberSource
         :'processing_information' => :'Ptsv1pullfundstransferProcessingInformation',
         :'recipient_information' => :'Ptsv1pullfundstransferRecipientInformation',
         :'sender_information' => :'Ptsv1pullfundstransferSenderInformation',
+        :'buyer_information' => :'Ptsv1pullfundstransferBuyerInformation',
         :'aggregator_information' => :'Ptsv1pullfundstransferAggregatorInformation',
         :'merchant_information' => :'Ptsv1pullfundstransferMerchantInformation'
       }
@@ -92,6 +97,10 @@ module CyberSource
 
       if attributes.has_key?(:'senderInformation')
         self.sender_information = attributes[:'senderInformation']
+      end
+
+      if attributes.has_key?(:'buyerInformation')
+        self.buyer_information = attributes[:'buyerInformation']
       end
 
       if attributes.has_key?(:'aggregatorInformation')
@@ -126,6 +135,7 @@ module CyberSource
           processing_information == o.processing_information &&
           recipient_information == o.recipient_information &&
           sender_information == o.sender_information &&
+          buyer_information == o.buyer_information &&
           aggregator_information == o.aggregator_information &&
           merchant_information == o.merchant_information
     end
@@ -139,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, order_information, processing_information, recipient_information, sender_information, aggregator_information, merchant_information].hash
+      [client_reference_information, order_information, processing_information, recipient_information, sender_information, buyer_information, aggregator_information, merchant_information].hash
     end
 
     # Builds the object from hash

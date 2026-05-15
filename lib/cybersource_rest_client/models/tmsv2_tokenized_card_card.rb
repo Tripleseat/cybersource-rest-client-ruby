@@ -22,7 +22,7 @@ module CyberSource
     # Four-digit year in which the credit card expires.  Format: `YYYY`. 
     attr_accessor :expiration_year
 
-    # The type of card (Card Network). Possible Values: - 001: visa 
+    # The type of card (Card Network). Possible Values: - 001: visa - 002: mastercard - 003: american express - 007: jcb 
     attr_accessor :type
 
     # The customer's latest payment card number suffix. 

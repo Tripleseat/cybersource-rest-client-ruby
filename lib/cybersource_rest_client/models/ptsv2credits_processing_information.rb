@@ -16,6 +16,9 @@ module CyberSource
     # Array of actions (one or more) to be included in the payment to invoke bundled services along with Standalone Credit.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s). 
     attr_accessor :action_list
 
+    # CyberSource tokens types you are performing a create on. If not supplied the default token type for the merchants token vault will be used.  Valid values: - customer - paymentInstrument - instrumentIdentifier - shippingAddress 
+    attr_accessor :action_token_types
+
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value   #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as \"moto\" 
     attr_accessor :commerce_indicator
 
@@ -69,10 +72,14 @@ module CyberSource
     # The override value of the Merchant Verification Value (MVV) received by various card brands. MVV refers to the value assigned by the card brand/network to identify participation in select merchant programs.  Sample value for Visa: `101010` 
     attr_accessor :merchant_verification_value
 
+    # This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only. Possible values: - 201- Mastercard Rebate - 202- rePower Load Value - 203- Gaming Re-pay - 204- General Person-to-Person - 205- General Transfer to Own Account - 206- Agent Cash Out - 207- Payment of Own Credit Card Bill - 208- Business Disbursement - 209- Government/Non-Profit Disbursement - 210- Rapid Merchant Settlement - 211- Cash in at ATM (Usage limited to specific countries) - 212- Cash in at Point of Sale (Usage limited to specific countries) - 213- General Business to Business Transfer - 214- Mastercard Merchant Presented QR - 215- Mastercard Merchant Presented QR Refund Payment - 216- Utility Payments (for Brazil domestic use only) - 217- Government Services (for Brazil domestic use only) - 218- Mobile phone top-ups (for Brazil domestic use only) - 219- Coupon booklet payments (for Brazil domestic use only) - 220- General Person-to-Person Transfer - 221- Person-to-Person Transfer to Card Account - 222- General Transfer to Own Account - 223- Agent Cash Out - 224- Payment of Own Credit Card Bill - 225- Business Disbursement - 226- Transfer to Own Staged Digital Wallet Account - 227- Transfer to Own Debit or Prepaid Account - 228- General Business-to-Business Transfer - 229- Installment-based repayment - 230- Mastercard ATM Cash Pick-Up Transaction - 231- Cryptocurrency - 232- High-risk Securities 
+    attr_accessor :transaction_type_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'action_list' => :'actionList',
+        :'action_token_types' => :'actionTokenTypes',
         :'commerce_indicator' => :'commerceIndicator',
         :'processor_id' => :'processorId',
         :'payment_solution' => :'paymentSolution',
@@ -92,7 +99,8 @@ module CyberSource
         :'loan_options' => :'loanOptions',
         :'japan_payment_options' => :'japanPaymentOptions',
         :'refund_options' => :'refundOptions',
-        :'merchant_verification_value' => :'merchantVerificationValue'
+        :'merchant_verification_value' => :'merchantVerificationValue',
+        :'transaction_type_indicator' => :'transactionTypeIndicator'
       }
     end
 
@@ -100,6 +108,7 @@ module CyberSource
     def self.json_map
       {
         :'action_list' => :'action_list',
+        :'action_token_types' => :'action_token_types',
         :'commerce_indicator' => :'commerce_indicator',
         :'processor_id' => :'processor_id',
         :'payment_solution' => :'payment_solution',
@@ -119,7 +128,8 @@ module CyberSource
         :'loan_options' => :'loan_options',
         :'japan_payment_options' => :'japan_payment_options',
         :'refund_options' => :'refund_options',
-        :'merchant_verification_value' => :'merchant_verification_value'
+        :'merchant_verification_value' => :'merchant_verification_value',
+        :'transaction_type_indicator' => :'transaction_type_indicator'
       }
     end
 
@@ -127,6 +137,7 @@ module CyberSource
     def self.swagger_types
       {
         :'action_list' => :'Array<String>',
+        :'action_token_types' => :'Array<String>',
         :'commerce_indicator' => :'String',
         :'processor_id' => :'String',
         :'payment_solution' => :'String',
@@ -146,7 +157,8 @@ module CyberSource
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
         :'japan_payment_options' => :'Ptsv2creditsProcessingInformationJapanPaymentOptions',
         :'refund_options' => :'Ptsv2creditsProcessingInformationRefundOptions',
-        :'merchant_verification_value' => :'String'
+        :'merchant_verification_value' => :'String',
+        :'transaction_type_indicator' => :'String'
       }
     end
 
@@ -161,6 +173,12 @@ module CyberSource
       if attributes.has_key?(:'actionList')
         if (value = attributes[:'actionList']).is_a?(Array)
           self.action_list = value
+        end
+      end
+
+      if attributes.has_key?(:'actionTokenTypes')
+        if (value = attributes[:'actionTokenTypes']).is_a?(Array)
+          self.action_token_types = value
         end
       end
 
@@ -242,6 +260,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantVerificationValue')
         self.merchant_verification_value = attributes[:'merchantVerificationValue']
+      end
+
+      if attributes.has_key?(:'transactionTypeIndicator')
+        self.transaction_type_indicator = attributes[:'transactionTypeIndicator']
       end
     end
 
@@ -336,12 +358,19 @@ module CyberSource
       @merchant_verification_value = merchant_verification_value
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_type_indicator Value to be assigned
+    def transaction_type_indicator=(transaction_type_indicator)
+      @transaction_type_indicator = transaction_type_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           action_list == o.action_list &&
+          action_token_types == o.action_token_types &&
           commerce_indicator == o.commerce_indicator &&
           processor_id == o.processor_id &&
           payment_solution == o.payment_solution &&
@@ -361,7 +390,8 @@ module CyberSource
           loan_options == o.loan_options &&
           japan_payment_options == o.japan_payment_options &&
           refund_options == o.refund_options &&
-          merchant_verification_value == o.merchant_verification_value
+          merchant_verification_value == o.merchant_verification_value &&
+          transaction_type_indicator == o.transaction_type_indicator
     end
 
     # @see the `==` method
@@ -373,7 +403,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options, refund_options, merchant_verification_value].hash
+      [action_list, action_token_types, commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options, refund_options, merchant_verification_value, transaction_type_indicator].hash
     end
 
     # Builds the object from hash

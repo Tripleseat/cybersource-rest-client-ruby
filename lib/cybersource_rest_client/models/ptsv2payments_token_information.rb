@@ -28,6 +28,11 @@ module CyberSource
 
     attr_accessor :token_provisioning_information
 
+    # Client-generated unique identifier for correlating token operations across API calls. This value helps track and associate token-related transactions. 
+    attr_accessor :client_correlation_id
+
+    attr_accessor :token_authentication_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +41,9 @@ module CyberSource
         :'payment_instrument' => :'paymentInstrument',
         :'shipping_address' => :'shippingAddress',
         :'network_token_option' => :'networkTokenOption',
-        :'token_provisioning_information' => :'tokenProvisioningInformation'
+        :'token_provisioning_information' => :'tokenProvisioningInformation',
+        :'client_correlation_id' => :'clientCorrelationId',
+        :'token_authentication_information' => :'tokenAuthenticationInformation'
       }
     end
 
@@ -48,7 +55,9 @@ module CyberSource
         :'payment_instrument' => :'payment_instrument',
         :'shipping_address' => :'shipping_address',
         :'network_token_option' => :'network_token_option',
-        :'token_provisioning_information' => :'token_provisioning_information'
+        :'token_provisioning_information' => :'token_provisioning_information',
+        :'client_correlation_id' => :'client_correlation_id',
+        :'token_authentication_information' => :'token_authentication_information'
       }
     end
 
@@ -60,7 +69,9 @@ module CyberSource
         :'payment_instrument' => :'Ptsv2paymentsTokenInformationPaymentInstrument',
         :'shipping_address' => :'Ptsv2paymentsTokenInformationShippingAddress',
         :'network_token_option' => :'String',
-        :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation'
+        :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation',
+        :'client_correlation_id' => :'String',
+        :'token_authentication_information' => :'Ptsv2paymentsTokenInformationTokenAuthenticationInformation'
       }
     end
 
@@ -95,6 +106,14 @@ module CyberSource
       if attributes.has_key?(:'tokenProvisioningInformation')
         self.token_provisioning_information = attributes[:'tokenProvisioningInformation']
       end
+
+      if attributes.has_key?(:'clientCorrelationId')
+        self.client_correlation_id = attributes[:'clientCorrelationId']
+      end
+
+      if attributes.has_key?(:'tokenAuthenticationInformation')
+        self.token_authentication_information = attributes[:'tokenAuthenticationInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -116,6 +135,12 @@ module CyberSource
       @jti = jti
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] client_correlation_id Value to be assigned
+    def client_correlation_id=(client_correlation_id)
+      @client_correlation_id = client_correlation_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -126,7 +151,9 @@ module CyberSource
           payment_instrument == o.payment_instrument &&
           shipping_address == o.shipping_address &&
           network_token_option == o.network_token_option &&
-          token_provisioning_information == o.token_provisioning_information
+          token_provisioning_information == o.token_provisioning_information &&
+          client_correlation_id == o.client_correlation_id &&
+          token_authentication_information == o.token_authentication_information
     end
 
     # @see the `==` method
@@ -138,7 +165,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [jti, transient_token_jwt, payment_instrument, shipping_address, network_token_option, token_provisioning_information].hash
+      [jti, transient_token_jwt, payment_instrument, shipping_address, network_token_option, token_provisioning_information, client_correlation_id, token_authentication_information].hash
     end
 
     # Builds the object from hash

@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Payment/Transaction Confirmation Data provided by the payment processor/acquirer
+  # Payment/Transaction Confirmation Data provided by the payment processor/acquirer.
   class Acpv1instructionsinstructionIdconfirmationsProcessorInformation
     # A unique reference ID that represents the dynamic data associated with a transaction
     attr_accessor :dynamic_data_id

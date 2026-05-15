@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Amount Detail data.
+  # Amount Detail data. Breaks down the total transaction amount into components.
   class Acpv1instructionsinstructionIdcredentialsOrderInformationAmountDetail
     # The final amount that the customer needs to pay or paid.
     attr_accessor :total_amount

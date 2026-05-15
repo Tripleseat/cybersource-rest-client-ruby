@@ -37,6 +37,12 @@ describe 'Ptsv2billingagreementsOrderInformation' do
     end
   end
 
+  describe 'test attribute "invoice_details"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "bill_to"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

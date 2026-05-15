@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Enrollment Reference Data.
+  # Enrollment Reference Data. Links the enrollment to an existing token reference.
   class Acpv1tokensEnrollmentReferenceData
     # Type of Enrollment Reference Data.
     attr_accessor :enrollment_reference_type

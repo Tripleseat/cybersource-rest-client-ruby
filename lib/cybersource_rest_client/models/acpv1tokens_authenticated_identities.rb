@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Authenticated Identities data.
+  # Authenticated Identities data. Contains the identity assertion from the authentication provider.
   class Acpv1tokensAuthenticatedIdentities
     # Data related to the authenticated identity.
     attr_accessor :data

@@ -37,6 +37,12 @@ describe 'Ptsv2creditsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "action_token_types"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "commerce_indicator"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -152,6 +158,12 @@ describe 'Ptsv2creditsProcessingInformation' do
   end
 
   describe 'test attribute "merchant_verification_value"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "transaction_type_indicator"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

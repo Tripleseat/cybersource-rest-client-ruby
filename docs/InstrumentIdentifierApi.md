@@ -116,7 +116,7 @@ No authorization required
 
 
 # **get_instrument_identifier_payment_instruments_list**
-> PaymentInstrumentList1 get_instrument_identifier_payment_instruments_list(instrument_identifier_id, opts)
+> PaymentInstrumentList get_instrument_identifier_payment_instruments_list(instrument_identifier_id, opts)
 
 List Payment Instruments for an Instrument Identifier
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentInstrumentList1**](PaymentInstrumentList1.md)
+[**PaymentInstrumentList**](PaymentInstrumentList.md)
 
 ### Authorization
 

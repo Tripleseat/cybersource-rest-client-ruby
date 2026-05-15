@@ -45,6 +45,9 @@ module CyberSource
     # Postal code of sender. 
     attr_accessor :postal_code
 
+    # CPF or CNPJ of the cash-in recipient. \"Cadastro de Pessoas Físicas\", which translates to the \"Natural Persons Register.\" It is the individual taxpayer registry identification number in Brazil, similar to a Social Security Number (SSN) in the United States or a National Insurance Number in the UK. 
+    attr_accessor :tax_id_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -58,7 +61,8 @@ module CyberSource
         :'alias_name' => :'aliasName',
         :'reference_number' => :'referenceNumber',
         :'account' => :'account',
-        :'postal_code' => :'postalCode'
+        :'postal_code' => :'postalCode',
+        :'tax_id_number' => :'taxIdNumber'
       }
     end
 
@@ -75,7 +79,8 @@ module CyberSource
         :'alias_name' => :'alias_name',
         :'reference_number' => :'reference_number',
         :'account' => :'account',
-        :'postal_code' => :'postal_code'
+        :'postal_code' => :'postal_code',
+        :'tax_id_number' => :'tax_id_number'
       }
     end
 
@@ -92,7 +97,8 @@ module CyberSource
         :'alias_name' => :'String',
         :'reference_number' => :'String',
         :'account' => :'Ptsv2paymentsSenderInformationAccount',
-        :'postal_code' => :'String'
+        :'postal_code' => :'String',
+        :'tax_id_number' => :'Float'
       }
     end
 
@@ -146,6 +152,10 @@ module CyberSource
 
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'taxIdNumber')
+        self.tax_id_number = attributes[:'taxIdNumber']
       end
     end
 
@@ -237,7 +247,8 @@ module CyberSource
           alias_name == o.alias_name &&
           reference_number == o.reference_number &&
           account == o.account &&
-          postal_code == o.postal_code
+          postal_code == o.postal_code &&
+          tax_id_number == o.tax_id_number
     end
 
     # @see the `==` method
@@ -249,7 +260,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code, alias_name, reference_number, account, postal_code].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code, alias_name, reference_number, account, postal_code, tax_id_number].hash
     end
 
     # Builds the object from hash

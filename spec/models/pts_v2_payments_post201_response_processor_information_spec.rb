@@ -313,4 +313,10 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "cedp_verified_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

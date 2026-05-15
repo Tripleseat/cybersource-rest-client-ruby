@@ -37,6 +37,11 @@ module CyberSource
 
     attr_accessor :payment_account_reference
 
+    attr_accessor :third_party_token
+
+    # Mastercard-defined code that indicates how the account information was obtained for credit authorization transactions.  Possible values: - `00`: Card (default) - `01`: Mobile network operator (MNO) controlled removable secure element (SIM or UICC) personalized for use with a mobile phone or smartphone - `02`: Key fob - `03`: Watch - `04`: Mobile tag - `05`: Wristband - `06`: Mobile phone case or sleeve - `07`: Mobile phone or smartphone with fixed (nonremovable) secure element controlled by the MNO (for example, code division multiple access (CDMA)) - `08`: Removable secure element not controlled by the MNO (for example, memory card personalized for use with a mobile phone or smartphone) - `09`: Mobile phone or smartphone with a fixed (nonremovable) secure element not controlled by the MNO - `10`: MNO-controlled removable secure element (SIM or UICC) personalized for use with a tablet or e-book - `11`: Tablet or e-book with a fixed (nonremovable) secure element controlled by the MNO - `12`: Removable secure element not controlled by the MNO (for example, memory card personalized for use with a tablet or e-book) - `13`: Tablet or e-book with fixed (nonremovable) secure element not controlled by the MNO - `14` - `99`: Reserved for future use  This field flows in ISO Field 104 DSID 65 Tag 04.  This field is supported for Mastercard credit authorization transactions.  #### Used by **Credit Authorization (Standalone)** Optional field. 
+    attr_accessor :initiation_channel
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -51,7 +56,9 @@ module CyberSource
         :'legacy_token' => :'legacyToken',
         :'payment_type' => :'paymentType',
         :'e_wallet' => :'eWallet',
-        :'payment_account_reference' => :'paymentAccountReference'
+        :'payment_account_reference' => :'paymentAccountReference',
+        :'third_party_token' => :'thirdPartyToken',
+        :'initiation_channel' => :'initiationChannel'
       }
     end
 
@@ -69,7 +76,9 @@ module CyberSource
         :'legacy_token' => :'legacy_token',
         :'payment_type' => :'payment_type',
         :'e_wallet' => :'e_wallet',
-        :'payment_account_reference' => :'payment_account_reference'
+        :'payment_account_reference' => :'payment_account_reference',
+        :'third_party_token' => :'third_party_token',
+        :'initiation_channel' => :'initiation_channel'
       }
     end
 
@@ -87,7 +96,9 @@ module CyberSource
         :'legacy_token' => :'Ptsv2paymentsPaymentInformationLegacyToken',
         :'payment_type' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentType',
         :'e_wallet' => :'Ptsv2paymentsidrefundsPaymentInformationEWallet',
-        :'payment_account_reference' => :'Ptsv2paymentsPaymentInformationPaymentAccountReference'
+        :'payment_account_reference' => :'Ptsv2paymentsPaymentInformationPaymentAccountReference',
+        :'third_party_token' => :'Ptsv2paymentsPaymentInformationThirdPartyToken',
+        :'initiation_channel' => :'String'
       }
     end
 
@@ -146,6 +157,14 @@ module CyberSource
       if attributes.has_key?(:'paymentAccountReference')
         self.payment_account_reference = attributes[:'paymentAccountReference']
       end
+
+      if attributes.has_key?(:'thirdPartyToken')
+        self.third_party_token = attributes[:'thirdPartyToken']
+      end
+
+      if attributes.has_key?(:'initiationChannel')
+        self.initiation_channel = attributes[:'initiationChannel']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -159,6 +178,12 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] initiation_channel Value to be assigned
+    def initiation_channel=(initiation_channel)
+      @initiation_channel = initiation_channel
     end
 
     # Checks equality by comparing each attribute.
@@ -177,7 +202,9 @@ module CyberSource
           legacy_token == o.legacy_token &&
           payment_type == o.payment_type &&
           e_wallet == o.e_wallet &&
-          payment_account_reference == o.payment_account_reference
+          payment_account_reference == o.payment_account_reference &&
+          third_party_token == o.third_party_token &&
+          initiation_channel == o.initiation_channel
     end
 
     # @see the `==` method
@@ -189,7 +216,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, bank, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, payment_type, e_wallet, payment_account_reference].hash
+      [card, bank, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, payment_type, e_wallet, payment_account_reference, third_party_token, initiation_channel].hash
     end
 
     # Builds the object from hash

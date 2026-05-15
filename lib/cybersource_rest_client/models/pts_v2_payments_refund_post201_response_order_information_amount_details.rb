@@ -13,6 +13,9 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsRefundPost201ResponseOrderInformationAmountDetails
+    # This field contains the purchase cashback amount expressed in the acquirer transaction currency.  Use this field only for clearing with your acquirer. 
+    attr_accessor :cashback_amount
+
     # This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder's account. This field is returned for OCT transactions. 
     attr_accessor :settlement_amount
 
@@ -31,6 +34,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'cashback_amount' => :'cashbackAmount',
         :'settlement_amount' => :'settlementAmount',
         :'settlement_currency' => :'settlementCurrency',
         :'exchange_rate' => :'exchangeRate',
@@ -42,6 +46,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'cashback_amount' => :'cashback_amount',
         :'settlement_amount' => :'settlement_amount',
         :'settlement_currency' => :'settlement_currency',
         :'exchange_rate' => :'exchange_rate',
@@ -53,6 +58,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'cashback_amount' => :'String',
         :'settlement_amount' => :'String',
         :'settlement_currency' => :'String',
         :'exchange_rate' => :'String',
@@ -68,6 +74,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'cashbackAmount')
+        self.cashback_amount = attributes[:'cashbackAmount']
+      end
 
       if attributes.has_key?(:'settlementAmount')
         self.settlement_amount = attributes[:'settlementAmount']
@@ -101,6 +111,12 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] cashback_amount Value to be assigned
+    def cashback_amount=(cashback_amount)
+      @cashback_amount = cashback_amount
     end
 
     # Custom attribute writer method with validation
@@ -138,6 +154,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          cashback_amount == o.cashback_amount &&
           settlement_amount == o.settlement_amount &&
           settlement_currency == o.settlement_currency &&
           exchange_rate == o.exchange_rate &&
@@ -154,7 +171,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [settlement_amount, settlement_currency, exchange_rate, foreign_amount, foreign_currency].hash
+      [cashback_amount, settlement_amount, settlement_currency, exchange_rate, foreign_amount, foreign_currency].hash
     end
 
     # Builds the object from hash

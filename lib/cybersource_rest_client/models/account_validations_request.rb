@@ -19,12 +19,15 @@ module CyberSource
 
     attr_accessor :payment_information
 
+    attr_accessor :token_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'client_reference_information' => :'clientReferenceInformation',
         :'processing_information' => :'processingInformation',
-        :'payment_information' => :'paymentInformation'
+        :'payment_information' => :'paymentInformation',
+        :'token_information' => :'tokenInformation'
       }
     end
 
@@ -33,7 +36,8 @@ module CyberSource
       {
         :'client_reference_information' => :'client_reference_information',
         :'processing_information' => :'processing_information',
-        :'payment_information' => :'payment_information'
+        :'payment_information' => :'payment_information',
+        :'token_information' => :'token_information'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
       {
         :'client_reference_information' => :'Bavsv1accountvalidationsClientReferenceInformation',
         :'processing_information' => :'Bavsv1accountvalidationsProcessingInformation',
-        :'payment_information' => :'Bavsv1accountvalidationsPaymentInformation'
+        :'payment_information' => :'Bavsv1accountvalidationsPaymentInformation',
+        :'token_information' => :'Bavsv1accountvalidationsTokenInformation'
       }
     end
 
@@ -64,6 +69,10 @@ module CyberSource
 
       if attributes.has_key?(:'paymentInformation')
         self.payment_information = attributes[:'paymentInformation']
+      end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
       end
     end
 
@@ -97,7 +106,8 @@ module CyberSource
       self.class == o.class &&
           client_reference_information == o.client_reference_information &&
           processing_information == o.processing_information &&
-          payment_information == o.payment_information
+          payment_information == o.payment_information &&
+          token_information == o.token_information
     end
 
     # @see the `==` method
@@ -109,7 +119,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information].hash
+      [client_reference_information, processing_information, payment_information, token_information].hash
     end
 
     # Builds the object from hash

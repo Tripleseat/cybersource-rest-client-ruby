@@ -19,12 +19,15 @@ module CyberSource
 
     attr_accessor :bin_lookup
 
+    attr_accessor :agentic_commerce
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'token_management' => :'tokenManagement',
         :'account_updater' => :'accountUpdater',
-        :'bin_lookup' => :'binLookup'
+        :'bin_lookup' => :'binLookup',
+        :'agentic_commerce' => :'agenticCommerce'
       }
     end
 
@@ -33,7 +36,8 @@ module CyberSource
       {
         :'token_management' => :'token_management',
         :'account_updater' => :'account_updater',
-        :'bin_lookup' => :'bin_lookup'
+        :'bin_lookup' => :'bin_lookup',
+        :'agentic_commerce' => :'agentic_commerce'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
       {
         :'token_management' => :'InlineResponse2014SetupsPaymentsCardProcessing',
         :'account_updater' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'bin_lookup' => :'InlineResponse2014SetupsPaymentsCardProcessing'
+        :'bin_lookup' => :'InlineResponse2014SetupsPaymentsCardProcessing',
+        :'agentic_commerce' => :'InlineResponse2014SetupsPaymentsCardProcessing'
       }
     end
 
@@ -64,6 +69,10 @@ module CyberSource
 
       if attributes.has_key?(:'binLookup')
         self.bin_lookup = attributes[:'binLookup']
+      end
+
+      if attributes.has_key?(:'agenticCommerce')
+        self.agentic_commerce = attributes[:'agenticCommerce']
       end
     end
 
@@ -87,7 +96,8 @@ module CyberSource
       self.class == o.class &&
           token_management == o.token_management &&
           account_updater == o.account_updater &&
-          bin_lookup == o.bin_lookup
+          bin_lookup == o.bin_lookup &&
+          agentic_commerce == o.agentic_commerce
     end
 
     # @see the `==` method
@@ -99,7 +109,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [token_management, account_updater, bin_lookup].hash
+      [token_management, account_updater, bin_lookup, agentic_commerce].hash
     end
 
     # Builds the object from hash

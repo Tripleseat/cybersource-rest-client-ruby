@@ -48,6 +48,15 @@ public
         return requestBody
       end
 
+      # Check if using shared secret JWT without explicit MLE certificate path
+      if mleCertificate.nil? &&
+         Constants::AUTH_TYPE_JWT.downcase == merchantConfig.authenticationType.downcase &&
+         merchantConfig.is_shared_secret_key_type?
+        @log_obj.logger.debug("MLE for requests with JWT shared secret authentication requires mleForRequestPublicCertPath to be explicitly provided in merchant configuration.")
+        @log_obj.logger.debug("Please set mleForRequestPublicCertPath to the path of your MLE public certificate file.")
+        raise StandardError.new(Constants::ERROR_PREFIX + "Missing MLE certificate for JWT shared secret authentication. Please provide the MLE public certificate path in the configuration.")
+      end
+
       begin
         serial_number = self.extract_serial_number_from_certificate(mleCertificate)
 

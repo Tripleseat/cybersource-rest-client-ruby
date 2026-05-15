@@ -23,14 +23,21 @@ module CyberSource
     # Long description of the card. 
     attr_accessor :long_description
 
-    # Issuer customer service email address.
+    # Issuer customer service email address. 
     attr_accessor :email
 
-    # Issuer customer service phone number.
+    # Issuer customer service phone number. 
     attr_accessor :phone_number
 
-    # Issuer customer service url.
+    # Issuer customer service url. 
     attr_accessor :url
+
+    # Issuer privacy policy url. 
+    attr_accessor :privacy_policy_url
+
+    attr_accessor :capabilities
+
+    attr_accessor :bank_applications
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -40,7 +47,10 @@ module CyberSource
         :'long_description' => :'longDescription',
         :'email' => :'email',
         :'phone_number' => :'phoneNumber',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'privacy_policy_url' => :'privacyPolicyUrl',
+        :'capabilities' => :'capabilities',
+        :'bank_applications' => :'bankApplications'
       }
     end
 
@@ -52,7 +62,10 @@ module CyberSource
         :'long_description' => :'long_description',
         :'email' => :'email',
         :'phone_number' => :'phone_number',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'privacy_policy_url' => :'privacy_policy_url',
+        :'capabilities' => :'capabilities',
+        :'bank_applications' => :'bank_applications'
       }
     end
 
@@ -64,7 +77,10 @@ module CyberSource
         :'long_description' => :'String',
         :'email' => :'String',
         :'phone_number' => :'String',
-        :'url' => :'String'
+        :'url' => :'String',
+        :'privacy_policy_url' => :'String',
+        :'capabilities' => :'Tmsv2TokenizedCardMetadataIssuerCapabilities',
+        :'bank_applications' => :'Array<Tmsv2TokenizedCardMetadataIssuerBankApplications>'
       }
     end
 
@@ -99,6 +115,20 @@ module CyberSource
       if attributes.has_key?(:'url')
         self.url = attributes[:'url']
       end
+
+      if attributes.has_key?(:'privacyPolicyUrl')
+        self.privacy_policy_url = attributes[:'privacyPolicyUrl']
+      end
+
+      if attributes.has_key?(:'capabilities')
+        self.capabilities = attributes[:'capabilities']
+      end
+
+      if attributes.has_key?(:'bankApplications')
+        if (value = attributes[:'bankApplications']).is_a?(Array)
+          self.bank_applications = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -124,7 +154,10 @@ module CyberSource
           long_description == o.long_description &&
           email == o.email &&
           phone_number == o.phone_number &&
-          url == o.url
+          url == o.url &&
+          privacy_policy_url == o.privacy_policy_url &&
+          capabilities == o.capabilities &&
+          bank_applications == o.bank_applications
     end
 
     # @see the `==` method
@@ -136,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, short_description, long_description, email, phone_number, url].hash
+      [name, short_description, long_description, email, phone_number, url, privacy_policy_url, capabilities, bank_applications].hash
     end
 
     # Builds the object from hash

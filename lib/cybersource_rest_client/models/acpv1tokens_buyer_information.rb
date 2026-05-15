@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Buyer Information data.
+  # Buyer Information data. Contains consumer identification and preference details.
   class Acpv1tokensBuyerInformation
     # Reference identifier of the Consumer.
     attr_accessor :merchant_customer_id

@@ -23,6 +23,8 @@ module CyberSource
 
     attr_accessor :invoice_details
 
+    attr_accessor :shipping_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -30,7 +32,8 @@ module CyberSource
         :'bill_to' => :'billTo',
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
-        :'invoice_details' => :'invoiceDetails'
+        :'invoice_details' => :'invoiceDetails',
+        :'shipping_details' => :'shippingDetails'
       }
     end
 
@@ -41,7 +44,8 @@ module CyberSource
         :'bill_to' => :'bill_to',
         :'ship_to' => :'ship_to',
         :'line_items' => :'line_items',
-        :'invoice_details' => :'invoice_details'
+        :'invoice_details' => :'invoice_details',
+        :'shipping_details' => :'shipping_details'
       }
     end
 
@@ -51,8 +55,9 @@ module CyberSource
         :'amount_details' => :'Ucv1sessionsDataOrderInformationAmountDetails',
         :'bill_to' => :'Ucv1sessionsDataOrderInformationBillTo',
         :'ship_to' => :'Upv1capturecontextsDataOrderInformationShipTo',
-        :'line_items' => :'Array<Upv1capturecontextsDataOrderInformationLineItems>',
-        :'invoice_details' => :'Upv1capturecontextsDataOrderInformationInvoiceDetails'
+        :'line_items' => :'Array<Ucv1sessionsDataOrderInformationLineItems>',
+        :'invoice_details' => :'Ucv1sessionsDataOrderInformationInvoiceDetails',
+        :'shipping_details' => :'Ucv1sessionsDataOrderInformationShippingDetails'
       }
     end
 
@@ -85,6 +90,10 @@ module CyberSource
       if attributes.has_key?(:'invoiceDetails')
         self.invoice_details = attributes[:'invoiceDetails']
       end
+
+      if attributes.has_key?(:'shippingDetails')
+        self.shipping_details = attributes[:'shippingDetails']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -109,7 +118,8 @@ module CyberSource
           bill_to == o.bill_to &&
           ship_to == o.ship_to &&
           line_items == o.line_items &&
-          invoice_details == o.invoice_details
+          invoice_details == o.invoice_details &&
+          shipping_details == o.shipping_details
     end
 
     # @see the `==` method
@@ -121,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items, invoice_details].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details].hash
     end
 
     # Builds the object from hash

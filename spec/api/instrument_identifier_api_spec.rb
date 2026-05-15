@@ -67,7 +67,7 @@ describe 'InstrumentIdentifierApi' do
   # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-  # @return [PaymentInstrumentList1]
+  # @return [PaymentInstrumentList]
   describe 'get_instrument_identifier_payment_instruments_list test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

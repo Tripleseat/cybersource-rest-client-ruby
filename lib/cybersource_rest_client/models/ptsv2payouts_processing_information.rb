@@ -40,6 +40,9 @@ module CyberSource
 
     attr_accessor :purchase_options
 
+    # Account verification code will inform what Payment Account Verification should be performed. With this array of codes, a merchant can choose à la carte what verifications to run. This field is optional, and the default is 1 if it is not passed in. This means that a full validation of the fields will be performed. Valid verification codes: - `1` = Full Account Verification (Card Account, CVN, CAVV, TAVV, Address, Name, eMail, Phone, Identity) - `2` = Card Account Verification - `3` = Address Verification - `4` = Card Authentication Method (CAM) (Cryptogram) - `5` = Cardholder Authentication Verification (CAVV) - `6` = Cardholder Identity Verification - `7` = CVV2 Verification - `8` = eMail Verification - `9` = Name Verification - `10` = Phone Verification 
+    attr_accessor :account_verification_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -52,7 +55,8 @@ module CyberSource
         :'purpose_of_payment' => :'purposeOfPayment',
         :'funding_options' => :'fundingOptions',
         :'language_code' => :'languageCode',
-        :'purchase_options' => :'purchaseOptions'
+        :'purchase_options' => :'purchaseOptions',
+        :'account_verification_code' => :'accountVerificationCode'
       }
     end
 
@@ -68,7 +72,8 @@ module CyberSource
         :'purpose_of_payment' => :'purpose_of_payment',
         :'funding_options' => :'funding_options',
         :'language_code' => :'language_code',
-        :'purchase_options' => :'purchase_options'
+        :'purchase_options' => :'purchase_options',
+        :'account_verification_code' => :'account_verification_code'
       }
     end
 
@@ -84,7 +89,8 @@ module CyberSource
         :'purpose_of_payment' => :'String',
         :'funding_options' => :'Ptsv2payoutsProcessingInformationFundingOptions',
         :'language_code' => :'String',
-        :'purchase_options' => :'Ptsv2payoutsProcessingInformationPurchaseOptions'
+        :'purchase_options' => :'Ptsv2payoutsProcessingInformationPurchaseOptions',
+        :'account_verification_code' => :'Array<String>'
       }
     end
 
@@ -134,6 +140,12 @@ module CyberSource
 
       if attributes.has_key?(:'purchaseOptions')
         self.purchase_options = attributes[:'purchaseOptions']
+      end
+
+      if attributes.has_key?(:'accountVerificationCode')
+        if (value = attributes[:'accountVerificationCode']).is_a?(Array)
+          self.account_verification_code = value
+        end
       end
     end
 
@@ -206,7 +218,8 @@ module CyberSource
           purpose_of_payment == o.purpose_of_payment &&
           funding_options == o.funding_options &&
           language_code == o.language_code &&
-          purchase_options == o.purchase_options
+          purchase_options == o.purchase_options &&
+          account_verification_code == o.account_verification_code
     end
 
     # @see the `==` method
@@ -218,7 +231,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment, funding_options, language_code, purchase_options].hash
+      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment, funding_options, language_code, purchase_options, account_verification_code].hash
     end
 
     # Builds the object from hash

@@ -43,6 +43,14 @@ module CyberSource
 
     attr_accessor :merchant_advice
 
+    attr_accessor :avs
+
+    attr_accessor :customer
+
+    attr_accessor :electronic_verification_results
+
+    attr_accessor :card_verification
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +64,11 @@ module CyberSource
         :'name' => :'name',
         :'routing' => :'routing',
         :'settlement' => :'settlement',
-        :'merchant_advice' => :'merchantAdvice'
+        :'merchant_advice' => :'merchantAdvice',
+        :'avs' => :'avs',
+        :'customer' => :'customer',
+        :'electronic_verification_results' => :'electronicVerificationResults',
+        :'card_verification' => :'cardVerification'
       }
     end
 
@@ -73,7 +85,11 @@ module CyberSource
         :'name' => :'name',
         :'routing' => :'routing',
         :'settlement' => :'settlement',
-        :'merchant_advice' => :'merchant_advice'
+        :'merchant_advice' => :'merchant_advice',
+        :'avs' => :'avs',
+        :'customer' => :'customer',
+        :'electronic_verification_results' => :'electronic_verification_results',
+        :'card_verification' => :'card_verification'
       }
     end
 
@@ -90,7 +106,11 @@ module CyberSource
         :'name' => :'String',
         :'routing' => :'PushFunds201ResponseProcessorInformationRouting',
         :'settlement' => :'PushFunds201ResponseProcessorInformationSettlement',
-        :'merchant_advice' => :'PushFunds201ResponseProcessorInformationMerchantAdvice'
+        :'merchant_advice' => :'PushFunds201ResponseProcessorInformationMerchantAdvice',
+        :'avs' => :'PtsV2PayoutsPost201ResponseProcessorInformationAvs',
+        :'customer' => :'PtsV2PayoutsPost201ResponseProcessorInformationCustomer',
+        :'electronic_verification_results' => :'PtsV2PayoutsPost201ResponseProcessorInformationElectronicVerificationResults',
+        :'card_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationCardVerification'
       }
     end
 
@@ -144,6 +164,22 @@ module CyberSource
 
       if attributes.has_key?(:'merchantAdvice')
         self.merchant_advice = attributes[:'merchantAdvice']
+      end
+
+      if attributes.has_key?(:'avs')
+        self.avs = attributes[:'avs']
+      end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'electronicVerificationResults')
+        self.electronic_verification_results = attributes[:'electronicVerificationResults']
+      end
+
+      if attributes.has_key?(:'cardVerification')
+        self.card_verification = attributes[:'cardVerification']
       end
     end
 
@@ -217,7 +253,11 @@ module CyberSource
           name == o.name &&
           routing == o.routing &&
           settlement == o.settlement &&
-          merchant_advice == o.merchant_advice
+          merchant_advice == o.merchant_advice &&
+          avs == o.avs &&
+          customer == o.customer &&
+          electronic_verification_results == o.electronic_verification_results &&
+          card_verification == o.card_verification
     end
 
     # @see the `==` method
@@ -229,7 +269,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, system_trace_audit_number, retrieval_reference_number, action_code, approval_code, fee_program_indicator, name, routing, settlement, merchant_advice].hash
+      [transaction_id, response_code, system_trace_audit_number, retrieval_reference_number, action_code, approval_code, fee_program_indicator, name, routing, settlement, merchant_advice, avs, customer, electronic_verification_results, card_verification].hash
     end
 
     # Builds the object from hash

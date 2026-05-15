@@ -13,6 +13,8 @@ require 'date'
 
 module CyberSource
   class Ucv1sessionsData
+    attr_accessor :aggregator_information
+
     attr_accessor :order_information
 
     attr_accessor :buyer_information
@@ -27,15 +29,20 @@ module CyberSource
 
     attr_accessor :recipient_information
 
-    attr_accessor :merchant_defined_information
+    attr_accessor :sender_information
 
     attr_accessor :device_information
 
     attr_accessor :payment_information
 
+    attr_accessor :installment_information
+
+    attr_accessor :merchant_defined_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'aggregator_information' => :'aggregatorInformation',
         :'order_information' => :'orderInformation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
@@ -43,15 +50,18 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'processing_information' => :'processingInformation',
         :'recipient_information' => :'recipientInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'sender_information' => :'senderInformation',
         :'device_information' => :'deviceInformation',
-        :'payment_information' => :'paymentInformation'
+        :'payment_information' => :'paymentInformation',
+        :'installment_information' => :'installmentInformation',
+        :'merchant_defined_information' => :'merchantDefinedInformation'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'aggregator_information' => :'aggregator_information',
         :'order_information' => :'order_information',
         :'buyer_information' => :'buyer_information',
         :'client_reference_information' => :'client_reference_information',
@@ -59,15 +69,18 @@ module CyberSource
         :'merchant_information' => :'merchant_information',
         :'processing_information' => :'processing_information',
         :'recipient_information' => :'recipient_information',
-        :'merchant_defined_information' => :'merchant_defined_information',
+        :'sender_information' => :'sender_information',
         :'device_information' => :'device_information',
-        :'payment_information' => :'payment_information'
+        :'payment_information' => :'payment_information',
+        :'installment_information' => :'installment_information',
+        :'merchant_defined_information' => :'merchant_defined_information'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'aggregator_information' => :'Ucv1sessionsDataAggregatorInformation',
         :'order_information' => :'Ucv1sessionsDataOrderInformation',
         :'buyer_information' => :'Ucv1sessionsDataBuyerInformation',
         :'client_reference_information' => :'Upv1capturecontextsDataClientReferenceInformation',
@@ -75,9 +88,11 @@ module CyberSource
         :'merchant_information' => :'Ucv1sessionsDataMerchantInformation',
         :'processing_information' => :'Ucv1sessionsDataProcessingInformation',
         :'recipient_information' => :'Ucv1sessionsDataRecipientInformation',
-        :'merchant_defined_information' => :'Array<Ucv1sessionsDataMerchantDefinedInformation>',
+        :'sender_information' => :'Ucv1sessionsDataSenderInformation',
         :'device_information' => :'Ucv1sessionsDataDeviceInformation',
-        :'payment_information' => :'Ucv1sessionsDataPaymentInformation'
+        :'payment_information' => :'Ucv1sessionsDataPaymentInformation',
+        :'installment_information' => :'Ucv1sessionsDataInstallmentInformation',
+        :'merchant_defined_information' => :'Array<Ucv1sessionsDataMerchantDefinedInformation>'
       }
     end
 
@@ -88,6 +103,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'aggregatorInformation')
+        self.aggregator_information = attributes[:'aggregatorInformation']
+      end
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
@@ -117,10 +136,8 @@ module CyberSource
         self.recipient_information = attributes[:'recipientInformation']
       end
 
-      if attributes.has_key?(:'merchantDefinedInformation')
-        if (value = attributes[:'merchantDefinedInformation']).is_a?(Array)
-          self.merchant_defined_information = value
-        end
+      if attributes.has_key?(:'senderInformation')
+        self.sender_information = attributes[:'senderInformation']
       end
 
       if attributes.has_key?(:'deviceInformation')
@@ -129,6 +146,16 @@ module CyberSource
 
       if attributes.has_key?(:'paymentInformation')
         self.payment_information = attributes[:'paymentInformation']
+      end
+
+      if attributes.has_key?(:'installmentInformation')
+        self.installment_information = attributes[:'installmentInformation']
+      end
+
+      if attributes.has_key?(:'merchantDefinedInformation')
+        if (value = attributes[:'merchantDefinedInformation']).is_a?(Array)
+          self.merchant_defined_information = value
+        end
       end
     end
 
@@ -150,6 +177,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          aggregator_information == o.aggregator_information &&
           order_information == o.order_information &&
           buyer_information == o.buyer_information &&
           client_reference_information == o.client_reference_information &&
@@ -157,9 +185,11 @@ module CyberSource
           merchant_information == o.merchant_information &&
           processing_information == o.processing_information &&
           recipient_information == o.recipient_information &&
-          merchant_defined_information == o.merchant_defined_information &&
+          sender_information == o.sender_information &&
           device_information == o.device_information &&
-          payment_information == o.payment_information
+          payment_information == o.payment_information &&
+          installment_information == o.installment_information &&
+          merchant_defined_information == o.merchant_defined_information
     end
 
     # @see the `==` method
@@ -171,7 +201,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, merchant_defined_information, device_information, payment_information].hash
+      [aggregator_information, order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, sender_information, device_information, payment_information, installment_information, merchant_defined_information].hash
     end
 
     # Builds the object from hash

@@ -159,7 +159,7 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_follow_on_subscription","get_follow_on_subscription_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)

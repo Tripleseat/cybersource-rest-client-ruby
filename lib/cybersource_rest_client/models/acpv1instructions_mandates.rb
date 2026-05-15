@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Mandate data.
+  # Mandate data. Defines the consumer's spending authorization for a purchase intent, including merchant preferences, amount limits, and product details.
   class Acpv1instructionsMandates
     # Unique identifier with in the context of a purchase-intent for the mandate.   Assigned by Partner. Id shall not be reused when a mandate is updated/deleted. 
     attr_accessor :mandate_id

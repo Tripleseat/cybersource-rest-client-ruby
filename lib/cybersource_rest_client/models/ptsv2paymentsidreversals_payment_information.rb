@@ -15,24 +15,30 @@ module CyberSource
   class Ptsv2paymentsidreversalsPaymentInformation
     attr_accessor :payment_type
 
+    # Mastercard One Credential merchant limited acceptance indicator. Mastercard One Credential connects multiple Mastercard payment methods and allows cardhollers to access various options and set payment preferences.  This field indicates which Mastercard One Credential funding PAN acceptance brands should NOT be assigned for this transaction.  This field flows in ISO field 34, DSID 02 tag DB, mapped to Mastercard Data Element (DE) 48, Sub element 02, Subfield 01.  Possible values: - `C`: Do not assign a Mastercard One Credential funding PAN containing the Mastercard Credit Acceptance Brand for this transaction - `D`: Do not assign a Mastercard One Credential funding PAN containing the Debit Mastercard Acceptance Brand for this transaction - `M`: Do not assign a Mastercard One Credential funding PAN containing the Maestro Acceptance Brand for this transaction  This field is supported for Authorization reversal request.  #### Used by **Authorization Reversal Request** Optional field. 
+    attr_accessor :merchant_limited_acceptance_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'payment_type' => :'paymentType'
+        :'payment_type' => :'paymentType',
+        :'merchant_limited_acceptance_indicator' => :'merchantLimitedAcceptanceIndicator'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'payment_type' => :'payment_type'
+        :'payment_type' => :'payment_type',
+        :'merchant_limited_acceptance_indicator' => :'merchant_limited_acceptance_indicator'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_type' => :'Ptsv2paymentsidreversalsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2paymentsidreversalsPaymentInformationPaymentType',
+        :'merchant_limited_acceptance_indicator' => :'String'
       }
     end
 
@@ -46,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'merchantLimitedAcceptanceIndicator')
+        self.merchant_limited_acceptance_indicator = attributes[:'merchantLimitedAcceptanceIndicator']
       end
     end
 
@@ -62,12 +72,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_limited_acceptance_indicator Value to be assigned
+    def merchant_limited_acceptance_indicator=(merchant_limited_acceptance_indicator)
+      @merchant_limited_acceptance_indicator = merchant_limited_acceptance_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          payment_type == o.payment_type
+          payment_type == o.payment_type &&
+          merchant_limited_acceptance_indicator == o.merchant_limited_acceptance_indicator
     end
 
     # @see the `==` method
@@ -79,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type].hash
+      [payment_type, merchant_limited_acceptance_indicator].hash
     end
 
     # Builds the object from hash

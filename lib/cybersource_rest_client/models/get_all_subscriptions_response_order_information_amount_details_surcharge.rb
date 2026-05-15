@@ -16,24 +16,30 @@ module CyberSource
     # Surcharge amount that you are charging the customer for this subscription. The surcharge amount will be added to the billing amount.  The issuer can provide information about the surcharge amount to the customer.  **NOTE**: This field is supported only for CyberSource through VisaNet (CtV) for Payouts. For CtV, the maximum string length is 8. 
     attr_accessor :amount
 
+    # Description of the surcharge. 
+    attr_accessor :description
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'amount' => :'amount'
+        :'amount' => :'amount',
+        :'description' => :'description'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'amount' => :'amount'
+        :'amount' => :'amount',
+        :'description' => :'description'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'amount' => :'String'
+        :'amount' => :'String',
+        :'description' => :'String'
       }
     end
 
@@ -47,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'amount')
         self.amount = attributes[:'amount']
+      end
+
+      if attributes.has_key?(:'description')
+        self.description = attributes[:'description']
       end
     end
 
@@ -69,12 +79,19 @@ module CyberSource
       @amount = amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] description Value to be assigned
+    def description=(description)
+      @description = description
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          amount == o.amount
+          amount == o.amount &&
+          description == o.description
     end
 
     # @see the `==` method
@@ -86,7 +103,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount].hash
+      [amount, description].hash
     end
 
     # Builds the object from hash

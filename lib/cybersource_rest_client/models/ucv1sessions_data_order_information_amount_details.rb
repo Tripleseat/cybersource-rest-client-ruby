@@ -16,13 +16,25 @@ module CyberSource
     # This field defines the total order amount. 
     attr_accessor :total_amount
 
+    # Total freight or shipping and handling charges for the order.  When you include this field in your request, you must also include the **totalAmount** field. 
+    attr_accessor :freight_amount
+
+    # Total charges for any import or export duties included in the order. 
+    attr_accessor :duty_amount
+
+    # Total discount amount applied to the order. 
+    attr_accessor :discount_amount
+
+    # Flag that indicates how the merchant manages discounts.  Possible values:   - **0**: no invoice level discount included  - **1**: tax calculated on the postdiscount invoice total  - **2**: tax calculated on the prediscount invoice total 
+    attr_accessor :tax_applied_after_discount
+
+    # Flag that indicates how you calculate tax.  Possible values:   - **0**: net prices with tax calculated at line item level  - **1**: net prices with tax calculated at invoice level  - **2**: gross prices with tax provided at line item level  - **3**: gross prices with tax provided at invoice level  - **4**: no tax applies on the invoice for the transaction 
+    attr_accessor :tax_applied_level
+
     # This field defines the currency applicable to the order. 
     attr_accessor :currency
 
     attr_accessor :surcharge
-
-    # This field defines the discount amount applicable to the order. 
-    attr_accessor :discount_amount
 
     # This field defines the sub total amount applicable to the order. 
     attr_accessor :sub_total_amount
@@ -39,9 +51,13 @@ module CyberSource
     def self.attribute_map
       {
         :'total_amount' => :'totalAmount',
+        :'freight_amount' => :'freightAmount',
+        :'duty_amount' => :'dutyAmount',
+        :'discount_amount' => :'discountAmount',
+        :'tax_applied_after_discount' => :'taxAppliedAfterDiscount',
+        :'tax_applied_level' => :'taxAppliedLevel',
         :'currency' => :'currency',
         :'surcharge' => :'surcharge',
-        :'discount_amount' => :'discountAmount',
         :'sub_total_amount' => :'subTotalAmount',
         :'service_fee_amount' => :'serviceFeeAmount',
         :'tax_amount' => :'taxAmount',
@@ -53,9 +69,13 @@ module CyberSource
     def self.json_map
       {
         :'total_amount' => :'total_amount',
+        :'freight_amount' => :'freight_amount',
+        :'duty_amount' => :'duty_amount',
+        :'discount_amount' => :'discount_amount',
+        :'tax_applied_after_discount' => :'tax_applied_after_discount',
+        :'tax_applied_level' => :'tax_applied_level',
         :'currency' => :'currency',
         :'surcharge' => :'surcharge',
-        :'discount_amount' => :'discount_amount',
         :'sub_total_amount' => :'sub_total_amount',
         :'service_fee_amount' => :'service_fee_amount',
         :'tax_amount' => :'tax_amount',
@@ -67,9 +87,13 @@ module CyberSource
     def self.swagger_types
       {
         :'total_amount' => :'String',
+        :'freight_amount' => :'String',
+        :'duty_amount' => :'String',
+        :'discount_amount' => :'String',
+        :'tax_applied_after_discount' => :'String',
+        :'tax_applied_level' => :'String',
         :'currency' => :'String',
         :'surcharge' => :'Upv1capturecontextsDataOrderInformationAmountDetailsSurcharge',
-        :'discount_amount' => :'String',
         :'sub_total_amount' => :'String',
         :'service_fee_amount' => :'String',
         :'tax_amount' => :'String',
@@ -89,16 +113,32 @@ module CyberSource
         self.total_amount = attributes[:'totalAmount']
       end
 
+      if attributes.has_key?(:'freightAmount')
+        self.freight_amount = attributes[:'freightAmount']
+      end
+
+      if attributes.has_key?(:'dutyAmount')
+        self.duty_amount = attributes[:'dutyAmount']
+      end
+
+      if attributes.has_key?(:'discountAmount')
+        self.discount_amount = attributes[:'discountAmount']
+      end
+
+      if attributes.has_key?(:'taxAppliedAfterDiscount')
+        self.tax_applied_after_discount = attributes[:'taxAppliedAfterDiscount']
+      end
+
+      if attributes.has_key?(:'taxAppliedLevel')
+        self.tax_applied_level = attributes[:'taxAppliedLevel']
+      end
+
       if attributes.has_key?(:'currency')
         self.currency = attributes[:'currency']
       end
 
       if attributes.has_key?(:'surcharge')
         self.surcharge = attributes[:'surcharge']
-      end
-
-      if attributes.has_key?(:'discountAmount')
-        self.discount_amount = attributes[:'discountAmount']
       end
 
       if attributes.has_key?(:'subTotalAmount')
@@ -140,6 +180,36 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] freight_amount Value to be assigned
+    def freight_amount=(freight_amount)
+      @freight_amount = freight_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] duty_amount Value to be assigned
+    def duty_amount=(duty_amount)
+      @duty_amount = duty_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] discount_amount Value to be assigned
+    def discount_amount=(discount_amount)
+      @discount_amount = discount_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_applied_after_discount Value to be assigned
+    def tax_applied_after_discount=(tax_applied_after_discount)
+      @tax_applied_after_discount = tax_applied_after_discount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_applied_level Value to be assigned
+    def tax_applied_level=(tax_applied_level)
+      @tax_applied_level = tax_applied_level
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
       @currency = currency
@@ -151,9 +221,13 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           total_amount == o.total_amount &&
+          freight_amount == o.freight_amount &&
+          duty_amount == o.duty_amount &&
+          discount_amount == o.discount_amount &&
+          tax_applied_after_discount == o.tax_applied_after_discount &&
+          tax_applied_level == o.tax_applied_level &&
           currency == o.currency &&
           surcharge == o.surcharge &&
-          discount_amount == o.discount_amount &&
           sub_total_amount == o.sub_total_amount &&
           service_fee_amount == o.service_fee_amount &&
           tax_amount == o.tax_amount &&
@@ -169,7 +243,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, surcharge, discount_amount, sub_total_amount, service_fee_amount, tax_amount, tax_details].hash
+      [total_amount, freight_amount, duty_amount, discount_amount, tax_applied_after_discount, tax_applied_level, currency, surcharge, sub_total_amount, service_fee_amount, tax_amount, tax_details].hash
     end
 
     # Builds the object from hash

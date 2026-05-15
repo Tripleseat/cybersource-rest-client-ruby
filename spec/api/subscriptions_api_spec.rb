@@ -77,6 +77,7 @@ describe 'SubscriptionsApi' do
   # @option opts [String] :code Filter by Subscription Code
   # @option opts [String] :status Filter by Subscription Status
   # @option opts [String] :customer_id Filter by Customer Id
+  # @option opts [String] :client_reference_information_code Filter by Client Reference Information Code / Merchant Reference Number
   # @return [GetAllSubscriptionsResponse]
   describe 'get_all_subscriptions test' do
     it 'should work' do
@@ -102,6 +103,34 @@ describe 'SubscriptionsApi' do
   # @param [Hash] opts the optional parameters
   # @return [GetSubscriptionCodeResponse]
   describe 'get_subscription_code test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for subscriptions_id_payments_get
+  # Get Payments for a Subscription
+  # Retrieve a list of payments for a specific subscription by its ID. 
+  # @param id Subscription Id
+  # @param [Hash] opts the optional parameters
+  # @option opts [Integer] :offset Page offset number.
+  # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
+  # @option opts [Integer] :scheduled_payments_count Number of existing scheduled payments to be returned. Default - &#x60;5&#x60;, Max - &#x60;9999&#x60; 
+  # @return [GetSubscriptionsPaymentsResponse]
+  describe 'subscriptions_id_payments_get test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for subscriptions_id_payments_put
+  # Update Payments for a subscription
+  # Modifies the state of a subscription&#39;s payments. Currently, the only possible modifications are \&quot;skipping\&quot; and \&quot;restoring\&quot; payments.  Marking a payment as \&quot;skipped\&quot; means it will not be processed when its scheduled time arrives. \&quot;Restoring\&quot; a payment removes it from the list of payments to be skipped. 
+  # @param id Subscription Id
+  # @param update_payments Modify payments of a subscription
+  # @param [Hash] opts the optional parameters
+  # @return [GetSubscriptionsPaymentsResponse1]
+  describe 'subscriptions_id_payments_put test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

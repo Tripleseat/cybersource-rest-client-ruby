@@ -47,7 +47,7 @@ module CyberSource
         :'amount_details' => :'Ptsv2intentsOrderInformationAmountDetails',
         :'ship_to' => :'Ptsv2intentsOrderInformationShipTo',
         :'line_items' => :'Array<Ptsv2intentsOrderInformationLineItems>',
-        :'invoice_details' => :'Ptsv2intentsOrderInformationInvoiceDetails'
+        :'invoice_details' => :'Ptsv2billingagreementsOrderInformationInvoiceDetails'
       }
     end
 

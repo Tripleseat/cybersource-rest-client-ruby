@@ -133,4 +133,16 @@ describe 'Ptsv2paymentsPaymentInformation' do
     end
   end
 
+  describe 'test attribute "third_party_token"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_limited_acceptance_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

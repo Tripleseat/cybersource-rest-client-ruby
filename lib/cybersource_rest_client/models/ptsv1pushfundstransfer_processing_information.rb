@@ -21,7 +21,7 @@ module CyberSource
     # Fee Program Indicator. This field identifies the interchange fee program applicable to each financial transaction. Fee program indicator (FPI) values correspond to the fee descriptor and rate for each existing fee program. 
     attr_accessor :fee_program_id
 
-    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction. 
+    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction.  This field is supported for Visa Platform Connect, Chase Paymentech Salem. 
     attr_accessor :network_partner_id
 
     # This field contains coding that identifies (1) the customer transaction type and (2) the customer account types affected by the transaction.  Default: 5402 (Original Credit Transaction)  Contains codes that combined with some other fields such as the BAI (Business Application Id) identify some unique use cases. For Sales Tax rebates this field should be populated with the value 5120 (Value-added tax/Sales Tax) along with the businessApplicationId field set to the value 'FD' which indicates this push funds transfer is being conducted in order to facilitate a sales tax refund. 
@@ -36,6 +36,9 @@ module CyberSource
     # Transaction's reference number.
     attr_accessor :reconciliation_id
 
+    # Account verification code will inform what Payment Account Verification should be performed. With this array of codes, a merchant can choose à la carte what verifications to run. This field is optional, and the default is 1 if it is not passed in. This means that a full validation of the fields will be performed. Valid verification codes: - `1` = Full Account Verification (Card Account, CVN, CAVV, TAVV, Address, Name, eMail, Phone, Identity) - `2` = Card Account Verification - `3` = Address Verification - `4` = Card Authentication Method (CAM) (Cryptogram) - `5` = Cardholder Authentication Verification (CAVV) - `6` = Cardholder Identity Verification - `7` = CVV2 Verification - `8` = eMail Verification - `9` = Name Verification - `10` = Phone Verification 
+    attr_accessor :account_verification_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -46,7 +49,8 @@ module CyberSource
         :'processing_code' => :'processingCode',
         :'sharing_group_code' => :'sharingGroupCode',
         :'purpose_of_payment' => :'purposeOfPayment',
-        :'reconciliation_id' => :'reconciliationId'
+        :'reconciliation_id' => :'reconciliationId',
+        :'account_verification_code' => :'accountVerificationCode'
       }
     end
 
@@ -60,7 +64,8 @@ module CyberSource
         :'processing_code' => :'processing_code',
         :'sharing_group_code' => :'sharing_group_code',
         :'purpose_of_payment' => :'purpose_of_payment',
-        :'reconciliation_id' => :'reconciliation_id'
+        :'reconciliation_id' => :'reconciliation_id',
+        :'account_verification_code' => :'account_verification_code'
       }
     end
 
@@ -74,7 +79,8 @@ module CyberSource
         :'processing_code' => :'String',
         :'sharing_group_code' => :'String',
         :'purpose_of_payment' => :'String',
-        :'reconciliation_id' => :'String'
+        :'reconciliation_id' => :'String',
+        :'account_verification_code' => :'Array<String>'
       }
     end
 
@@ -116,6 +122,12 @@ module CyberSource
 
       if attributes.has_key?(:'reconciliationId')
         self.reconciliation_id = attributes[:'reconciliationId']
+      end
+
+      if attributes.has_key?(:'accountVerificationCode')
+        if (value = attributes[:'accountVerificationCode']).is_a?(Array)
+          self.account_verification_code = value
+        end
       end
     end
 
@@ -213,7 +225,8 @@ module CyberSource
           processing_code == o.processing_code &&
           sharing_group_code == o.sharing_group_code &&
           purpose_of_payment == o.purpose_of_payment &&
-          reconciliation_id == o.reconciliation_id
+          reconciliation_id == o.reconciliation_id &&
+          account_verification_code == o.account_verification_code
     end
 
     # @see the `==` method
@@ -225,7 +238,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment, reconciliation_id].hash
+      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment, reconciliation_id, account_verification_code].hash
     end
 
     # Builds the object from hash

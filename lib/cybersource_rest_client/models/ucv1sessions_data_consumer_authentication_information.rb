@@ -22,12 +22,16 @@ module CyberSource
     # The acs window size<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :acs_window_size
 
+    # Specifies the product code, which designates the type of transaction.<br><br>  Specify one of the following values for this field:  - AIR: Airline purchase  Important Required for American Express SafeKey (U.S.).  - ACC: Accommodation Rental  - ACF: Account funding  - CHA: Check acceptance  - DIG: Digital Goods  - DSP: Cash Dispensing  - GAS: Fuel  - GEN: General Retail  - LUX: Luxury Retail  - PAL: Prepaid activation and load  - PHY: Goods or services purchase  - QCT: Quasi-cash transaction  - REN: Car Rental  - RES: Restaurant  - SVC: Services  - TBD: Other  - TRA: Travel<br>  **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
+    attr_accessor :product_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'challenge_code' => :'challengeCode',
         :'message_category' => :'messageCategory',
-        :'acs_window_size' => :'acsWindowSize'
+        :'acs_window_size' => :'acsWindowSize',
+        :'product_code' => :'productCode'
       }
     end
 
@@ -36,7 +40,8 @@ module CyberSource
       {
         :'challenge_code' => :'challenge_code',
         :'message_category' => :'message_category',
-        :'acs_window_size' => :'acs_window_size'
+        :'acs_window_size' => :'acs_window_size',
+        :'product_code' => :'product_code'
       }
     end
 
@@ -45,7 +50,8 @@ module CyberSource
       {
         :'challenge_code' => :'String',
         :'message_category' => :'String',
-        :'acs_window_size' => :'String'
+        :'acs_window_size' => :'String',
+        :'product_code' => :'String'
       }
     end
 
@@ -67,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'acsWindowSize')
         self.acs_window_size = attributes[:'acsWindowSize']
+      end
+
+      if attributes.has_key?(:'productCode')
+        self.product_code = attributes[:'productCode']
       end
     end
 
@@ -101,6 +111,12 @@ module CyberSource
       @acs_window_size = acs_window_size
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] product_code Value to be assigned
+    def product_code=(product_code)
+      @product_code = product_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -108,7 +124,8 @@ module CyberSource
       self.class == o.class &&
           challenge_code == o.challenge_code &&
           message_category == o.message_category &&
-          acs_window_size == o.acs_window_size
+          acs_window_size == o.acs_window_size &&
+          product_code == o.product_code
     end
 
     # @see the `==` method
@@ -120,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [challenge_code, message_category, acs_window_size].hash
+      [challenge_code, message_category, acs_window_size, product_code].hash
     end
 
     # Builds the object from hash

@@ -61,7 +61,12 @@ module CyberSource
     # Payment account reference. 
     attr_accessor :payment_account_reference
 
+    # A sequence counter used as part of the input to the TAVV cryptogram and it is incremented for each cryptogram generation. This field is only returned for Visa network tokens. 
+    attr_accessor :application_transaction_counter
+
     attr_accessor :card
+
+    attr_accessor :verification_results
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -82,7 +87,9 @@ module CyberSource
         :'eci' => :'eci',
         :'requestor_id' => :'requestorId',
         :'payment_account_reference' => :'paymentAccountReference',
-        :'card' => :'card'
+        :'application_transaction_counter' => :'applicationTransactionCounter',
+        :'card' => :'card',
+        :'verification_results' => :'verificationResults'
       }
     end
 
@@ -105,7 +112,9 @@ module CyberSource
         :'eci' => :'eci',
         :'requestor_id' => :'requestor_id',
         :'payment_account_reference' => :'payment_account_reference',
-        :'card' => :'card'
+        :'application_transaction_counter' => :'application_transaction_counter',
+        :'card' => :'card',
+        :'verification_results' => :'verification_results'
       }
     end
 
@@ -128,7 +137,9 @@ module CyberSource
         :'eci' => :'String',
         :'requestor_id' => :'String',
         :'payment_account_reference' => :'String',
-        :'card' => :'Tmsv2TokenizedCardCard'
+        :'application_transaction_counter' => :'String',
+        :'card' => :'Tmsv2TokenizedCardCard',
+        :'verification_results' => :'Tmsv2TokenizedCardVerificationResults'
       }
     end
 
@@ -204,8 +215,16 @@ module CyberSource
         self.payment_account_reference = attributes[:'paymentAccountReference']
       end
 
+      if attributes.has_key?(:'applicationTransactionCounter')
+        self.application_transaction_counter = attributes[:'applicationTransactionCounter']
+      end
+
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'verificationResults')
+        self.verification_results = attributes[:'verificationResults']
       end
     end
 
@@ -249,7 +268,9 @@ module CyberSource
           eci == o.eci &&
           requestor_id == o.requestor_id &&
           payment_account_reference == o.payment_account_reference &&
-          card == o.card
+          application_transaction_counter == o.application_transaction_counter &&
+          card == o.card &&
+          verification_results == o.verification_results
     end
 
     # @see the `==` method
@@ -261,7 +282,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, object, source, state, enrollment_id, token_reference_id, number, expiration_month, expiration_year, type, reason, cryptogram, security_code, eci, requestor_id, payment_account_reference, card].hash
+      [id, object, source, state, enrollment_id, token_reference_id, number, expiration_month, expiration_year, type, reason, cryptogram, security_code, eci, requestor_id, payment_account_reference, application_transaction_counter, card, verification_results].hash
     end
 
     # Builds the object from hash
