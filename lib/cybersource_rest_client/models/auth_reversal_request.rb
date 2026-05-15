@@ -25,6 +25,8 @@ module CyberSource
 
     attr_accessor :payment_information
 
+    attr_accessor :device_information
+
     attr_accessor :processor_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -36,6 +38,7 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'payment_information' => :'paymentInformation',
+        :'device_information' => :'deviceInformation',
         :'processor_information' => :'processorInformation'
       }
     end
@@ -49,6 +52,7 @@ module CyberSource
         :'order_information' => :'order_information',
         :'point_of_sale_information' => :'point_of_sale_information',
         :'payment_information' => :'payment_information',
+        :'device_information' => :'device_information',
         :'processor_information' => :'processor_information'
       }
     end
@@ -62,6 +66,7 @@ module CyberSource
         :'order_information' => :'Ptsv2paymentsidreversalsOrderInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation',
         :'payment_information' => :'Ptsv2paymentsidreversalsPaymentInformation',
+        :'device_information' => :'Ptsv2paymentsidreversalsDeviceInformation',
         :'processor_information' => :'Ptsv2paymentsProcessorInformationReversal'
       }
     end
@@ -98,6 +103,10 @@ module CyberSource
         self.payment_information = attributes[:'paymentInformation']
       end
 
+      if attributes.has_key?(:'deviceInformation')
+        self.device_information = attributes[:'deviceInformation']
+      end
+
       if attributes.has_key?(:'processorInformation')
         self.processor_information = attributes[:'processorInformation']
       end
@@ -127,6 +136,7 @@ module CyberSource
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information &&
           payment_information == o.payment_information &&
+          device_information == o.device_information &&
           processor_information == o.processor_information
     end
 
@@ -139,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, reversal_information, processing_information, order_information, point_of_sale_information, payment_information, processor_information].hash
+      [client_reference_information, reversal_information, processing_information, order_information, point_of_sale_information, payment_information, device_information, processor_information].hash
     end
 
     # Builds the object from hash

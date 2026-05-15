@@ -22,19 +22,41 @@ public
       @log_obj = Log.new merchantconfig_obj.log_config, "JwtToken"
 
       begin
-        # Get payload claim set for JWTv2
+        # Get payload claim set for JWTv2 (identical for both key types)
         payload_claim_set = getPayloadClaimSet(merchantconfig_obj, isResponseMLEForApi)
-        
-        # Get cached certificate and private key
-        cache_value = Cache.new.fetchCachedP12Certificate(merchantconfig_obj)
-        private_key = cache_value.private_key
-        jwt_cert_obj = cache_value.cert
+        token = ''
+        if merchantconfig_obj.is_shared_secret_key_type?
+          # Shared Secret (HMAC-SHA256) signing
+          @log_obj.logger.debug('Generating JWT token using shared secret (HS256)')
 
-        # Get header claim set for JWTv2
-        header_claim_set = getHeaderClaimSet(jwt_cert_obj)
-        
-        # Generate JWT token using RS256 algorithm
-        token = JWT.encode(payload_claim_set, private_key, 'RS256', header_claim_set)
+          secret_key = merchantconfig_obj.merchantSecretKey
+          begin
+            secret_key_decoded = Base64.strict_decode64(secret_key)
+            rescue ArgumentError => e
+            raise StandardError.new("Invalid base64-encoded secret key: #{e.message}")
+          end
+
+          # Get header claim set with merchantKeyId as kid
+          header_claim_set = getHeaderClaimSet(merchant_key_id: merchantconfig_obj.merchantKeyId)
+
+          # Generate JWT token using HS256 algorithm
+          token = JWT.encode(payload_claim_set, secret_key_decoded, 'HS256', header_claim_set)
+        else
+          # P12 Certificate (RSA-SHA256) signing — existing behavior
+          @log_obj.logger.debug('Generating JWT token using P12 certificate (RS256)')
+
+          # Get cached certificate and private key
+          cache_value = Cache.new.fetchCachedP12Certificate(merchantconfig_obj)
+          private_key = cache_value.private_key
+          jwt_cert_obj = cache_value.cert
+
+          # Get header claim set with certificate serial number as kid
+          header_claim_set = getHeaderClaimSet(certificate: jwt_cert_obj)
+
+          # Generate JWT token using RS256 algorithm
+          token = JWT.encode(payload_claim_set, private_key, 'RS256', header_claim_set)
+        end
+
         return token
       rescue StandardError => err
         if err.message.include? 'PKCS12_parse: mac verify failure'
@@ -90,16 +112,21 @@ public
       return jwt_payload
     end
 
-    def getHeaderClaimSet(jwt_cert_obj)
-      # Extract serial number from certificate for kid header
-      serial_number = MLEUtility.extract_serial_number_from_certificate(jwt_cert_obj)
-      
+    def getHeaderClaimSet(merchant_key_id: nil, certificate: nil)
+      kid_value = ''
+      if !certificate.nil?
+        kid_value = MLEUtility.extract_serial_number_from_certificate(certificate)
+      elsif !merchant_key_id.nil? && !merchant_key_id.to_s.empty?
+        kid_value = merchant_key_id
+      else
+        raise StandardError.new("Either certificate or merchant_key_id must be provided for JWT header")
+      end
+
       jwt_headers = {
-        'kid' => serial_number,
+        'kid' => kid_value,
         'typ' => 'JWT'
       }
 
-      # Add any other future parameters to the header claim set here
       return jwt_headers
     end
 

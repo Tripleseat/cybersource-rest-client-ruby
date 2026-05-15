@@ -19,11 +19,31 @@ module CyberSource
     # Date the mandate has been signed.  Format YYYYMMdd #### SEPA/BACS Required for Import Mandate 
     attr_accessor :date_signed
 
+    # Identifies the type of schedule as either recurring, one-off, split or usage.  Possible values: - recurring - oneoff - split - usage
+    attr_accessor :type
+
+    # Regularity with which the event occurs.  Possible values: - annual - monthly - quarterly - semiannual - weekly - daily - adhoc - intraday - fortnightly
+    attr_accessor :frequency
+
+    # Number of occurrences during the specified period.
+    attr_accessor :occurrences_per_period
+
+    # Start date of the schedule.  Format YYYYMMdd
+    attr_accessor :start_date
+
+    # End date of the schedule.  Format YYYYMMdd
+    attr_accessor :end_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'date_signed' => :'dateSigned'
+        :'date_signed' => :'dateSigned',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'occurrences_per_period' => :'occurrencesPerPeriod',
+        :'start_date' => :'startDate',
+        :'end_date' => :'endDate'
       }
     end
 
@@ -31,7 +51,12 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'date_signed' => :'date_signed'
+        :'date_signed' => :'date_signed',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'occurrences_per_period' => :'occurrences_per_period',
+        :'start_date' => :'start_date',
+        :'end_date' => :'end_date'
       }
     end
 
@@ -39,7 +64,12 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'date_signed' => :'String'
+        :'date_signed' => :'String',
+        :'type' => :'String',
+        :'frequency' => :'String',
+        :'occurrences_per_period' => :'Integer',
+        :'start_date' => :'String',
+        :'end_date' => :'String'
       }
     end
 
@@ -57,6 +87,26 @@ module CyberSource
 
       if attributes.has_key?(:'dateSigned')
         self.date_signed = attributes[:'dateSigned']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
+      end
+
+      if attributes.has_key?(:'occurrencesPerPeriod')
+        self.occurrences_per_period = attributes[:'occurrencesPerPeriod']
+      end
+
+      if attributes.has_key?(:'startDate')
+        self.start_date = attributes[:'startDate']
+      end
+
+      if attributes.has_key?(:'endDate')
+        self.end_date = attributes[:'endDate']
       end
     end
 
@@ -85,13 +135,42 @@ module CyberSource
       @date_signed = date_signed
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] frequency Value to be assigned
+    def frequency=(frequency)
+      @frequency = frequency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] start_date Value to be assigned
+    def start_date=(start_date)
+      @start_date = start_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] end_date Value to be assigned
+    def end_date=(end_date)
+      @end_date = end_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          date_signed == o.date_signed
+          date_signed == o.date_signed &&
+          type == o.type &&
+          frequency == o.frequency &&
+          occurrences_per_period == o.occurrences_per_period &&
+          start_date == o.start_date &&
+          end_date == o.end_date
     end
 
     # @see the `==` method
@@ -103,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, date_signed].hash
+      [id, date_signed, type, frequency, occurrences_per_period, start_date, end_date].hash
     end
 
     # Builds the object from hash

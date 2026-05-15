@@ -31,6 +31,18 @@ describe 'Ucv1sessionsDataRecipientInformation' do
       expect(@instance).to be_instance_of(CyberSource::Ucv1sessionsDataRecipientInformation)
     end
   end
+  describe 'test attribute "account_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "account_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "first_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -49,13 +61,7 @@ describe 'Ucv1sessionsDataRecipientInformation' do
     end
   end
 
-  describe 'test attribute "country"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "account_id"' do
+  describe 'test attribute "address1"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -67,7 +73,19 @@ describe 'Ucv1sessionsDataRecipientInformation' do
     end
   end
 
-  describe 'test attribute "account_type"' do
+  describe 'test attribute "postal_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "country"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "phone_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -79,7 +97,7 @@ describe 'Ucv1sessionsDataRecipientInformation' do
     end
   end
 
-  describe 'test attribute "postal_code"' do
+  describe 'test attribute "locality"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

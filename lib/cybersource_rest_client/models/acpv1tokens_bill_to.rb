@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Consumer billing information.
+  # Consumer billing information.  Required during card enrollment to identify the cardholder.
   class Acpv1tokensBillTo
     # Consumer-provided first name.
     attr_accessor :first_name

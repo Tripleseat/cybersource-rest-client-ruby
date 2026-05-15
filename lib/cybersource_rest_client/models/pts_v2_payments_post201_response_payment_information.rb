@@ -94,7 +94,7 @@ module CyberSource
     def self.swagger_types
       {
         :'card' => :'PtsV2PaymentsPost201ResponsePaymentAccountInformationCard',
-        :'tokenized_card' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedCard',
+        :'tokenized_card' => :'PtsV2PaymentsPost201ResponsePaymentAccountInformationTokenizedCard',
         :'tokenized_payment_method' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedPaymentMethod',
         :'account_features' => :'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures',
         :'bank' => :'PtsV2PaymentsPost201ResponsePaymentInformationBank',

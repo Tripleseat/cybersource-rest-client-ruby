@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Authentication Context data.
+  # Authentication Context data. Describes the authentication action performed.
   class Acpv1tokensAuthenticationContext
     # Authentication Context action.
     attr_accessor :action

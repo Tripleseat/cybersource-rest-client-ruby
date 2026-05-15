@@ -55,6 +55,12 @@ module CyberSource
     # Shipping method for the product. Possible values: - lowcost: Lowest-cost service - sameday: Courier or same-day service - oneday: Next-day or overnight service - twoday: Two-day service - threeday: Three-day service - pickup: Store pick-up - other: Other shipping method - none: No shipping method because product is a service or subscription Required for American Express SafeKey (U.S.). 
     attr_accessor :method
 
+    # Email of the recipient. 
+    attr_accessor :email
+
+    # Name of the customer's company. 
+    attr_accessor :company
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -71,7 +77,9 @@ module CyberSource
         :'phone_number' => :'phoneNumber',
         :'postal_code' => :'postalCode',
         :'destination_code' => :'destinationCode',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'email' => :'email',
+        :'company' => :'company'
       }
     end
 
@@ -91,7 +99,9 @@ module CyberSource
         :'phone_number' => :'phone_number',
         :'postal_code' => :'postal_code',
         :'destination_code' => :'destination_code',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'email' => :'email',
+        :'company' => :'company'
       }
     end
 
@@ -111,7 +121,9 @@ module CyberSource
         :'phone_number' => :'String',
         :'postal_code' => :'String',
         :'destination_code' => :'Integer',
-        :'method' => :'String'
+        :'method' => :'String',
+        :'email' => :'String',
+        :'company' => :'String'
       }
     end
 
@@ -177,6 +189,14 @@ module CyberSource
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.has_key?(:'company')
+        self.company = attributes[:'company']
       end
     end
 
@@ -271,6 +291,18 @@ module CyberSource
       @method = method
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] company Value to be assigned
+    def company=(company)
+      @company = company
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -289,7 +321,9 @@ module CyberSource
           phone_number == o.phone_number &&
           postal_code == o.postal_code &&
           destination_code == o.destination_code &&
-          method == o.method
+          method == o.method &&
+          email == o.email &&
+          company == o.company
     end
 
     # @see the `==` method
@@ -301,7 +335,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, address3, administrative_area, country, destination_types, locality, first_name, last_name, middle_name, phone_number, postal_code, destination_code, method].hash
+      [address1, address2, address3, administrative_area, country, destination_types, locality, first_name, last_name, middle_name, phone_number, postal_code, destination_code, method, email, company].hash
     end
 
     # Builds the object from hash

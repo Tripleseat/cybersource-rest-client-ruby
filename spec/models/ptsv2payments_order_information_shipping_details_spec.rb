@@ -49,4 +49,10 @@ describe 'Ptsv2paymentsOrderInformationShippingDetails' do
     end
   end
 
+  describe 'test attribute "shipping_carrier"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

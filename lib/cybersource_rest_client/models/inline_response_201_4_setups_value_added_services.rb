@@ -19,12 +19,18 @@ module CyberSource
 
     attr_accessor :bank_account_validation
 
+    attr_accessor :flexapi
+
+    attr_accessor :webhooks
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'reporting' => :'reporting',
         :'transaction_search' => :'transactionSearch',
-        :'bank_account_validation' => :'bankAccountValidation'
+        :'bank_account_validation' => :'bankAccountValidation',
+        :'flexapi' => :'flexapi',
+        :'webhooks' => :'webhooks'
       }
     end
 
@@ -33,7 +39,9 @@ module CyberSource
       {
         :'reporting' => :'reporting',
         :'transaction_search' => :'transaction_search',
-        :'bank_account_validation' => :'bank_account_validation'
+        :'bank_account_validation' => :'bank_account_validation',
+        :'flexapi' => :'flexapi',
+        :'webhooks' => :'webhooks'
       }
     end
 
@@ -42,7 +50,9 @@ module CyberSource
       {
         :'reporting' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
         :'transaction_search' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
-        :'bank_account_validation' => :'InlineResponse2014SetupsPaymentsDigitalPayments'
+        :'bank_account_validation' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
+        :'flexapi' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
+        :'webhooks' => :'InlineResponse2014SetupsPaymentsDigitalPayments'
       }
     end
 
@@ -64,6 +74,14 @@ module CyberSource
 
       if attributes.has_key?(:'bankAccountValidation')
         self.bank_account_validation = attributes[:'bankAccountValidation']
+      end
+
+      if attributes.has_key?(:'flexapi')
+        self.flexapi = attributes[:'flexapi']
+      end
+
+      if attributes.has_key?(:'webhooks')
+        self.webhooks = attributes[:'webhooks']
       end
     end
 
@@ -87,7 +105,9 @@ module CyberSource
       self.class == o.class &&
           reporting == o.reporting &&
           transaction_search == o.transaction_search &&
-          bank_account_validation == o.bank_account_validation
+          bank_account_validation == o.bank_account_validation &&
+          flexapi == o.flexapi &&
+          webhooks == o.webhooks
     end
 
     # @see the `==` method
@@ -99,7 +119,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reporting, transaction_search, bank_account_validation].hash
+      [reporting, transaction_search, bank_account_validation, flexapi, webhooks].hash
     end
 
     # Builds the object from hash

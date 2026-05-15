@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_instruments** | [**Array&lt;PaymentInstrumentList1EmbeddedPaymentInstruments&gt;**](PaymentInstrumentList1EmbeddedPaymentInstruments.md) |  | [optional] 
+**payment_instruments** | [**Array&lt;PatchPaymentInstrumentRequest&gt;**](PatchPaymentInstrumentRequest.md) |  | [optional] 
 
 

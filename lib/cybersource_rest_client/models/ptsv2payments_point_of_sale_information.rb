@@ -81,6 +81,9 @@ module CyberSource
     # Combination of the device's unique identifier and a transaction counter that is used in the process of decrypting the encrypted PIN. The entity that injected the PIN encryption keys into the terminal decrypts the encrypted PIN and creates this value.  For all terminals that are using derived unique key per transaction (DUKPT) encryption, this is generated as a single number within the terminal.  #### Used by **Authorization, PIN Debit** - Required when the cardholder enters a PIN and the card cannot verify the PIN, which means that the issuer must verify the PIN. - Required for PIN debit credit or PIN debit purchase. - Required for online PIN transactions  For authorizations, this field is supported only on these processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX  This field is also used by processors that support chip and online PIN transactions. The following table lists the EMV Cards and Cardholder Verification Methods (CVMs) that these processors support:  | Processor | Chip and Offline PIN | Chip and Online PIN | Chip and Signature | | --- | --- | --- | --- | | American Express Direct | Yes | Yes | Yes | | Chase Paymentech Solutions | No | No | Yes | | Credit Mutuel-CIC | Yes | Yes | Yes | | CyberSource through VisaNet | Yes | No | Yes | | FDC Nashville Global | Yes | Yes | Yes | | GPN | No | No | Yes | | OmniPay Direct | Yes | No | Yes | | SIX | Yes | Yes | Yes | 
     attr_accessor :encrypted_key_serial_number
 
+    # Identifies the Zone PIN Key (ZPK) used for Online PIN processing by providing the 10‑digit Key Set Identifier (KSI). This value indicates that the PIN block is encrypted under a ZPK and enables the Payment Security Service (PSS) to perform  the correct ZPK→ZPK PIN translation during card‑present EMV PIN transactions. 
+    attr_accessor :encrypted_key_id
+
     # Version of the software installed on the POS terminal. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX.  For authorizations and credits, this field is supported only on these processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX 
     attr_accessor :partner_sdk_version
 
@@ -128,6 +131,7 @@ module CyberSource
         :'pin_block_encoding_format' => :'pinBlockEncodingFormat',
         :'encrypted_pin' => :'encryptedPin',
         :'encrypted_key_serial_number' => :'encryptedKeySerialNumber',
+        :'encrypted_key_id' => :'encryptedKeyId',
         :'partner_sdk_version' => :'partnerSdkVersion',
         :'emv_application_identifier_and_dedicated_file_name' => :'emvApplicationIdentifierAndDedicatedFileName',
         :'terminal_compliance' => :'terminalCompliance',
@@ -164,6 +168,7 @@ module CyberSource
         :'pin_block_encoding_format' => :'pin_block_encoding_format',
         :'encrypted_pin' => :'encrypted_pin',
         :'encrypted_key_serial_number' => :'encrypted_key_serial_number',
+        :'encrypted_key_id' => :'encrypted_key_id',
         :'partner_sdk_version' => :'partner_sdk_version',
         :'emv_application_identifier_and_dedicated_file_name' => :'emv_application_identifier_and_dedicated_file_name',
         :'terminal_compliance' => :'terminal_compliance',
@@ -200,6 +205,7 @@ module CyberSource
         :'pin_block_encoding_format' => :'Integer',
         :'encrypted_pin' => :'String',
         :'encrypted_key_serial_number' => :'String',
+        :'encrypted_key_id' => :'String',
         :'partner_sdk_version' => :'String',
         :'emv_application_identifier_and_dedicated_file_name' => :'String',
         :'terminal_compliance' => :'String',
@@ -312,6 +318,10 @@ module CyberSource
 
       if attributes.has_key?(:'encryptedKeySerialNumber')
         self.encrypted_key_serial_number = attributes[:'encryptedKeySerialNumber']
+      end
+
+      if attributes.has_key?(:'encryptedKeyId')
+        self.encrypted_key_id = attributes[:'encryptedKeyId']
       end
 
       if attributes.has_key?(:'partnerSdkVersion')
@@ -453,6 +463,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] encrypted_key_id Value to be assigned
+    def encrypted_key_id=(encrypted_key_id)
+      @encrypted_key_id = encrypted_key_id
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] partner_sdk_version Value to be assigned
     def partner_sdk_version=(partner_sdk_version)
       @partner_sdk_version = partner_sdk_version
@@ -522,6 +538,7 @@ module CyberSource
           pin_block_encoding_format == o.pin_block_encoding_format &&
           encrypted_pin == o.encrypted_pin &&
           encrypted_key_serial_number == o.encrypted_key_serial_number &&
+          encrypted_key_id == o.encrypted_key_id &&
           partner_sdk_version == o.partner_sdk_version &&
           emv_application_identifier_and_dedicated_file_name == o.emv_application_identifier_and_dedicated_file_name &&
           terminal_compliance == o.terminal_compliance &&
@@ -540,7 +557,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_category, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, pin_entry_solution, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
+      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_category, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, pin_entry_solution, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, encrypted_key_id, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
     end
 
     # Builds the object from hash

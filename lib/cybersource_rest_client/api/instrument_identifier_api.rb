@@ -202,7 +202,7 @@ module CyberSource
     # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0. (default to 0)
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. (default to 20)
-    # @return [PaymentInstrumentList1]
+    # @return [PaymentInstrumentList]
     #
     def get_instrument_identifier_payment_instruments_list(instrument_identifier_id, opts = {})
       data, status_code, headers = get_instrument_identifier_payment_instruments_list_with_http_info(instrument_identifier_id, opts)
@@ -217,7 +217,7 @@ module CyberSource
     # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-    # @return [Array<(PaymentInstrumentList1, Fixnum, Hash)>] PaymentInstrumentList1 data, response status code and response headers
+    # @return [Array<(PaymentInstrumentList, Fixnum, Hash)>] PaymentInstrumentList data, response status code and response headers
     def get_instrument_identifier_payment_instruments_list_with_http_info(instrument_identifier_id, opts = {})
 
       if @api_client.config.debugging
@@ -276,7 +276,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'PaymentInstrumentList1',
+        :return_type => 'PaymentInstrumentList',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

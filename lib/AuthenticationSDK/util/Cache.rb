@@ -126,8 +126,8 @@ public
       if merchantConfig.mleForRequestPublicCertPath && !merchantConfig.mleForRequestPublicCertPath.strip.empty?
         certificate_identifier = Constants::MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT
         certificate_file_path = merchantConfig.mleForRequestPublicCertPath
-      # Priority #2: If mleForRequestPublicCertPath not provided, get mlecert from p12 if provided and jwt auth type
-      elsif Constants::AUTH_TYPE_JWT.downcase == merchantConfig.authenticationType.downcase && merchantConfig.p12KeyFilePath
+      # Priority #2: If mleForRequestPublicCertPath not provided, get mlecert from p12 if provided and jwt auth type (only for P12 key type, not SHARED_SECRET)
+      elsif Constants::AUTH_TYPE_JWT.downcase == merchantConfig.authenticationType.downcase && !merchantConfig.is_shared_secret_key_type? && merchantConfig.p12KeyFilePath
         certificate_identifier = Constants::MLE_CACHE_IDENTIFIER_FOR_P12_CERT
         certificate_file_path = merchantConfig.p12KeyFilePath
       # Priority #3: Get mlecert from default cert in SDK as per CAS or PROD env.
@@ -224,10 +224,13 @@ public
           merchant_config.responseMlePrivateKeyFilePassword
         )
 
-        merchant_cert = Utility.getCertificateBasedOnKeyAlias(certificate_list, merchant_config.merchantId)
+        # Use correct alias for MetaKey mode: portfolioID when useMetaKey is true, merchantId otherwise
+        response_mle_key_alias = merchant_config.useMetaKey ? merchant_config.portfolioID : merchant_config.merchantId
+
+        merchant_cert = Utility.getCertificateBasedOnKeyAlias(certificate_list, response_mle_key_alias)
 
         if merchant_cert.nil?
-          raise StandardError.new("No certificate found for Response MLE Private Key file with merchant ID alias #{merchant_config.merchantId}")
+          raise StandardError.new("No certificate found for Response MLE Private Key file with alias '#{response_mle_key_alias}'")
         end
 
         # Check if this is a CyberSource-generated P12 file

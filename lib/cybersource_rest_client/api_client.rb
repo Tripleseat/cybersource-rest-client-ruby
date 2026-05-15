@@ -250,6 +250,10 @@ module CyberSource
         token = "Bearer " + token
         header_params['Authorization'] = token
       end
+      header_params['v-c-sdk-telemetry-merchant-id'] = @merchantconfig.merchantId
+      if @merchantconfig.isSDK
+        header_params['v-c-sdk-telemetry-mcp'] = @merchantconfig.isSDK.to_s
+      end
       # header_params.each do |key, value|
       #  log_obj.logger.info("#{key} : #{value}")
       # end

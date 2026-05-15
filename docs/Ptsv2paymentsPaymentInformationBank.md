@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **iban** | **String** | International Bank Account Number (IBAN) for the bank account. For some countries you can provide this number instead of the traditional bank account information. You can use this field only when scoring a direct debit transaction.  | [optional] 
 **swift_code** | **String** | Bank&#39;s SWIFT code. You can use this field only when scoring a direct debit transaction. Required only for crossborder transactions.  | [optional] 
 **code** | **String** | Bank code of the consumer&#39;s account  | [optional] 
+**account_alias** | [**Ptsv2paymentsPaymentInformationBankAccountAlias**](Ptsv2paymentsPaymentInformationBankAccountAlias.md) |  | [optional] 
 
 

@@ -58,10 +58,10 @@ describe 'CreateNewWebhooksApi' do
   # unit tests for save_sym_egress_key
   # Create Webhook Security Keys
   # Create security keys that CyberSource will use internally to connect to your servers and validate messages using a digital signature.  Select the CREATE example for CyberSource to generate the key on our server and maintain it for you as well. Remember to save the key in the API response, so that you can use it to validate messages later. 
-  # @param v_c_sender_organization_id Sender organization id
-  # @param v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
+  # @option opts [String] :v_c_sender_organization_id Sender organization id
+  # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
   # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
   # @return [InlineResponse2015]
   describe 'save_sym_egress_key test' do

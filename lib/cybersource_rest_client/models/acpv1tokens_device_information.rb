@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Device and Application instance data.
+  # Device and Application instance data. Identifies the device and application from which the consumer is making the payment request.
   class Acpv1tokensDeviceInformation
     # Base64 Encoded userAgent string of the connecting client application, with no padding.   User agent string of the connecting client application.   Conditionality:   - Required for browsers - Optional for non-browsers 
     attr_accessor :user_agent

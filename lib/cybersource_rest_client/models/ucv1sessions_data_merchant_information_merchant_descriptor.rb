@@ -19,6 +19,9 @@ module CyberSource
     # The alternate name of the merchant<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :alternate_name
 
+    # Contact information for the merchant.  **Note** These are the maximum data lengths for the following payment processors: - FDCCompass (13) - Paymentech (13) 
+    attr_accessor :contact
+
     # The locality of the merchant<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :locality
 
@@ -42,6 +45,7 @@ module CyberSource
       {
         :'name' => :'name',
         :'alternate_name' => :'alternateName',
+        :'contact' => :'contact',
         :'locality' => :'locality',
         :'phone' => :'phone',
         :'country' => :'country',
@@ -56,6 +60,7 @@ module CyberSource
       {
         :'name' => :'name',
         :'alternate_name' => :'alternate_name',
+        :'contact' => :'contact',
         :'locality' => :'locality',
         :'phone' => :'phone',
         :'country' => :'country',
@@ -70,6 +75,7 @@ module CyberSource
       {
         :'name' => :'String',
         :'alternate_name' => :'String',
+        :'contact' => :'String',
         :'locality' => :'String',
         :'phone' => :'String',
         :'country' => :'String',
@@ -93,6 +99,10 @@ module CyberSource
 
       if attributes.has_key?(:'alternateName')
         self.alternate_name = attributes[:'alternateName']
+      end
+
+      if attributes.has_key?(:'contact')
+        self.contact = attributes[:'contact']
       end
 
       if attributes.has_key?(:'locality')
@@ -146,6 +156,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] contact Value to be assigned
+    def contact=(contact)
+      @contact = contact
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
       @locality = locality
@@ -188,6 +204,7 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           alternate_name == o.alternate_name &&
+          contact == o.contact &&
           locality == o.locality &&
           phone == o.phone &&
           country == o.country &&
@@ -205,7 +222,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, locality, phone, country, postal_code, administrative_area, address1].hash
+      [name, alternate_name, contact, locality, phone, country, postal_code, administrative_area, address1].hash
     end
 
     # Builds the object from hash

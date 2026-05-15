@@ -49,4 +49,16 @@ describe 'InlineResponse2014SetupsValueAddedServices' do
     end
   end
 
+  describe 'test attribute "flexapi"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "webhooks"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

@@ -49,4 +49,10 @@ describe 'Ucv1sessionsDataConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "product_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

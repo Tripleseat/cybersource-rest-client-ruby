@@ -70,6 +70,9 @@ module CyberSource
     # The city of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :locality
 
+    # CPF or CNPJ of the cash-in recipient. \"Cadastro de Pessoas Físicas\", which translates to the \"Natural Persons Register.\" It is the individual taxpayer registry identification number in Brazil, similar to a Social Security Number (SSN) in the United States or a National Insurance Number in the UK. 
+    attr_accessor :tax_id_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -91,7 +94,8 @@ module CyberSource
         :'country_of_birth' => :'countryOfBirth',
         :'occupation' => :'occupation',
         :'email' => :'email',
-        :'locality' => :'locality'
+        :'locality' => :'locality',
+        :'tax_id_number' => :'taxIdNumber'
       }
     end
 
@@ -116,7 +120,8 @@ module CyberSource
         :'country_of_birth' => :'country_of_birth',
         :'occupation' => :'occupation',
         :'email' => :'email',
-        :'locality' => :'locality'
+        :'locality' => :'locality',
+        :'tax_id_number' => :'tax_id_number'
       }
     end
 
@@ -141,7 +146,8 @@ module CyberSource
         :'country_of_birth' => :'String',
         :'occupation' => :'String',
         :'email' => :'String',
-        :'locality' => :'String'
+        :'locality' => :'String',
+        :'tax_id_number' => :'Float'
       }
     end
 
@@ -227,6 +233,10 @@ module CyberSource
 
       if attributes.has_key?(:'locality')
         self.locality = attributes[:'locality']
+      end
+
+      if attributes.has_key?(:'taxIdNumber')
+        self.tax_id_number = attributes[:'taxIdNumber']
       end
     end
 
@@ -380,7 +390,8 @@ module CyberSource
           country_of_birth == o.country_of_birth &&
           occupation == o.occupation &&
           email == o.email &&
-          locality == o.locality
+          locality == o.locality &&
+          tax_id_number == o.tax_id_number
     end
 
     # @see the `==` method
@@ -392,7 +403,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, account_type, first_name, middle_name, last_name, address1, administrative_area, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address, alias_name, nationality, country_of_birth, occupation, email, locality].hash
+      [account_id, account_type, first_name, middle_name, last_name, address1, administrative_area, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address, alias_name, nationality, country_of_birth, occupation, email, locality, tax_id_number].hash
     end
 
     # Builds the object from hash

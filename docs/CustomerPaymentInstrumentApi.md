@@ -119,7 +119,7 @@ No authorization required
 
 
 # **get_customer_payment_instruments_list**
-> PaymentInstrumentList get_customer_payment_instruments_list(customer_id, opts)
+> PaymentInstrumentList1 get_customer_payment_instruments_list(customer_id, opts)
 
 List Payment Instruments for a Customer
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentInstrumentList**](PaymentInstrumentList.md)
+[**PaymentInstrumentList1**](PaymentInstrumentList1.md)
 
 ### Authorization
 

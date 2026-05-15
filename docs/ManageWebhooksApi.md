@@ -55,7 +55,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -102,7 +102,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -155,7 +155,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -202,7 +202,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -253,7 +253,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -303,12 +303,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
 # **save_asym_egress_key**
-> InlineResponse2018 save_asym_egress_key(v_c_sender_organization_id, v_c_permissions, save_asym_egress_key, opts)
+> InlineResponse2018 save_asym_egress_key(save_asym_egress_key, opts)
 
 Message Level Encryption
 
@@ -321,19 +321,17 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-v_c_sender_organization_id = 'v_c_sender_organization_id_example' # String | Sender organization id
-
-v_c_permissions = 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-
 save_asym_egress_key = CyberSource::SaveAsymEgressKey.new # SaveAsymEgressKey | Provide egress Asymmetric key information to save (create or store)
 
 opts = { 
-  v_c_correlation_id: 'v_c_correlation_id_example' # String | A globally unique id associated with your request
+  v_c_correlation_id: 'v_c_correlation_id_example', # String | A globally unique id associated with your request
+  v_c_sender_organization_id: 'v_c_sender_organization_id_example', # String | Sender organization id
+  v_c_permissions: 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
 }
 
 begin
   #Message Level Encryption
-  result = api_instance.save_asym_egress_key(v_c_sender_organization_id, v_c_permissions, save_asym_egress_key, opts)
+  result = api_instance.save_asym_egress_key(save_asym_egress_key, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling ManageWebhooksApi->save_asym_egress_key: #{e}"
@@ -344,10 +342,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v_c_sender_organization_id** | **String**| Sender organization id | 
- **v_c_permissions** | **String**| Encoded user permissions returned by the CGK, for the entity user who initiated the boarding | 
  **save_asym_egress_key** | [**SaveAsymEgressKey**](SaveAsymEgressKey.md)| Provide egress Asymmetric key information to save (create or store) | 
  **v_c_correlation_id** | **String**| A globally unique id associated with your request | [optional] 
+ **v_c_sender_organization_id** | **String**| Sender organization id | [optional] 
+ **v_c_permissions** | **String**| Encoded user permissions returned by the CGK, for the entity user who initiated the boarding | [optional] 
 
 ### Return type
 
@@ -360,7 +358,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

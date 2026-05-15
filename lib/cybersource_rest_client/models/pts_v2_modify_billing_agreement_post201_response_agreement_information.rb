@@ -25,6 +25,12 @@ module CyberSource
     # Date the mandate has been revoked.  Format YYYYMMdd
     attr_accessor :date_revoked
 
+    # Identifies the type of schedule as either recurring, one-off, split or usage.  Possible values: - recurring - oneoff - split - usage
+    attr_accessor :type
+
+    # Regularity with which the event occurs.  Possible values: - annual - monthly - quarterly - semiannual - weekly - daily - adhoc - intraday - fortnightly
+    attr_accessor :frequency
+
     # Base64 encoded html string
     attr_accessor :encoded_html
 
@@ -44,6 +50,8 @@ module CyberSource
         :'date_signed' => :'dateSigned',
         :'date_created' => :'dateCreated',
         :'date_revoked' => :'dateRevoked',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
         :'encoded_html' => :'encodedHtml',
         :'encoded_html_popup' => :'encodedHtmlPopup',
         :'url' => :'url',
@@ -58,6 +66,8 @@ module CyberSource
         :'date_signed' => :'date_signed',
         :'date_created' => :'date_created',
         :'date_revoked' => :'date_revoked',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
         :'encoded_html' => :'encoded_html',
         :'encoded_html_popup' => :'encoded_html_popup',
         :'url' => :'url',
@@ -72,6 +82,8 @@ module CyberSource
         :'date_signed' => :'String',
         :'date_created' => :'String',
         :'date_revoked' => :'String',
+        :'type' => :'String',
+        :'frequency' => :'String',
         :'encoded_html' => :'String',
         :'encoded_html_popup' => :'String',
         :'url' => :'String',
@@ -101,6 +113,14 @@ module CyberSource
 
       if attributes.has_key?(:'dateRevoked')
         self.date_revoked = attributes[:'dateRevoked']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
       end
 
       if attributes.has_key?(:'encodedHtml')
@@ -158,6 +178,18 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] frequency Value to be assigned
+    def frequency=(frequency)
+      @frequency = frequency
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] url Value to be assigned
     def url=(url)
       @url = url
@@ -178,6 +210,8 @@ module CyberSource
           date_signed == o.date_signed &&
           date_created == o.date_created &&
           date_revoked == o.date_revoked &&
+          type == o.type &&
+          frequency == o.frequency &&
           encoded_html == o.encoded_html &&
           encoded_html_popup == o.encoded_html_popup &&
           url == o.url &&
@@ -193,7 +227,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, date_signed, date_created, date_revoked, encoded_html, encoded_html_popup, url, transaction_id].hash
+      [id, date_signed, date_created, date_revoked, type, frequency, encoded_html, encoded_html_popup, url, transaction_id].hash
     end
 
     # Builds the object from hash

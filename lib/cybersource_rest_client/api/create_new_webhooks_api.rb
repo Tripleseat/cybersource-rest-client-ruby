@@ -138,7 +138,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -182,27 +182,27 @@ module CyberSource
     # Create Webhook Security Keys
     # Create security keys that CyberSource will use internally to connect to your servers and validate messages using a digital signature.  Select the CREATE example for CyberSource to generate the key on our server and maintain it for you as well. Remember to save the key in the API response, so that you can use it to validate messages later. 
     #
-    # @param v_c_sender_organization_id Sender organization id
-    # @param v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
+    # @option opts [String] :v_c_sender_organization_id Sender organization id
+    # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
     # @return [InlineResponse2015]
     #
-    def save_sym_egress_key(v_c_sender_organization_id, v_c_permissions, opts = {})
-      data, status_code, headers = save_sym_egress_key_with_http_info(v_c_sender_organization_id, v_c_permissions, opts)
+    def save_sym_egress_key(opts = {})
+      data, status_code, headers = save_sym_egress_key_with_http_info(opts)
       return data, status_code, headers
     end
 
     # Create Webhook Security Keys
     # Create security keys that CyberSource will use internally to connect to your servers and validate messages using a digital signature.  Select the CREATE example for CyberSource to generate the key on our server and maintain it for you as well. Remember to save the key in the API response, so that you can use it to validate messages later. 
-    # @param v_c_sender_organization_id Sender organization id
-    # @param v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
+    # @option opts [String] :v_c_sender_organization_id Sender organization id
+    # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
     # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
-    def save_sym_egress_key_with_http_info(v_c_sender_organization_id, v_c_permissions, opts = {})
+    def save_sym_egress_key_with_http_info(opts = {})
 
       if @api_client.config.debugging
           begin
@@ -212,20 +212,12 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'v_c_sender_organization_id' is set
-      if @api_client.config.client_side_validation && v_c_sender_organization_id.nil?
-        fail ArgumentError, "Missing the required parameter 'v_c_sender_organization_id' when calling CreateNewWebhooksApi.save_sym_egress_key"
-      end
-      #if @api_client.config.client_side_validation && v_c_sender_organization_id !~ Regexp.new(/^[A-Za-z0-9\\-_]+$/)
-        #fail ArgumentError, "invalid value for 'v_c_sender_organization_id' when calling CreateNewWebhooksApi.save_sym_egress_key, must conform to the pattern /^[A-Za-z0-9\\-_]+$/."
-      #end
-
-      # verify the required parameter 'v_c_permissions' is set
-      if @api_client.config.client_side_validation && v_c_permissions.nil?
-        fail ArgumentError, "Missing the required parameter 'v_c_permissions' when calling CreateNewWebhooksApi.save_sym_egress_key"
-      end
       #if @api_client.config.client_side_validation && !opts[:'v_c_correlation_id'].nil? && opts[:'v_c_correlation_id'] !~ Regexp.new(/^[A-Za-z0-9\\.\\-_:]+$/)
         #fail ArgumentError, "invalid value for 'opts[:\"v_c_correlation_id\"]' when calling CreateNewWebhooksApi.save_sym_egress_key, must conform to the pattern /^[A-Za-z0-9\\.\\-_:]+$/."
+      #end
+
+      #if @api_client.config.client_side_validation && !opts[:'v_c_sender_organization_id'].nil? && opts[:'v_c_sender_organization_id'] !~ Regexp.new(/^[A-Za-z0-9\\-_]+$/)
+        #fail ArgumentError, "invalid value for 'opts[:\"v_c_sender_organization_id\"]' when calling CreateNewWebhooksApi.save_sym_egress_key, must conform to the pattern /^[A-Za-z0-9\\-_]+$/."
       #end
 
       # resource path
@@ -240,9 +232,9 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'v-c-sender-organization-id'] = v_c_sender_organization_id
-      header_params[:'v-c-permissions'] = v_c_permissions
       header_params[:'v-c-correlation-id'] = opts[:'v_c_correlation_id'] if !opts[:'v_c_correlation_id'].nil?
+      header_params[:'v-c-sender-organization-id'] = opts[:'v_c_sender_organization_id'] if !opts[:'v_c_sender_organization_id'].nil?
+      header_params[:'v-c-permissions'] = opts[:'v_c_permissions'] if !opts[:'v_c_permissions'].nil?
 
       # form parameters
       form_params = {}

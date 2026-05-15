@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Bavsv1accountvalidationsPaymentInformationBank
-    # Bank routing number. This is also called the transit number.  Non-Negative Integer 
+    # Bank routing number. This is also called the transit number.  Non-Negative String, containing only digits. 
     attr_accessor :routing_number
 
     attr_accessor :account

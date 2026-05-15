@@ -22,6 +22,21 @@ module CyberSource
     # Date the mandate has been created.  Format YYYYMMdd
     attr_accessor :date_created
 
+    # Identifies the type of schedule as either recurring, one-off, split or usage.  Possible values: - recurring - oneoff - split - usage
+    attr_accessor :type
+
+    # Regularity with which the event occurs.  Possible values: - annual - monthly - quarterly - semiannual - weekly - daily - adhoc - intraday - fortnightly
+    attr_accessor :frequency
+
+    # Number of occurrences during the specified period.
+    attr_accessor :occurrences_per_period
+
+    # Start date of the schedule.  Format YYYYMMdd
+    attr_accessor :start_date
+
+    # End date of the schedule.  Format YYYYMMdd
+    attr_accessor :end_date
+
     # Base64 encoded html string
     attr_accessor :encoded_html
 
@@ -37,6 +52,11 @@ module CyberSource
         :'id' => :'id',
         :'date_signed' => :'dateSigned',
         :'date_created' => :'dateCreated',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'occurrences_per_period' => :'occurrencesPerPeriod',
+        :'start_date' => :'startDate',
+        :'end_date' => :'endDate',
         :'encoded_html' => :'encodedHtml',
         :'encoded_html_popup' => :'encodedHtmlPopup',
         :'url' => :'url'
@@ -49,6 +69,11 @@ module CyberSource
         :'id' => :'id',
         :'date_signed' => :'date_signed',
         :'date_created' => :'date_created',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'occurrences_per_period' => :'occurrences_per_period',
+        :'start_date' => :'start_date',
+        :'end_date' => :'end_date',
         :'encoded_html' => :'encoded_html',
         :'encoded_html_popup' => :'encoded_html_popup',
         :'url' => :'url'
@@ -61,6 +86,11 @@ module CyberSource
         :'id' => :'String',
         :'date_signed' => :'String',
         :'date_created' => :'String',
+        :'type' => :'String',
+        :'frequency' => :'String',
+        :'occurrences_per_period' => :'Integer',
+        :'start_date' => :'String',
+        :'end_date' => :'String',
         :'encoded_html' => :'String',
         :'encoded_html_popup' => :'String',
         :'url' => :'String'
@@ -85,6 +115,26 @@ module CyberSource
 
       if attributes.has_key?(:'dateCreated')
         self.date_created = attributes[:'dateCreated']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
+      end
+
+      if attributes.has_key?(:'occurrencesPerPeriod')
+        self.occurrences_per_period = attributes[:'occurrencesPerPeriod']
+      end
+
+      if attributes.has_key?(:'startDate')
+        self.start_date = attributes[:'startDate']
+      end
+
+      if attributes.has_key?(:'endDate')
+        self.end_date = attributes[:'endDate']
       end
 
       if attributes.has_key?(:'encodedHtml')
@@ -132,6 +182,30 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] frequency Value to be assigned
+    def frequency=(frequency)
+      @frequency = frequency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] start_date Value to be assigned
+    def start_date=(start_date)
+      @start_date = start_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] end_date Value to be assigned
+    def end_date=(end_date)
+      @end_date = end_date
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] url Value to be assigned
     def url=(url)
       @url = url
@@ -145,6 +219,11 @@ module CyberSource
           id == o.id &&
           date_signed == o.date_signed &&
           date_created == o.date_created &&
+          type == o.type &&
+          frequency == o.frequency &&
+          occurrences_per_period == o.occurrences_per_period &&
+          start_date == o.start_date &&
+          end_date == o.end_date &&
           encoded_html == o.encoded_html &&
           encoded_html_popup == o.encoded_html_popup &&
           url == o.url
@@ -159,7 +238,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, date_signed, date_created, encoded_html, encoded_html_popup, url].hash
+      [id, date_signed, date_created, type, frequency, occurrences_per_period, start_date, end_date, encoded_html, encoded_html_popup, url].hash
     end
 
     # Builds the object from hash

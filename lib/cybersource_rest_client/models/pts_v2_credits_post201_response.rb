@@ -39,7 +39,15 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :merchant_information
+
+    attr_accessor :clearing_information
+
     attr_accessor :point_of_sale_information
+
+    attr_accessor :token_information
+
+    attr_accessor :payment_account_information
 
     attr_accessor :error_information
 
@@ -57,7 +65,11 @@ module CyberSource
         :'processor_information' => :'processorInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
+        :'merchant_information' => :'merchantInformation',
+        :'clearing_information' => :'clearingInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
+        :'token_information' => :'tokenInformation',
+        :'payment_account_information' => :'paymentAccountInformation',
         :'error_information' => :'errorInformation'
       }
     end
@@ -76,7 +88,11 @@ module CyberSource
         :'processor_information' => :'processor_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
+        :'merchant_information' => :'merchant_information',
+        :'clearing_information' => :'clearing_information',
         :'point_of_sale_information' => :'point_of_sale_information',
+        :'token_information' => :'token_information',
+        :'payment_account_information' => :'payment_account_information',
         :'error_information' => :'error_information'
       }
     end
@@ -95,7 +111,11 @@ module CyberSource
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
         :'payment_information' => :'PtsV2CreditsPost201ResponsePaymentInformation',
         :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation',
+        :'merchant_information' => :'PtsV2CreditsPost201ResponseMerchantInformation',
+        :'clearing_information' => :'PtsV2PaymentsPost201ResponseClearingInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation',
+        :'token_information' => :'PtsV2CreditsPost201ResponseTokenInformation',
+        :'payment_account_information' => :'PtsV2CreditsPost201ResponsePaymentAccountInformation',
         :'error_information' => :'PtsV2PaymentsRefundPost201ResponseErrorInformation'
       }
     end
@@ -152,8 +172,24 @@ module CyberSource
         self.order_information = attributes[:'orderInformation']
       end
 
+      if attributes.has_key?(:'merchantInformation')
+        self.merchant_information = attributes[:'merchantInformation']
+      end
+
+      if attributes.has_key?(:'clearingInformation')
+        self.clearing_information = attributes[:'clearingInformation']
+      end
+
       if attributes.has_key?(:'pointOfSaleInformation')
         self.point_of_sale_information = attributes[:'pointOfSaleInformation']
+      end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
+      end
+
+      if attributes.has_key?(:'paymentAccountInformation')
+        self.payment_account_information = attributes[:'paymentAccountInformation']
       end
 
       if attributes.has_key?(:'errorInformation')
@@ -202,7 +238,11 @@ module CyberSource
           processor_information == o.processor_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
+          merchant_information == o.merchant_information &&
+          clearing_information == o.clearing_information &&
           point_of_sale_information == o.point_of_sale_information &&
+          token_information == o.token_information &&
+          payment_account_information == o.payment_account_information &&
           error_information == o.error_information
     end
 
@@ -215,7 +255,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processing_information, processor_information, payment_information, order_information, point_of_sale_information, error_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processing_information, processor_information, payment_information, order_information, merchant_information, clearing_information, point_of_sale_information, token_information, payment_account_information, error_information].hash
     end
 
     # Builds the object from hash

@@ -12,7 +12,7 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 
 ## System Requirements
 
-* Ruby 3.0 or higher
+* Ruby 3.1 or higher
 
 ## Installation
 
@@ -36,7 +36,131 @@ Follow the first step mentioned in [Getting Started with CyberSource REST SDKs](
 
 Follow the second step mentioned in [Getting Started with CyberSource REST SDKs](https://developer.cybersource.com/hello-world/rest-api-sdks.html#gettingstarted) to configure the SDK by inputting your credentials.
 
+> **⚠️ HTTP Signature Deprecation Notice:** HTTP Signature authentication is being deprecated. **JWT with Shared Secret** is the recommended migration path — it uses the same `merchantKeyId` and `merchantsecretKey` credentials, requires only two property changes, and enables MLE (Message Level Encryption) support that HTTP Signature does not provide.
+
+## Authentication Configuration
+
+To set your API credentials for an API request, configure the following information in your configuration hash:
+
 ***Please note that this is for reference only. Ensure to store the credentials in a more secure manner.***
+
+### For HTTP Signature authentication (⚠️ Deprecated — migrate to JWT with Shared Secret)
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'http_signature',
+  'merchantID' => 'testrest',
+  'runEnvironment' => 'apitest.cybersource.com',
+  'merchantKeyId' => 'your_merchant_key_id',
+  'merchantsecretKey' => 'your_merchant_secret_key',
+  'enableLog' => true,
+  'logDirectory' => './log',
+  'logFilename' => 'cybs'
+}
+```
+
+### For JWT authentication (with P12 certificate)
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'jwt',
+  'merchantID' => 'testrest',
+  'runEnvironment' => 'apitest.cybersource.com',
+  'keyAlias' => 'testrest',
+  'keyPass' => 'testrest',
+  'keyFilename' => 'testrest',
+  'keysDirectory' => './resource',
+  'enableLog' => true,
+  'logDirectory' => './log',
+  'logFilename' => 'cybs'
+}
+```
+
+### For JWT authentication with Shared Secret (Recommended migration from HTTP Signature)
+
+Uses the **same** `merchantKeyId` and `merchantsecretKey` credentials as HTTP Signature. Only two properties change:
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'jwt',
+  'jwtKeyType' => 'SHARED_SECRET',
+  'merchantID' => 'testrest',
+  'runEnvironment' => 'apitest.cybersource.com',
+  'merchantKeyId' => 'your_merchant_key_id',
+  'merchantsecretKey' => 'your_merchant_secret_key',
+  'enableLog' => true,
+  'logDirectory' => './log',
+  'logFilename' => 'cybs'
+}
+```
+
+### For using MetaKey
+
+MetaKey can be used for HTTP Signature, JWT (P12), and JWT with Shared Secret authentication.
+
+#### For HTTP Signature Authentication (⚠️ Deprecated)
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'http_signature',
+  'merchantID' => '<transacting merchantID>',
+  'merchantKeyId' => '<MetaKey Portfolio KeyId>',
+  'merchantsecretKey' => '<MetaKey Portfolio Shared Secret Key>',
+  'useMetaKey' => true,
+  'portfolioID' => '<Portfolio ID>'
+}
+```
+
+#### For JWT Authentication (P12)
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'jwt',
+  'merchantID' => '<transacting merchantID>',
+  'keyAlias' => '<Portfolio ID>',
+  'keyPass' => '<MetaKey Portfolio P12 File Password>',
+  'keyFilename' => '<MetaKey Portfolio P12 File Name>',
+  'keysDirectory' => '<keysDirectory>',
+  'useMetaKey' => true
+}
+```
+
+#### For JWT Authentication with Shared Secret (Recommended)
+
+```ruby
+merchantConfig = {
+  'authenticationType' => 'jwt',
+  'jwtKeyType' => 'SHARED_SECRET',
+  'merchantID' => '<transacting merchantID>',
+  'merchantKeyId' => '<MetaKey Portfolio KeyId>',
+  'merchantsecretKey' => '<MetaKey Portfolio Shared Secret Key>',
+  'useMetaKey' => true,
+  'portfolioID' => '<Portfolio ID>'
+}
+```
+
+#### Response MLE with MetaKey
+
+When Response MLE is enabled (`enableResponseMleGlobally: true`) and MetaKey is in use (`useMetaKey: true`), the Response MLE configuration must use the **portfolio's** response MLE key — not the transacting merchant's. Specifically:
+
+- `responseMlePrivateKeyFilePath` (or the `responseMlePrivateKey` object) must point to the **portfolio's** response MLE private key.
+- `responseMleKID` — the KID value associated with the **portfolio's** response MLE certificate.
+  - **Optional** when `responseMlePrivateKeyFilePath` points to a CyberSource-generated P12 file (SDK auto-fetches from P12).
+  - **Required** when using PEM format files (`.pem`, `.key`, `.p8`) or when providing `responseMlePrivateKey` object directly.
+
+```ruby
+merchantConfig = {
+  # ... other MetaKey configuration ...
+  'enableResponseMleGlobally' => true,
+  'responseMlePrivateKeyFilePath' => '/path/to/portfolio/response/mle/private/key.p12',
+  'responseMlePrivateKeyFilePassword' => 'portfolio_private_key_password'
+  # responseMleKID is optional when using a CyberSource-generated P12 file (auto-fetched from P12)
+  # Required when using PEM files or responseMlePrivateKey object
+  # 'responseMleKID' => '<Portfolio Response MLE KID>'
+}
+```
+
+> **Important:** The response MLE private key (and KID, if applicable) must belong to the portfolio (parent account), since in MetaKey mode the portfolio is the transaction submitter and the response is encrypted using the portfolio's MLE certificate.
 
 ## How to Use
 

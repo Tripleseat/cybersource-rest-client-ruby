@@ -13,10 +13,10 @@ require 'date'
 
 module CyberSource
   class InlineResponse4009Details
-    # This is the flattened JSON object field name/path that is either missing or invalid. 
+    # This is the flattened JSON object field name/path that is either missing or invalid.
     attr_accessor :field
 
-    # Possible reasons for the error.  Possible values:   - `MISSING_FIELD`   - `INVALID_DATA` 
+    # Possible reasons for the error.
     attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.

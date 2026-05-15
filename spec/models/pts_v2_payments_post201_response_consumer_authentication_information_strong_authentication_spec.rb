@@ -37,4 +37,10 @@ describe 'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAut
     end
   end
 
+  describe 'test attribute "outage_exemption_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

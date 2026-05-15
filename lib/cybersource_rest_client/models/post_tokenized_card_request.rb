@@ -29,6 +29,8 @@ module CyberSource
 
     attr_accessor :passcode
 
+    attr_accessor :bill_to
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +39,8 @@ module CyberSource
         :'create_pan_instrument_identifier' => :'createPanInstrumentIdentifier',
         :'source' => :'source',
         :'card' => :'card',
-        :'passcode' => :'passcode'
+        :'passcode' => :'passcode',
+        :'bill_to' => :'billTo'
       }
     end
 
@@ -49,7 +52,8 @@ module CyberSource
         :'create_pan_instrument_identifier' => :'create_pan_instrument_identifier',
         :'source' => :'source',
         :'card' => :'card',
-        :'passcode' => :'passcode'
+        :'passcode' => :'passcode',
+        :'bill_to' => :'bill_to'
       }
     end
 
@@ -61,7 +65,8 @@ module CyberSource
         :'create_pan_instrument_identifier' => :'BOOLEAN',
         :'source' => :'String',
         :'card' => :'Tmsv2tokenizedcardsCard',
-        :'passcode' => :'Tmsv2tokenizedcardsPasscode'
+        :'passcode' => :'Tmsv2tokenizedcardsPasscode',
+        :'bill_to' => :'Tmsv2tokenizedcardsBillTo'
       }
     end
 
@@ -95,6 +100,10 @@ module CyberSource
 
       if attributes.has_key?(:'passcode')
         self.passcode = attributes[:'passcode']
+      end
+
+      if attributes.has_key?(:'billTo')
+        self.bill_to = attributes[:'billTo']
       end
     end
 
@@ -132,7 +141,8 @@ module CyberSource
           create_pan_instrument_identifier == o.create_pan_instrument_identifier &&
           source == o.source &&
           card == o.card &&
-          passcode == o.passcode
+          passcode == o.passcode &&
+          bill_to == o.bill_to
     end
 
     # @see the `==` method
@@ -144,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_reference_id, consumer_id, create_pan_instrument_identifier, source, card, passcode].hash
+      [account_reference_id, consumer_id, create_pan_instrument_identifier, source, card, passcode, bill_to].hash
     end
 
     # Builds the object from hash

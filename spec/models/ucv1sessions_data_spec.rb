@@ -31,6 +31,12 @@ describe 'Ucv1sessionsData' do
       expect(@instance).to be_instance_of(CyberSource::Ucv1sessionsData)
     end
   end
+  describe 'test attribute "aggregator_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "order_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -73,7 +79,7 @@ describe 'Ucv1sessionsData' do
     end
   end
 
-  describe 'test attribute "merchant_defined_information"' do
+  describe 'test attribute "sender_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -86,6 +92,18 @@ describe 'Ucv1sessionsData' do
   end
 
   describe 'test attribute "payment_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "installment_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_defined_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

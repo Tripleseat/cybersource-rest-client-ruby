@@ -110,11 +110,11 @@ describe 'ManageWebhooksApi' do
   # unit tests for save_asym_egress_key
   # Message Level Encryption
   # Store and manage certificates that will be used to preform Message Level Encryption (MLE). Each new webhook will need its own unique asymmetric certificate. You can either use a digital certificate issued/signed by a CA or self-sign your own using the documentation available on the Developer Guide. 
-  # @param v_c_sender_organization_id Sender organization id
-  # @param v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
   # @param save_asym_egress_key Provide egress Asymmetric key information to save (create or store)
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
+  # @option opts [String] :v_c_sender_organization_id Sender organization id
+  # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
   # @return [InlineResponse2018]
   describe 'save_asym_egress_key test' do
     it 'should work' do

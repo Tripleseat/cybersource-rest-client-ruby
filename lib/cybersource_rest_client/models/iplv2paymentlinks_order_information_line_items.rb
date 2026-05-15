@@ -29,6 +29,18 @@ module CyberSource
     # Brief description of item.
     attr_accessor :product_description
 
+    # Discount amount applied to the item. Maximum of 2 decimal places. You may provide either discountAmount or discountPercent (not both). If both are present, their values must be consistent. Otherwise, a validation error will be returned. 
+    attr_accessor :discount_amount
+
+    # Discount rate applied to the item. Maximum of 3 decimal places. You may provide either discountAmount or discountPercent (not both). If both are present, their values must be consistent; otherwise, a validation error will be returned. Example: 5.25 (=5.25%) 
+    attr_accessor :discount_percent
+
+    # Tax amount applied to the item. This value cannot be negative. Maximum of 2 decimal places. The tax amount and the offer amount must be in the same currency. The tax amount field is additive. If taxAmount is provided but taxRate is not, the taxRate will be calculated. 
+    attr_accessor :tax_amount
+
+    # Tax rate applied to the item. Valid range: 1.001% to 99.999%. Maximum of 3 decimal places. If a taxRate is provided but taxAmount is missing or incorrect, the taxAmount based on the given taxRate will be overwritten. Example: 21.00 (=21.00%) 
+    attr_accessor :tax_rate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +48,11 @@ module CyberSource
         :'product_name' => :'productName',
         :'quantity' => :'quantity',
         :'unit_price' => :'unitPrice',
-        :'product_description' => :'productDescription'
+        :'product_description' => :'productDescription',
+        :'discount_amount' => :'discountAmount',
+        :'discount_percent' => :'discountPercent',
+        :'tax_amount' => :'taxAmount',
+        :'tax_rate' => :'taxRate'
       }
     end
 
@@ -47,7 +63,11 @@ module CyberSource
         :'product_name' => :'product_name',
         :'quantity' => :'quantity',
         :'unit_price' => :'unit_price',
-        :'product_description' => :'product_description'
+        :'product_description' => :'product_description',
+        :'discount_amount' => :'discount_amount',
+        :'discount_percent' => :'discount_percent',
+        :'tax_amount' => :'tax_amount',
+        :'tax_rate' => :'tax_rate'
       }
     end
 
@@ -58,7 +78,11 @@ module CyberSource
         :'product_name' => :'String',
         :'quantity' => :'Integer',
         :'unit_price' => :'String',
-        :'product_description' => :'String'
+        :'product_description' => :'String',
+        :'discount_amount' => :'String',
+        :'discount_percent' => :'String',
+        :'tax_amount' => :'String',
+        :'tax_rate' => :'String'
       }
     end
 
@@ -88,6 +112,22 @@ module CyberSource
 
       if attributes.has_key?(:'productDescription')
         self.product_description = attributes[:'productDescription']
+      end
+
+      if attributes.has_key?(:'discountAmount')
+        self.discount_amount = attributes[:'discountAmount']
+      end
+
+      if attributes.has_key?(:'discountPercent')
+        self.discount_percent = attributes[:'discountPercent']
+      end
+
+      if attributes.has_key?(:'taxAmount')
+        self.tax_amount = attributes[:'taxAmount']
+      end
+
+      if attributes.has_key?(:'taxRate')
+        self.tax_rate = attributes[:'taxRate']
       end
     end
 
@@ -143,6 +183,30 @@ module CyberSource
       @product_description = product_description
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] discount_amount Value to be assigned
+    def discount_amount=(discount_amount)
+      @discount_amount = discount_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] discount_percent Value to be assigned
+    def discount_percent=(discount_percent)
+      @discount_percent = discount_percent
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_amount Value to be assigned
+    def tax_amount=(tax_amount)
+      @tax_amount = tax_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_rate Value to be assigned
+    def tax_rate=(tax_rate)
+      @tax_rate = tax_rate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -152,7 +216,11 @@ module CyberSource
           product_name == o.product_name &&
           quantity == o.quantity &&
           unit_price == o.unit_price &&
-          product_description == o.product_description
+          product_description == o.product_description &&
+          discount_amount == o.discount_amount &&
+          discount_percent == o.discount_percent &&
+          tax_amount == o.tax_amount &&
+          tax_rate == o.tax_rate
     end
 
     # @see the `==` method
@@ -164,7 +232,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_sku, product_name, quantity, unit_price, product_description].hash
+      [product_sku, product_name, quantity, unit_price, product_description, discount_amount, discount_percent, tax_amount, tax_rate].hash
     end
 
     # Builds the object from hash

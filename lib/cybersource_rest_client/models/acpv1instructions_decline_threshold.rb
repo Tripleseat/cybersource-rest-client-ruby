@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Decline Threshold data.
+  # Decline Threshold data. Defines the maximum transaction amount the consumer is willing to authorize under this mandate.
   class Acpv1instructionsDeclineThreshold
     # Transaction Decline Threshold amount.
     attr_accessor :amount

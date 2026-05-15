@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_instruments' => :'Array<PaymentInstrumentList1EmbeddedPaymentInstruments>'
+        :'payment_instruments' => :'Array<PatchPaymentInstrumentRequest>'
       }
     end
 

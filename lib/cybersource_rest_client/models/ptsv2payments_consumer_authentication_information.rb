@@ -192,6 +192,9 @@ module CyberSource
     # EMVCo-assigned unique identifier. This field is required in Cardholder Initiated 3DS fully authenticated mada transactions. When you request the payer authentication and authorization services separately, get the value for this field from the payerAuthEnrollReply_dsReferenceNumber or payerAuthValidateReply_dsReferenceNumber response field. 
     attr_accessor :ds_reference_number
 
+    # Risk Assessment from Mastercard. This is to be sent by merchant if they would like to request a score
+    attr_accessor :score_request
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -254,7 +257,8 @@ module CyberSource
         :'signed_pares_status_reason' => :'signedParesStatusReason',
         :'signed_pares' => :'signedPares',
         :'acs_reference_number' => :'acsReferenceNumber',
-        :'ds_reference_number' => :'dsReferenceNumber'
+        :'ds_reference_number' => :'dsReferenceNumber',
+        :'score_request' => :'scoreRequest'
       }
     end
 
@@ -320,7 +324,8 @@ module CyberSource
         :'signed_pares_status_reason' => :'signed_pares_status_reason',
         :'signed_pares' => :'signed_pares',
         :'acs_reference_number' => :'acs_reference_number',
-        :'ds_reference_number' => :'ds_reference_number'
+        :'ds_reference_number' => :'ds_reference_number',
+        :'score_request' => :'score_request'
       }
     end
 
@@ -386,7 +391,8 @@ module CyberSource
         :'signed_pares_status_reason' => :'String',
         :'signed_pares' => :'String',
         :'acs_reference_number' => :'String',
-        :'ds_reference_number' => :'String'
+        :'ds_reference_number' => :'String',
+        :'score_request' => :'Integer'
       }
     end
 
@@ -636,6 +642,10 @@ module CyberSource
 
       if attributes.has_key?(:'dsReferenceNumber')
         self.ds_reference_number = attributes[:'dsReferenceNumber']
+      end
+
+      if attributes.has_key?(:'scoreRequest')
+        self.score_request = attributes[:'scoreRequest']
       end
     end
 
@@ -1004,7 +1014,8 @@ module CyberSource
           signed_pares_status_reason == o.signed_pares_status_reason &&
           signed_pares == o.signed_pares &&
           acs_reference_number == o.acs_reference_number &&
-          ds_reference_number == o.ds_reference_number
+          ds_reference_number == o.ds_reference_number &&
+          score_request == o.score_request
     end
 
     # @see the `==` method
@@ -1016,7 +1027,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, transaction_flow_indicator, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, response_access_token, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, authentication_brand, effective_authentication_type, signed_pares_status_reason, signed_pares, acs_reference_number, ds_reference_number].hash
+      [cavv, transaction_flow_indicator, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, response_access_token, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, authentication_brand, effective_authentication_type, signed_pares_status_reason, signed_pares, acs_reference_number, ds_reference_number, score_request].hash
     end
 
     # Builds the object from hash

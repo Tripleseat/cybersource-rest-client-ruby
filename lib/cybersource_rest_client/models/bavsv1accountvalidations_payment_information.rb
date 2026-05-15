@@ -12,12 +12,22 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Payment information for account validation. Either tokenized payment data or bank account details must be provided, but not both. When token information is provided, the bank object becomes optional. Only one token type may be included per request. 
   class Bavsv1accountvalidationsPaymentInformation
+    attr_accessor :customer
+
+    attr_accessor :payment_instrument
+
+    attr_accessor :instrument_identifier
+
     attr_accessor :bank
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'customer' => :'customer',
+        :'payment_instrument' => :'paymentInstrument',
+        :'instrument_identifier' => :'instrumentIdentifier',
         :'bank' => :'bank'
       }
     end
@@ -25,6 +35,9 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'customer' => :'customer',
+        :'payment_instrument' => :'payment_instrument',
+        :'instrument_identifier' => :'instrument_identifier',
         :'bank' => :'bank'
       }
     end
@@ -32,6 +45,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'customer' => :'Bavsv1accountvalidationsPaymentInformationCustomer',
+        :'payment_instrument' => :'Bavsv1accountvalidationsPaymentInformationPaymentInstrument',
+        :'instrument_identifier' => :'Bavsv1accountvalidationsPaymentInformationInstrumentIdentifier',
         :'bank' => :'Bavsv1accountvalidationsPaymentInformationBank'
       }
     end
@@ -44,6 +60,18 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'paymentInstrument')
+        self.payment_instrument = attributes[:'paymentInstrument']
+      end
+
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      end
+
       if attributes.has_key?(:'bank')
         self.bank = attributes[:'bank']
       end
@@ -53,17 +81,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @bank.nil?
-        invalid_properties.push('invalid value for "bank", bank cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @bank.nil?
       true
     end
 
@@ -72,6 +95,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          customer == o.customer &&
+          payment_instrument == o.payment_instrument &&
+          instrument_identifier == o.instrument_identifier &&
           bank == o.bank
     end
 
@@ -84,7 +110,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank].hash
+      [customer, payment_instrument, instrument_identifier, bank].hash
     end
 
     # Builds the object from hash

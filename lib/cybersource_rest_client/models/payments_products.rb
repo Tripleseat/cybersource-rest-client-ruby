@@ -55,6 +55,10 @@ module CyberSource
 
     attr_accessor :batch_upload
 
+    attr_accessor :transact_guard
+
+    attr_accessor :microform
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -78,7 +82,9 @@ module CyberSource
         :'unified_checkout' => :'unifiedCheckout',
         :'receivables_manager' => :'receivablesManager',
         :'service_fee' => :'serviceFee',
-        :'batch_upload' => :'batchUpload'
+        :'batch_upload' => :'batchUpload',
+        :'transact_guard' => :'transactGuard',
+        :'microform' => :'microform'
       }
     end
 
@@ -105,7 +111,9 @@ module CyberSource
         :'unified_checkout' => :'unified_checkout',
         :'receivables_manager' => :'receivables_manager',
         :'service_fee' => :'service_fee',
-        :'batch_upload' => :'batch_upload'
+        :'batch_upload' => :'batch_upload',
+        :'transact_guard' => :'transact_guard',
+        :'microform' => :'microform'
       }
     end
 
@@ -132,7 +140,9 @@ module CyberSource
         :'unified_checkout' => :'PaymentsProductsUnifiedCheckout',
         :'receivables_manager' => :'PaymentsProductsTax',
         :'service_fee' => :'PaymentsProductsServiceFee',
-        :'batch_upload' => :'PaymentsProductsTax'
+        :'batch_upload' => :'PaymentsProductsTax',
+        :'transact_guard' => :'PaymentsProductsTax',
+        :'microform' => :'PaymentsProductsMicroform'
       }
     end
 
@@ -227,6 +237,14 @@ module CyberSource
       if attributes.has_key?(:'batchUpload')
         self.batch_upload = attributes[:'batchUpload']
       end
+
+      if attributes.has_key?(:'transactGuard')
+        self.transact_guard = attributes[:'transactGuard']
+      end
+
+      if attributes.has_key?(:'microform')
+        self.microform = attributes[:'microform']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -267,7 +285,9 @@ module CyberSource
           unified_checkout == o.unified_checkout &&
           receivables_manager == o.receivables_manager &&
           service_fee == o.service_fee &&
-          batch_upload == o.batch_upload
+          batch_upload == o.batch_upload &&
+          transact_guard == o.transact_guard &&
+          microform == o.microform
     end
 
     # @see the `==` method
@@ -279,7 +299,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, alternative_payment_methods, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee, batch_upload].hash
+      [card_processing, alternative_payment_methods, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee, batch_upload, transact_guard, microform].hash
     end
 
     # Builds the object from hash

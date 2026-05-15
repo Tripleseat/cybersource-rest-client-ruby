@@ -32,6 +32,9 @@ module CyberSource
     # Payment card billing country. Use the two-character ISO Standard Country Codes. 
     attr_accessor :country
 
+    # Customer's email address, including the full domain name. 
+    attr_accessor :email
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +43,8 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
-        :'country' => :'country'
+        :'country' => :'country',
+        :'email' => :'email'
       }
     end
 
@@ -52,7 +56,8 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
-        :'country' => :'country'
+        :'country' => :'country',
+        :'email' => :'email'
       }
     end
 
@@ -64,7 +69,8 @@ module CyberSource
         :'locality' => :'String',
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
-        :'country' => :'String'
+        :'country' => :'String',
+        :'email' => :'String'
       }
     end
 
@@ -98,6 +104,10 @@ module CyberSource
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
     end
 
@@ -150,6 +160,12 @@ module CyberSource
       @country = country
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -160,7 +176,8 @@ module CyberSource
           locality == o.locality &&
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
-          country == o.country
+          country == o.country &&
+          email == o.email
     end
 
     # @see the `==` method
@@ -172,7 +189,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, locality, administrative_area, postal_code, country].hash
+      [address1, address2, locality, administrative_area, postal_code, country, email].hash
     end
 
     # Builds the object from hash

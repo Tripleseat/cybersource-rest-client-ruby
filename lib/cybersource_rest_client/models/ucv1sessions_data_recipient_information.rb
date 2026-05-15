@@ -13,72 +13,93 @@ require 'date'
 
 module CyberSource
   class Ucv1sessionsDataRecipientInformation
-    attr_accessor :first_name
-
-    attr_accessor :middle_name
-
-    attr_accessor :last_name
-
-    # The country code of the recipient's country<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
-    attr_accessor :country
-
-    # The account ID of the recipient<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
+    # Identifier for the recipient's account. This field is applicable for AFT transactions. 
     attr_accessor :account_id
 
-    # The administrative area of the recipient<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
-    attr_accessor :administrative_area
-
-    # The account type of the recipient<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
+    # Identifies the recipient's account type. This field is applicable for AFT transactions.  Valid values are:   - `00` for Other   - `01` for Routing Transit Number (RTN) + Bank Account Number (BAN)   - `02` for International Bank Account Number (IBAN)   - `03` for Card Account   - `06` for Bank Account Number (BAN) + Bank Identification Code (BIC), also known as a SWIFT code 
     attr_accessor :account_type
 
-    # The date of birth of the recipient<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
+    # First name of the recipient. This field is applicable for AFT transactions.    Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :first_name
+
+    # Middle name of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :middle_name
+
+    # Last name of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :last_name
+
+    # The street address of the recipient This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :address1
+
+    # The state or province of the recipient. This field is applicable for AFT transactions when the recipient country is US or CA. Else it is optional.  Must be a two character value 
+    attr_accessor :administrative_area
+
+    # Partial postal code for the recipient's address. For example, if the postal code is **NN5 7SG**, the value for this field should be the first part of the postal code: **NN5**. This field is a _pass-through_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    attr_accessor :postal_code
+
+    # The country associated with the address of the recipient. This field is applicable for AFT and OCT transactions.  Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
+    attr_accessor :country
+
+    # Account Owner phone number
+    attr_accessor :phone_number
+
+    # Recipient's date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :date_of_birth
 
-    # The postal code of the recipient<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center, but if required should be provided on a per‑transaction basis in the uc/v1/sessions API request. 
-    attr_accessor :postal_code
+    # The city of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :locality
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'account_id' => :'accountId',
+        :'account_type' => :'accountType',
         :'first_name' => :'firstName',
         :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
-        :'country' => :'country',
-        :'account_id' => :'accountId',
+        :'address1' => :'address1',
         :'administrative_area' => :'administrativeArea',
-        :'account_type' => :'accountType',
+        :'postal_code' => :'postalCode',
+        :'country' => :'country',
+        :'phone_number' => :'phoneNumber',
         :'date_of_birth' => :'dateOfBirth',
-        :'postal_code' => :'postalCode'
+        :'locality' => :'locality'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'account_id' => :'account_id',
+        :'account_type' => :'account_type',
         :'first_name' => :'first_name',
         :'middle_name' => :'middle_name',
         :'last_name' => :'last_name',
-        :'country' => :'country',
-        :'account_id' => :'account_id',
+        :'address1' => :'address1',
         :'administrative_area' => :'administrative_area',
-        :'account_type' => :'account_type',
+        :'postal_code' => :'postal_code',
+        :'country' => :'country',
+        :'phone_number' => :'phone_number',
         :'date_of_birth' => :'date_of_birth',
-        :'postal_code' => :'postal_code'
+        :'locality' => :'locality'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'account_id' => :'String',
+        :'account_type' => :'String',
         :'first_name' => :'String',
         :'middle_name' => :'String',
         :'last_name' => :'String',
-        :'country' => :'String',
-        :'account_id' => :'String',
+        :'address1' => :'String',
         :'administrative_area' => :'String',
-        :'account_type' => :'String',
+        :'postal_code' => :'String',
+        :'country' => :'String',
+        :'phone_number' => :'String',
         :'date_of_birth' => :'String',
-        :'postal_code' => :'String'
+        :'locality' => :'String'
       }
     end
 
@@ -89,6 +110,14 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'accountId')
+        self.account_id = attributes[:'accountId']
+      end
+
+      if attributes.has_key?(:'accountType')
+        self.account_type = attributes[:'accountType']
+      end
 
       if attributes.has_key?(:'firstName')
         self.first_name = attributes[:'firstName']
@@ -102,28 +131,32 @@ module CyberSource
         self.last_name = attributes[:'lastName']
       end
 
-      if attributes.has_key?(:'country')
-        self.country = attributes[:'country']
-      end
-
-      if attributes.has_key?(:'accountId')
-        self.account_id = attributes[:'accountId']
+      if attributes.has_key?(:'address1')
+        self.address1 = attributes[:'address1']
       end
 
       if attributes.has_key?(:'administrativeArea')
         self.administrative_area = attributes[:'administrativeArea']
       end
 
-      if attributes.has_key?(:'accountType')
-        self.account_type = attributes[:'accountType']
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'country')
+        self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'phoneNumber')
+        self.phone_number = attributes[:'phoneNumber']
       end
 
       if attributes.has_key?(:'dateOfBirth')
         self.date_of_birth = attributes[:'dateOfBirth']
       end
 
-      if attributes.has_key?(:'postalCode')
-        self.postal_code = attributes[:'postalCode']
+      if attributes.has_key?(:'locality')
+        self.locality = attributes[:'locality']
       end
     end
 
@@ -138,6 +171,18 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] account_id Value to be assigned
+    def account_id=(account_id)
+      @account_id = account_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] account_type Value to be assigned
+    def account_type=(account_type)
+      @account_type = account_type
     end
 
     # Custom attribute writer method with validation
@@ -159,15 +204,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] country Value to be assigned
-    def country=(country)
-      @country = country
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] account_id Value to be assigned
-    def account_id=(account_id)
-      @account_id = account_id
+    # @param [Object] address1 Value to be assigned
+    def address1=(address1)
+      @address1 = address1
     end
 
     # Custom attribute writer method with validation
@@ -177,9 +216,21 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] account_type Value to be assigned
-    def account_type=(account_type)
-      @account_type = account_type
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country Value to be assigned
+    def country=(country)
+      @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] phone_number Value to be assigned
+    def phone_number=(phone_number)
+      @phone_number = phone_number
     end
 
     # Custom attribute writer method with validation
@@ -189,9 +240,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] postal_code Value to be assigned
-    def postal_code=(postal_code)
-      @postal_code = postal_code
+    # @param [Object] locality Value to be assigned
+    def locality=(locality)
+      @locality = locality
     end
 
     # Checks equality by comparing each attribute.
@@ -199,15 +250,18 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          account_id == o.account_id &&
+          account_type == o.account_type &&
           first_name == o.first_name &&
           middle_name == o.middle_name &&
           last_name == o.last_name &&
-          country == o.country &&
-          account_id == o.account_id &&
+          address1 == o.address1 &&
           administrative_area == o.administrative_area &&
-          account_type == o.account_type &&
+          postal_code == o.postal_code &&
+          country == o.country &&
+          phone_number == o.phone_number &&
           date_of_birth == o.date_of_birth &&
-          postal_code == o.postal_code
+          locality == o.locality
     end
 
     # @see the `==` method
@@ -219,7 +273,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, country, account_id, administrative_area, account_type, date_of_birth, postal_code].hash
+      [account_id, account_type, first_name, middle_name, last_name, address1, administrative_area, postal_code, country, phone_number, date_of_birth, locality].hash
     end
 
     # Builds the object from hash

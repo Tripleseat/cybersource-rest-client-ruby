@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Bavsv1accountvalidationsPaymentInformationBankAccount
-    # Account Number.  Non-Negative Integer. example: 12345678901234577 
+    # Account Number.  Non-Negative String, containing only digits. 
     attr_accessor :number
 
     # Attribute mapping from ruby-style variable name to JSON key.

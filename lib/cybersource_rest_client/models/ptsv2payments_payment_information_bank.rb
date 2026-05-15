@@ -27,6 +27,8 @@ module CyberSource
     # Bank code of the consumer's account 
     attr_accessor :code
 
+    attr_accessor :account_alias
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +36,8 @@ module CyberSource
         :'routing_number' => :'routingNumber',
         :'iban' => :'iban',
         :'swift_code' => :'swiftCode',
-        :'code' => :'code'
+        :'code' => :'code',
+        :'account_alias' => :'accountAlias'
       }
     end
 
@@ -45,7 +48,8 @@ module CyberSource
         :'routing_number' => :'routing_number',
         :'iban' => :'iban',
         :'swift_code' => :'swift_code',
-        :'code' => :'code'
+        :'code' => :'code',
+        :'account_alias' => :'account_alias'
       }
     end
 
@@ -56,7 +60,8 @@ module CyberSource
         :'routing_number' => :'String',
         :'iban' => :'String',
         :'swift_code' => :'String',
-        :'code' => :'String'
+        :'code' => :'String',
+        :'account_alias' => :'Ptsv2paymentsPaymentInformationBankAccountAlias'
       }
     end
 
@@ -86,6 +91,10 @@ module CyberSource
 
       if attributes.has_key?(:'code')
         self.code = attributes[:'code']
+      end
+
+      if attributes.has_key?(:'accountAlias')
+        self.account_alias = attributes[:'accountAlias']
       end
     end
 
@@ -129,7 +138,8 @@ module CyberSource
           routing_number == o.routing_number &&
           iban == o.iban &&
           swift_code == o.swift_code &&
-          code == o.code
+          code == o.code &&
+          account_alias == o.account_alias
     end
 
     # @see the `==` method
@@ -141,7 +151,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account, routing_number, iban, swift_code, code].hash
+      [account, routing_number, iban, swift_code, code, account_alias].hash
     end
 
     # Builds the object from hash

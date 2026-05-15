@@ -20,5 +20,6 @@ Name | Type | Description | Notes
 **sender_information** | [**Ptsv2creditsSenderInformation**](Ptsv2creditsSenderInformation.md) |  | [optional] 
 **promotion_information** | [**Ptsv2paymentsPromotionInformation**](Ptsv2paymentsPromotionInformation.md) |  | [optional] 
 **processor_information** | [**Ptsv2reversalsProcessorInformation**](Ptsv2reversalsProcessorInformation.md) |  | [optional] 
+**token_information** | [**Ptsv2creditsTokenInformation**](Ptsv2creditsTokenInformation.md) |  | [optional] 
 
 

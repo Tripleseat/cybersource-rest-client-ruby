@@ -23,8 +23,17 @@ module CyberSource
 
     attr_accessor :network
 
+    # Interoperability Token received by merchant for Authorization API. Field for merchant to send Klarna Advantage Plus authorization approval token for Auth API call. 
+    attr_accessor :auth_approval_token
+
+    # Supplementary transaction data for Klarna Advantage Plus. Fields to capture Interoperability Data from Merchant and transfer to Klarna for Authorization/Sale/Re-Auth/Capture APIs. 
+    attr_accessor :supplementary_transaction_data
+
     # Field contains the response source code that identifies the source. 
     attr_accessor :response_source_code
+
+    # Merchant Commercial Enhanced Data Program (CEDP) verified indicator for capture/bill requests.  This field is used when the client is doing authorization with a different gateway and capture/settlement with CyberSource.  This field flows in ISO field 34, DSID 02 tag DA, in AN, EBCDIC format.  Possible values: - `Y`: Merchant CEDP verified  #### Used by **Capture Request** Request field for force capture/bill support when auth is done with a different gateway. 
+    attr_accessor :cedp_verified_indicator
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -33,7 +42,10 @@ module CyberSource
         :'authorization_options' => :'authorizationOptions',
         :'reversal' => :'reversal',
         :'network' => :'network',
-        :'response_source_code' => :'responseSourceCode'
+        :'auth_approval_token' => :'authApprovalToken',
+        :'supplementary_transaction_data' => :'supplementaryTransactionData',
+        :'response_source_code' => :'responseSourceCode',
+        :'cedp_verified_indicator' => :'cedpVerifiedIndicator'
       }
     end
 
@@ -44,7 +56,10 @@ module CyberSource
         :'authorization_options' => :'authorization_options',
         :'reversal' => :'reversal',
         :'network' => :'network',
-        :'response_source_code' => :'response_source_code'
+        :'auth_approval_token' => :'auth_approval_token',
+        :'supplementary_transaction_data' => :'supplementary_transaction_data',
+        :'response_source_code' => :'response_source_code',
+        :'cedp_verified_indicator' => :'cedp_verified_indicator'
       }
     end
 
@@ -55,7 +70,10 @@ module CyberSource
         :'authorization_options' => :'Ptsv2paymentsProcessorInformationAuthorizationOptions',
         :'reversal' => :'Ptsv2paymentsProcessorInformationReversal',
         :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
-        :'response_source_code' => :'String'
+        :'auth_approval_token' => :'String',
+        :'supplementary_transaction_data' => :'String',
+        :'response_source_code' => :'String',
+        :'cedp_verified_indicator' => :'String'
       }
     end
 
@@ -83,8 +101,20 @@ module CyberSource
         self.network = attributes[:'network']
       end
 
+      if attributes.has_key?(:'authApprovalToken')
+        self.auth_approval_token = attributes[:'authApprovalToken']
+      end
+
+      if attributes.has_key?(:'supplementaryTransactionData')
+        self.supplementary_transaction_data = attributes[:'supplementaryTransactionData']
+      end
+
       if attributes.has_key?(:'responseSourceCode')
         self.response_source_code = attributes[:'responseSourceCode']
+      end
+
+      if attributes.has_key?(:'cedpVerifiedIndicator')
+        self.cedp_verified_indicator = attributes[:'cedpVerifiedIndicator']
       end
     end
 
@@ -108,9 +138,27 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] auth_approval_token Value to be assigned
+    def auth_approval_token=(auth_approval_token)
+      @auth_approval_token = auth_approval_token
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] supplementary_transaction_data Value to be assigned
+    def supplementary_transaction_data=(supplementary_transaction_data)
+      @supplementary_transaction_data = supplementary_transaction_data
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] response_source_code Value to be assigned
     def response_source_code=(response_source_code)
       @response_source_code = response_source_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] cedp_verified_indicator Value to be assigned
+    def cedp_verified_indicator=(cedp_verified_indicator)
+      @cedp_verified_indicator = cedp_verified_indicator
     end
 
     # Checks equality by comparing each attribute.
@@ -122,7 +170,10 @@ module CyberSource
           authorization_options == o.authorization_options &&
           reversal == o.reversal &&
           network == o.network &&
-          response_source_code == o.response_source_code
+          auth_approval_token == o.auth_approval_token &&
+          supplementary_transaction_data == o.supplementary_transaction_data &&
+          response_source_code == o.response_source_code &&
+          cedp_verified_indicator == o.cedp_verified_indicator
     end
 
     # @see the `==` method
@@ -134,7 +185,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pre_approval_token, authorization_options, reversal, network, response_source_code].hash
+      [pre_approval_token, authorization_options, reversal, network, auth_approval_token, supplementary_transaction_data, response_source_code, cedp_verified_indicator].hash
     end
 
     # Builds the object from hash

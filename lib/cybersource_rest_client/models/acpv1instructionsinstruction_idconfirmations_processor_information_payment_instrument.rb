@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Details of the PAN associated with the enrolled card
+  # Details of the PAN associated with the enrolled card. Contains processor verification results.
   class Acpv1instructionsinstructionIdconfirmationsProcessorInformationPaymentInstrument
     attr_accessor :verification_results
 

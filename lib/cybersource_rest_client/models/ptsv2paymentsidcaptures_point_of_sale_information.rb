@@ -18,11 +18,15 @@ module CyberSource
     # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value. 
     attr_accessor :amex_capn_data
 
+    # Identifies the Zone PIN Key (ZPK) used for Online PIN processing by providing the 10‑digit Key Set Identifier (KSI). This value indicates that the PIN block is encrypted under a ZPK and enables the Payment Security Service (PSS) to perform  the correct ZPK→ZPK PIN translation during card‑present EMV PIN transactions. 
+    attr_accessor :encrypted_key_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'emv' => :'emv',
-        :'amex_capn_data' => :'amexCapnData'
+        :'amex_capn_data' => :'amexCapnData',
+        :'encrypted_key_id' => :'encryptedKeyId'
       }
     end
 
@@ -30,7 +34,8 @@ module CyberSource
     def self.json_map
       {
         :'emv' => :'emv',
-        :'amex_capn_data' => :'amex_capn_data'
+        :'amex_capn_data' => :'amex_capn_data',
+        :'encrypted_key_id' => :'encrypted_key_id'
       }
     end
 
@@ -38,7 +43,8 @@ module CyberSource
     def self.swagger_types
       {
         :'emv' => :'Ptsv2paymentsidcapturesPointOfSaleInformationEmv',
-        :'amex_capn_data' => :'String'
+        :'amex_capn_data' => :'String',
+        :'encrypted_key_id' => :'String'
       }
     end
 
@@ -56,6 +62,10 @@ module CyberSource
 
       if attributes.has_key?(:'amexCapnData')
         self.amex_capn_data = attributes[:'amexCapnData']
+      end
+
+      if attributes.has_key?(:'encryptedKeyId')
+        self.encrypted_key_id = attributes[:'encryptedKeyId']
       end
     end
 
@@ -78,13 +88,20 @@ module CyberSource
       @amex_capn_data = amex_capn_data
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] encrypted_key_id Value to be assigned
+    def encrypted_key_id=(encrypted_key_id)
+      @encrypted_key_id = encrypted_key_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           emv == o.emv &&
-          amex_capn_data == o.amex_capn_data
+          amex_capn_data == o.amex_capn_data &&
+          encrypted_key_id == o.encrypted_key_id
     end
 
     # @see the `==` method
@@ -96,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [emv, amex_capn_data].hash
+      [emv, amex_capn_data, encrypted_key_id].hash
     end
 
     # Builds the object from hash

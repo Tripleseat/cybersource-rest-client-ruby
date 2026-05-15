@@ -31,6 +31,12 @@ describe 'PtsV2PaymentsRefundPost201ResponseOrderInformationAmountDetails' do
       expect(@instance).to be_instance_of(CyberSource::PtsV2PaymentsRefundPost201ResponseOrderInformationAmountDetails)
     end
   end
+  describe 'test attribute "cashback_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "settlement_amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

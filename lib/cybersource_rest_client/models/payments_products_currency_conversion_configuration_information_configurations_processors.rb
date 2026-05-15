@@ -13,14 +13,19 @@ require 'date'
 
 module CyberSource
   class PaymentsProductsCurrencyConversionConfigurationInformationConfigurationsProcessors
-    # The merchant identifier for the Currency Conversion service. Check with your Currency Conversion Provider for details.
+    # The name of the provider.
+    attr_accessor :provider
+
+    # A unique identifier value assigned to each merchant. Assigned by the provider.
     attr_accessor :merchant_id
 
+    # This code identifies the financial institution acting as the acquirer.
     attr_accessor :acquirer_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'provider' => :'provider',
         :'merchant_id' => :'merchantId',
         :'acquirer_id' => :'acquirerId'
       }
@@ -29,6 +34,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'provider' => :'provider',
         :'merchant_id' => :'merchant_id',
         :'acquirer_id' => :'acquirer_id'
       }
@@ -37,6 +43,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'provider' => :'String',
         :'merchant_id' => :'String',
         :'acquirer_id' => :'String'
       }
@@ -49,6 +56,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'provider')
+        self.provider = attributes[:'provider']
+      end
 
       if attributes.has_key?(:'merchantId')
         self.merchant_id = attributes[:'merchantId']
@@ -77,6 +88,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          provider == o.provider &&
           merchant_id == o.merchant_id &&
           acquirer_id == o.acquirer_id
     end
@@ -90,7 +102,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_id, acquirer_id].hash
+      [provider, merchant_id, acquirer_id].hash
     end
 
     # Builds the object from hash

@@ -34,6 +34,9 @@ module CyberSource
     # Indicates that the transaction includes industry-specific data.  Possible Values: - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit` - `transit`  #### Card Present, Airlines and Auto Rental You must set this field to `airline` in order for airline data to be sent to the processor. For example, if this field is not set to `airline` or is not included in the request, no airline data is sent to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor. When this field is not set to `restaurant` or is not included in the request, no restaurant data is sent to the processor.  You must set this field to `auto_rental` in order for auto rental data to be sent to the processor. For example, if this field is not set to `auto_rental` or is not included in the request, no auto rental data is sent to the processor.  Restaurant data is supported only on CyberSource through VisaNet. 
     attr_accessor :industry_data_type
 
+    # Mastercard Digital Enablement Service (MDES) digital service indicators for force capture scenarios.   This field is used when the client is doing authorization with a different gateway and capture with CyberSource.   This field is in ANS, EBCDIC format and flows in Field 34, DSID 04 Tag DF1F, mapped to Mastercard Data Element DE119, Sub-element 004.  #### Used by **Capture Request** Request field for force capture support when auth is done with a different gateway. 
+    attr_accessor :digital_service_indicator
+
     attr_accessor :issuer
 
     attr_accessor :authorization_options
@@ -60,6 +63,7 @@ module CyberSource
         :'visa_checkout_id' => :'visaCheckoutId',
         :'purchase_level' => :'purchaseLevel',
         :'industry_data_type' => :'industryDataType',
+        :'digital_service_indicator' => :'digitalServiceIndicator',
         :'issuer' => :'issuer',
         :'authorization_options' => :'authorizationOptions',
         :'capture_options' => :'captureOptions',
@@ -80,6 +84,7 @@ module CyberSource
         :'visa_checkout_id' => :'visa_checkout_id',
         :'purchase_level' => :'purchase_level',
         :'industry_data_type' => :'industry_data_type',
+        :'digital_service_indicator' => :'digital_service_indicator',
         :'issuer' => :'issuer',
         :'authorization_options' => :'authorization_options',
         :'capture_options' => :'capture_options',
@@ -100,6 +105,7 @@ module CyberSource
         :'visa_checkout_id' => :'String',
         :'purchase_level' => :'String',
         :'industry_data_type' => :'String',
+        :'digital_service_indicator' => :'String',
         :'issuer' => :'Ptsv2paymentsIssuerInformation',
         :'authorization_options' => :'Ptsv2paymentsidcapturesProcessingInformationAuthorizationOptions',
         :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions',
@@ -144,6 +150,10 @@ module CyberSource
 
       if attributes.has_key?(:'industryDataType')
         self.industry_data_type = attributes[:'industryDataType']
+      end
+
+      if attributes.has_key?(:'digitalServiceIndicator')
+        self.digital_service_indicator = attributes[:'digitalServiceIndicator']
       end
 
       if attributes.has_key?(:'issuer')
@@ -232,6 +242,12 @@ module CyberSource
       @industry_data_type = industry_data_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] digital_service_indicator Value to be assigned
+    def digital_service_indicator=(digital_service_indicator)
+      @digital_service_indicator = digital_service_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -244,6 +260,7 @@ module CyberSource
           visa_checkout_id == o.visa_checkout_id &&
           purchase_level == o.purchase_level &&
           industry_data_type == o.industry_data_type &&
+          digital_service_indicator == o.digital_service_indicator &&
           issuer == o.issuer &&
           authorization_options == o.authorization_options &&
           capture_options == o.capture_options &&
@@ -262,7 +279,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator, action_list, japan_payment_options].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, digital_service_indicator, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator, action_list, japan_payment_options].hash
     end
 
     # Builds the object from hash

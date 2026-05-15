@@ -37,7 +37,7 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'Tmsv3tokenstokenIdpaymentcredentialsOrderInformationAmountDetails',
-        :'bill_to' => :'Tmsv3tokenstokenIdpaymentcredentialsOrderInformationBillTo'
+        :'bill_to' => :'Tmsv2tokenizedcardsBillTo'
       }
     end
 

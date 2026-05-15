@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv1pullfundstransferOrderInformationAmountDetails
-    # The total amount of the funds transfer including all fees.  This value cannot be negative.   Field must also be greater than zero: minimum value is the smallest amount in any given currency.   You can include a decimal point (.), but no other special characters. 
+    # The total amount of the funds transfer including all fees.  This value cannot be negative.   You can include a decimal point (.), but no other special characters. 
     attr_accessor :total_amount
 
     # Use a 3-character alpha currency code for currency of the sender.  ISO standard currencies: [http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)    Currency must be supported by the processor. 

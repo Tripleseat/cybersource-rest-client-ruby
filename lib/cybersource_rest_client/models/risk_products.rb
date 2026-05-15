@@ -19,12 +19,15 @@ module CyberSource
 
     attr_accessor :portfolio_risk_controls
 
+    attr_accessor :enhanced_authentication
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'fraud_management_essentials' => :'fraudManagementEssentials',
         :'decision_manager' => :'decisionManager',
-        :'portfolio_risk_controls' => :'portfolioRiskControls'
+        :'portfolio_risk_controls' => :'portfolioRiskControls',
+        :'enhanced_authentication' => :'enhancedAuthentication'
       }
     end
 
@@ -33,7 +36,8 @@ module CyberSource
       {
         :'fraud_management_essentials' => :'fraud_management_essentials',
         :'decision_manager' => :'decision_manager',
-        :'portfolio_risk_controls' => :'portfolio_risk_controls'
+        :'portfolio_risk_controls' => :'portfolio_risk_controls',
+        :'enhanced_authentication' => :'enhanced_authentication'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
       {
         :'fraud_management_essentials' => :'RiskProductsFraudManagementEssentials',
         :'decision_manager' => :'RiskProductsDecisionManager',
-        :'portfolio_risk_controls' => :'RiskProductsPortfolioRiskControls'
+        :'portfolio_risk_controls' => :'RiskProductsPortfolioRiskControls',
+        :'enhanced_authentication' => :'PaymentsProductsPayerAuthentication'
       }
     end
 
@@ -64,6 +69,10 @@ module CyberSource
 
       if attributes.has_key?(:'portfolioRiskControls')
         self.portfolio_risk_controls = attributes[:'portfolioRiskControls']
+      end
+
+      if attributes.has_key?(:'enhancedAuthentication')
+        self.enhanced_authentication = attributes[:'enhancedAuthentication']
       end
     end
 
@@ -87,7 +96,8 @@ module CyberSource
       self.class == o.class &&
           fraud_management_essentials == o.fraud_management_essentials &&
           decision_manager == o.decision_manager &&
-          portfolio_risk_controls == o.portfolio_risk_controls
+          portfolio_risk_controls == o.portfolio_risk_controls &&
+          enhanced_authentication == o.enhanced_authentication
     end
 
     # @see the `==` method
@@ -99,7 +109,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [fraud_management_essentials, decision_manager, portfolio_risk_controls].hash
+      [fraud_management_essentials, decision_manager, portfolio_risk_controls, enhanced_authentication].hash
     end
 
     # Builds the object from hash

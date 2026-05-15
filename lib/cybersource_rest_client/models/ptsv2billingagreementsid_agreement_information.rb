@@ -18,11 +18,23 @@ module CyberSource
 
     attr_accessor :e_sign_indicator
 
+    # Identifies the type of schedule as either recurring, one-off, split or usage.  Possible values: - recurring - oneoff - split - usage
+    attr_accessor :type
+
+    # Regularity with which the event occurs.  Possible values: - annual - monthly - quarterly - semiannual - weekly - daily - adhoc - intraday - fortnightly
+    attr_accessor :frequency
+
+    # Date the agreement was revoked (YYYYMMDD) 
+    attr_accessor :date_revoked
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'e_sign_indicator' => :'eSignIndicator'
+        :'e_sign_indicator' => :'eSignIndicator',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'date_revoked' => :'dateRevoked'
       }
     end
 
@@ -30,7 +42,10 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'e_sign_indicator' => :'e_sign_indicator'
+        :'e_sign_indicator' => :'e_sign_indicator',
+        :'type' => :'type',
+        :'frequency' => :'frequency',
+        :'date_revoked' => :'date_revoked'
       }
     end
 
@@ -38,7 +53,10 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'e_sign_indicator' => :'String'
+        :'e_sign_indicator' => :'String',
+        :'type' => :'String',
+        :'frequency' => :'String',
+        :'date_revoked' => :'String'
       }
     end
 
@@ -56,6 +74,18 @@ module CyberSource
 
       if attributes.has_key?(:'eSignIndicator')
         self.e_sign_indicator = attributes[:'eSignIndicator']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
+      end
+
+      if attributes.has_key?(:'dateRevoked')
+        self.date_revoked = attributes[:'dateRevoked']
       end
     end
 
@@ -84,13 +114,34 @@ module CyberSource
       @e_sign_indicator = e_sign_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] frequency Value to be assigned
+    def frequency=(frequency)
+      @frequency = frequency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] date_revoked Value to be assigned
+    def date_revoked=(date_revoked)
+      @date_revoked = date_revoked
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          e_sign_indicator == o.e_sign_indicator
+          e_sign_indicator == o.e_sign_indicator &&
+          type == o.type &&
+          frequency == o.frequency &&
+          date_revoked == o.date_revoked
     end
 
     # @see the `==` method
@@ -102,7 +153,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, e_sign_indicator].hash
+      [id, e_sign_indicator, type, frequency, date_revoked].hash
     end
 
     # Builds the object from hash

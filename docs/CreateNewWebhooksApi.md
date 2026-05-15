@@ -100,12 +100,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
 # **save_sym_egress_key**
-> InlineResponse2015 save_sym_egress_key(v_c_sender_organization_id, v_c_permissions, opts)
+> InlineResponse2015 save_sym_egress_key(opts)
 
 Create Webhook Security Keys
 
@@ -118,18 +118,16 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CreateNewWebhooksApi.new
 
-v_c_sender_organization_id = 'v_c_sender_organization_id_example' # String | Sender organization id
-
-v_c_permissions = 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-
 opts = { 
   v_c_correlation_id: 'v_c_correlation_id_example', # String | A globally unique id associated with your request
+  v_c_sender_organization_id: 'v_c_sender_organization_id_example', # String | Sender organization id
+  v_c_permissions: 'v_c_permissions_example', # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
   save_sym_egress_key: CyberSource::SaveSymEgressKey.new # SaveSymEgressKey | Provide egress Symmetric key information to save (create or store or refresh)
 }
 
 begin
   #Create Webhook Security Keys
-  result = api_instance.save_sym_egress_key(v_c_sender_organization_id, v_c_permissions, opts)
+  result = api_instance.save_sym_egress_key(opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling CreateNewWebhooksApi->save_sym_egress_key: #{e}"
@@ -140,9 +138,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v_c_sender_organization_id** | **String**| Sender organization id | 
- **v_c_permissions** | **String**| Encoded user permissions returned by the CGK, for the entity user who initiated the boarding | 
  **v_c_correlation_id** | **String**| A globally unique id associated with your request | [optional] 
+ **v_c_sender_organization_id** | **String**| Sender organization id | [optional] 
+ **v_c_permissions** | **String**| Encoded user permissions returned by the CGK, for the entity user who initiated the boarding | [optional] 
  **save_sym_egress_key** | [**SaveSymEgressKey**](SaveSymEgressKey.md)| Provide egress Symmetric key information to save (create or store or refresh) | [optional] 
 
 ### Return type

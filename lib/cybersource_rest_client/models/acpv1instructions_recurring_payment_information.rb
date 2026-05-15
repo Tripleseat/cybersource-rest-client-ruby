@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Frequency of the transaction.   Specifies how often the transaction occurs. If the mandate contains a recurring instruction, a recurring frequency must be provided and the request.isRecurring flag should be set to true. 
+  # Frequency of the transaction. Specifies how often the transaction occurs. If the mandate contains a recurring instruction, a recurring frequency must be provided and the request.isRecurring flag should be set to true. 
   class Acpv1instructionsRecurringPaymentInformation
     # Frequency of the transaction.   Possible values:     - `WEEKLY`   - `MONTHLY`   - `YEARLY` 
     attr_accessor :occurrence

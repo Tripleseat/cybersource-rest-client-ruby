@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**number** | **String** | Account Number.  Non-Negative Integer. example: 12345678901234577  | 
+**number** | **String** | Account Number.  Non-Negative String, containing only digits.  | 
 
 

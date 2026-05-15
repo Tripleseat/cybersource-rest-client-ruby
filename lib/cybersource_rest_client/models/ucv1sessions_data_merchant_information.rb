@@ -15,24 +15,30 @@ module CyberSource
   class Ucv1sessionsDataMerchantInformation
     attr_accessor :merchant_descriptor
 
+    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes.  #### CyberSource through VisaNet For CtV processors, the maximum length is 20. 
+    attr_accessor :vat_registration_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'merchant_descriptor' => :'merchantDescriptor'
+        :'merchant_descriptor' => :'merchantDescriptor',
+        :'vat_registration_number' => :'vatRegistrationNumber'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'merchant_descriptor' => :'merchant_descriptor'
+        :'merchant_descriptor' => :'merchant_descriptor',
+        :'vat_registration_number' => :'vat_registration_number'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'merchant_descriptor' => :'Ucv1sessionsDataMerchantInformationMerchantDescriptor'
+        :'merchant_descriptor' => :'Ucv1sessionsDataMerchantInformationMerchantDescriptor',
+        :'vat_registration_number' => :'String'
       }
     end
 
@@ -46,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantDescriptor')
         self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
+
+      if attributes.has_key?(:'vatRegistrationNumber')
+        self.vat_registration_number = attributes[:'vatRegistrationNumber']
       end
     end
 
@@ -62,12 +72,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] vat_registration_number Value to be assigned
+    def vat_registration_number=(vat_registration_number)
+      @vat_registration_number = vat_registration_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          merchant_descriptor == o.merchant_descriptor
+          merchant_descriptor == o.merchant_descriptor &&
+          vat_registration_number == o.vat_registration_number
     end
 
     # @see the `==` method
@@ -79,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor].hash
+      [merchant_descriptor, vat_registration_number].hash
     end
 
     # Builds the object from hash

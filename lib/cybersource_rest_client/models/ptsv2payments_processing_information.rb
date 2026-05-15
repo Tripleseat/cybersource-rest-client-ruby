@@ -110,7 +110,7 @@ module CyberSource
     # Flag that indicates the functionality we are having for merchants for which auth is done through Cybersource but settlement is done by themselves. true: functionality is supported. Processor should send raw processor auth response to Merchant. false: functionality is not supported. Default: false 
     attr_accessor :is_return_auth_record_enabled
 
-    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction.  This field is supported for Visa Platform Connect. 
+    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction. This field is supported for Visa Platform Connect, Chase Paymentech Salem. 
     attr_accessor :network_partner_id
 
     # Identifier for the payment type. 
@@ -133,6 +133,20 @@ module CyberSource
 
     # This value is used for linking Authorization extension transaction to the original Authorization transaction  and for linking MIT (Merchant initiated transaction) with the respective CIT (Customer initiated transaction). 
     attr_accessor :original_payment_id
+
+    # Effective with the April 2025 release, American Express is introducing the following new Indirect Acceptor models : - Digital Wallet Operator   - Staged back to back transaction   - Peer to peer (P2P) transaction   - Stored value transaction - Marketplace  Each model must have a separate American Express Merchant Account number and will be assigned a unique Indirect Model Type value.  Valid/Sample Values : - `1`: Bill payment provider - `2`: Installment payment transaction - `3`: Marketplace - `4`: Peer to peer transaction - `5`: Staged back to back transaction - `6`: Stored value transaction 
+    attr_accessor :amex_indirect_model_type
+
+    # Identifies the type of operation being performed by the staged digital wallet operator. The value distinguishes between a Cash-in transaction (coded as \"02\"), where funds are loaded into the digital wallet from a registered payment card, and a Purchase transaction (coded as \"01\"), where the wallet is used to make a payment to a merchant or transfer funds between wallets. This distinction is essential for transaction processing, reporting, and ensuring compliance with the specific rules and requirements associated with each card brand and transaction type. 
+    attr_accessor :wallet_transaction_intent
+
+    # Identifies the destination/purpose of the cash-in:  • 04: M2M (Same ownership, same portfolio/arrangement) • 05: P2P (For another holder, same wallet/arrangement) • 06: Transfer to another arrangement (same ownership) • 07: Transfer to another arrangement (other ownership) • 08: Transfer to stored value digital wallet. 
+    attr_accessor :destination_type
+
+    attr_accessor :program_indicators
+
+    # Type of inquiry for Zero dollar transactions. Mastercard is introducing Mastercard One Credential, a single, digitally connected credential that offers cardholders the ability to access multiple payment methods.   This field is used for Product Status Inquiry (PSI), Account Status Inquiry with Product Status Inquiry (ASI with PSI), and Account Status Inquiry with Product Status Inquiry and Probability Indicator.  This field is supported for Zero dollar transactions only.  Possible values: - `01`: Product status inquiry - `02`: Account status inquiry with product status inquiry - `03`: Account status Inquiry with Product Status Inquiry and Probability Indicator  #### Used by **Authorization (Zero dollar transactions)** Optional field. 
+    attr_accessor :inquiry_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -179,7 +193,12 @@ module CyberSource
         :'transaction_type_indicator' => :'transactionTypeIndicator',
         :'purpose_of_payment' => :'purposeOfPayment',
         :'language_code' => :'languageCode',
-        :'original_payment_id' => :'originalPaymentId'
+        :'original_payment_id' => :'originalPaymentId',
+        :'amex_indirect_model_type' => :'amexIndirectModelType',
+        :'wallet_transaction_intent' => :'walletTransactionIntent',
+        :'destination_type' => :'destinationType',
+        :'program_indicators' => :'programIndicators',
+        :'inquiry_type' => :'inquiryType'
       }
     end
 
@@ -228,7 +247,12 @@ module CyberSource
         :'transaction_type_indicator' => :'transaction_type_indicator',
         :'purpose_of_payment' => :'purpose_of_payment',
         :'language_code' => :'language_code',
-        :'original_payment_id' => :'original_payment_id'
+        :'original_payment_id' => :'original_payment_id',
+        :'amex_indirect_model_type' => :'amex_indirect_model_type',
+        :'wallet_transaction_intent' => :'wallet_transaction_intent',
+        :'destination_type' => :'destination_type',
+        :'program_indicators' => :'program_indicators',
+        :'inquiry_type' => :'inquiry_type'
       }
     end
 
@@ -277,7 +301,12 @@ module CyberSource
         :'transaction_type_indicator' => :'String',
         :'purpose_of_payment' => :'String',
         :'language_code' => :'String',
-        :'original_payment_id' => :'String'
+        :'original_payment_id' => :'String',
+        :'amex_indirect_model_type' => :'String',
+        :'wallet_transaction_intent' => :'Float',
+        :'destination_type' => :'Float',
+        :'program_indicators' => :'Ptsv2paymentsProcessingInformationProgramIndicators',
+        :'inquiry_type' => :'String'
       }
     end
 
@@ -466,6 +495,26 @@ module CyberSource
       if attributes.has_key?(:'originalPaymentId')
         self.original_payment_id = attributes[:'originalPaymentId']
       end
+
+      if attributes.has_key?(:'amexIndirectModelType')
+        self.amex_indirect_model_type = attributes[:'amexIndirectModelType']
+      end
+
+      if attributes.has_key?(:'walletTransactionIntent')
+        self.wallet_transaction_intent = attributes[:'walletTransactionIntent']
+      end
+
+      if attributes.has_key?(:'destinationType')
+        self.destination_type = attributes[:'destinationType']
+      end
+
+      if attributes.has_key?(:'programIndicators')
+        self.program_indicators = attributes[:'programIndicators']
+      end
+
+      if attributes.has_key?(:'inquiryType')
+        self.inquiry_type = attributes[:'inquiryType']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -637,6 +686,18 @@ module CyberSource
       @original_payment_id = original_payment_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] amex_indirect_model_type Value to be assigned
+    def amex_indirect_model_type=(amex_indirect_model_type)
+      @amex_indirect_model_type = amex_indirect_model_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] inquiry_type Value to be assigned
+    def inquiry_type=(inquiry_type)
+      @inquiry_type = inquiry_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -684,7 +745,12 @@ module CyberSource
           transaction_type_indicator == o.transaction_type_indicator &&
           purpose_of_payment == o.purpose_of_payment &&
           language_code == o.language_code &&
-          original_payment_id == o.original_payment_id
+          original_payment_id == o.original_payment_id &&
+          amex_indirect_model_type == o.amex_indirect_model_type &&
+          wallet_transaction_intent == o.wallet_transaction_intent &&
+          destination_type == o.destination_type &&
+          program_indicators == o.program_indicators &&
+          inquiry_type == o.inquiry_type
     end
 
     # @see the `==` method
@@ -696,7 +762,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id, amex_indirect_model_type, wallet_transaction_intent, destination_type, program_indicators, inquiry_type].hash
     end
 
     # Builds the object from hash

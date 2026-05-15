@@ -12,24 +12,24 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Assurance data.
+  # Assurance data. Contains identity verification details that prove the consumer or device has been authenticated before the payment operation.
   class Acpv1tokensAssuranceData
-    # Type of the verification data.   Possible values:   - `CARDHOLDER` (Default)   - `DEVICE` 
+    # Optional. Type of the verification data.   Possible values:   - `CARDHOLDER` (Default)   - `DEVICE` 
     attr_accessor :verification_type
 
-    # Entity performing the verification.   Possible value:     - `10` - VISA (Default) 
+    # Optional. Entity performing the verification.   Possible value:     - `10` - VISA (Default) 
     attr_accessor :verification_entity
 
-    # Event where the verification occurred.   Possible values:     - `01` - Payment transaction   - `02` - Add card/Card enrollment   - `03` - Profile access   - `04` - Account verification 
+    # Optional. Event where the verification occurred.   Possible values:     - `01` - Payment transaction   - `02` - Add card/Card enrollment   - `03` - Profile access   - `04` - Account verification 
     attr_accessor :verification_events
 
-    # Method of the verification.   Possible values:     - `02` - App-based authentication   - `04` - One-time passcode   - `21` - Visa Token Service step-up: Device binding   - `22` - Visa Token Service step-up: Cardholder verification   - `23` - FIDO2 
+    # Required. Method of the verification.   Possible values:     - `02` - App-based authentication   - `04` - One-time passcode   - `21` - Visa Token Service step-up: Device binding   - `22` - Visa Token Service step-up: Cardholder verification   - `23` - FIDO2 
     attr_accessor :verification_method
 
-    # Result of the verification.   Possible values:     - `01` - Verified   - `02` - Not Verified   - `03` - Not performed   - `04` - Not required   - `21` - Not allowed 
+    # Required. Result of the verification.   Possible values:     - `01` - Verified   - `02` - Not Verified   - `03` - Not performed   - `04` - Not required   - `21` - Not allowed 
     attr_accessor :verification_results
 
-    # Date and time the verification occurred. UTC time in Unix epoch format.
+    # Required. Date and time the verification occurred. UTC time in Unix epoch format.
     attr_accessor :verification_timestamp
 
     attr_accessor :authentication_context

@@ -17,6 +17,12 @@ module CyberSource
     # Card foreground color. 
     attr_accessor :foreground_color
 
+    # Card background color. 
+    attr_accessor :background_color
+
+    # Card label color. 
+    attr_accessor :label_color
+
     attr_accessor :combined_asset
 
     attr_accessor :brand_logo_asset
@@ -29,6 +35,8 @@ module CyberSource
     def self.attribute_map
       {
         :'foreground_color' => :'foregroundColor',
+        :'background_color' => :'backgroundColor',
+        :'label_color' => :'labelColor',
         :'combined_asset' => :'combinedAsset',
         :'brand_logo_asset' => :'brandLogoAsset',
         :'issuer_logo_asset' => :'issuerLogoAsset',
@@ -40,6 +48,8 @@ module CyberSource
     def self.json_map
       {
         :'foreground_color' => :'foreground_color',
+        :'background_color' => :'background_color',
+        :'label_color' => :'label_color',
         :'combined_asset' => :'combined_asset',
         :'brand_logo_asset' => :'brand_logo_asset',
         :'issuer_logo_asset' => :'issuer_logo_asset',
@@ -51,6 +61,8 @@ module CyberSource
     def self.swagger_types
       {
         :'foreground_color' => :'String',
+        :'background_color' => :'String',
+        :'label_color' => :'String',
         :'combined_asset' => :'TmsCardArtCombinedAsset',
         :'brand_logo_asset' => :'TmsCardArtBrandLogoAsset',
         :'issuer_logo_asset' => :'TmsCardArtIssuerLogoAsset',
@@ -68,6 +80,14 @@ module CyberSource
 
       if attributes.has_key?(:'foregroundColor')
         self.foreground_color = attributes[:'foregroundColor']
+      end
+
+      if attributes.has_key?(:'backgroundColor')
+        self.background_color = attributes[:'backgroundColor']
+      end
+
+      if attributes.has_key?(:'labelColor')
+        self.label_color = attributes[:'labelColor']
       end
 
       if attributes.has_key?(:'combinedAsset')
@@ -106,6 +126,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           foreground_color == o.foreground_color &&
+          background_color == o.background_color &&
+          label_color == o.label_color &&
           combined_asset == o.combined_asset &&
           brand_logo_asset == o.brand_logo_asset &&
           issuer_logo_asset == o.issuer_logo_asset &&
@@ -121,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [foreground_color, combined_asset, brand_logo_asset, issuer_logo_asset, icon_asset].hash
+      [foreground_color, background_color, label_color, combined_asset, brand_logo_asset, issuer_logo_asset, icon_asset].hash
     end
 
     # Builds the object from hash

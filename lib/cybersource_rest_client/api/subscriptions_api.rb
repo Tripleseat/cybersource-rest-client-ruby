@@ -239,7 +239,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_subscription_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSubscriptionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_subscription","create_subscription_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
@@ -278,6 +278,7 @@ module CyberSource
     # @option opts [String] :code Filter by Subscription Code
     # @option opts [String] :status Filter by Subscription Status
     # @option opts [String] :customer_id Filter by Customer Id
+    # @option opts [String] :client_reference_information_code Filter by Client Reference Information Code / Merchant Reference Number
     # @return [GetAllSubscriptionsResponse]
     #
     def get_all_subscriptions(opts = {})
@@ -293,6 +294,7 @@ module CyberSource
     # @option opts [String] :code Filter by Subscription Code
     # @option opts [String] :status Filter by Subscription Status
     # @option opts [String] :customer_id Filter by Customer Id
+    # @option opts [String] :client_reference_information_code Filter by Client Reference Information Code / Merchant Reference Number
     # @return [Array<(GetAllSubscriptionsResponse, Fixnum, Hash)>] GetAllSubscriptionsResponse data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
 
@@ -314,6 +316,7 @@ module CyberSource
       query_params[:'code'] = opts[:'code'] if !opts[:'code'].nil?
       query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
       query_params[:'customerId'] = opts[:'customer_id'] if !opts[:'customer_id'].nil?
+      query_params[:'clientReferenceInformationCode'] = opts[:'client_reference_information_code'] if !opts[:'client_reference_information_code'].nil?
 
       # header parameters
       header_params = {}
@@ -515,6 +518,185 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: SubscriptionsApi#get_subscription_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Get Payments for a Subscription
+    # Retrieve a list of payments for a specific subscription by its ID. 
+    #
+    # @param id Subscription Id
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :offset Page offset number.
+    # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
+    # @option opts [Integer] :scheduled_payments_count Number of existing scheduled payments to be returned. Default - &#x60;5&#x60;, Max - &#x60;9999&#x60; 
+    # @return [GetSubscriptionsPaymentsResponse]
+    #
+    def subscriptions_id_payments_get(id, opts = {})
+      data, status_code, headers = subscriptions_id_payments_get_with_http_info(id, opts)
+      return data, status_code, headers
+    end
+
+    # Get Payments for a Subscription
+    # Retrieve a list of payments for a specific subscription by its ID. 
+    # @param id Subscription Id
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :offset Page offset number.
+    # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
+    # @option opts [Integer] :scheduled_payments_count Number of existing scheduled payments to be returned. Default - &#x60;5&#x60;, Max - &#x60;9999&#x60; 
+    # @return [Array<(GetSubscriptionsPaymentsResponse, Fixnum, Hash)>] GetSubscriptionsPaymentsResponse data, response status code and response headers
+    def subscriptions_id_payments_get_with_http_info(id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SubscriptionsApi.subscriptions_id_payments_get ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling SubscriptionsApi.subscriptions_id_payments_get"
+      end
+      # resource path
+      local_var_path = 'rbs/v1/subscriptions/{id}/payments'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'scheduledPaymentsCount'] = opts[:'scheduled_payments_count'] if !opts[:'scheduled_payments_count'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["subscriptions_id_payments_get","subscriptions_id_payments_get_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["subscriptions_id_payments_get","subscriptions_id_payments_get_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'GetSubscriptionsPaymentsResponse',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SubscriptionsApi#subscriptions_id_payments_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update Payments for a subscription
+    # Modifies the state of a subscription's payments. Currently, the only possible modifications are \"skipping\" and \"restoring\" payments.  Marking a payment as \"skipped\" means it will not be processed when its scheduled time arrives. \"Restoring\" a payment removes it from the list of payments to be skipped. 
+    #
+    # @param id Subscription Id
+    # @param update_payments Modify payments of a subscription
+    # @param [Hash] opts the optional parameters
+    # @return [GetSubscriptionsPaymentsResponse1]
+    #
+    def subscriptions_id_payments_put(id, update_payments, opts = {})
+      data, status_code, headers = subscriptions_id_payments_put_with_http_info(id, update_payments, opts)
+      return data, status_code, headers
+    end
+
+    # Update Payments for a subscription
+    # Modifies the state of a subscription&#39;s payments. Currently, the only possible modifications are \&quot;skipping\&quot; and \&quot;restoring\&quot; payments.  Marking a payment as \&quot;skipped\&quot; means it will not be processed when its scheduled time arrives. \&quot;Restoring\&quot; a payment removes it from the list of payments to be skipped. 
+    # @param id Subscription Id
+    # @param update_payments Modify payments of a subscription
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(GetSubscriptionsPaymentsResponse1, Fixnum, Hash)>] GetSubscriptionsPaymentsResponse1 data, response status code and response headers
+    def subscriptions_id_payments_put_with_http_info(id, update_payments, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SubscriptionsApi.subscriptions_id_payments_put ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling SubscriptionsApi.subscriptions_id_payments_put"
+      end
+      # verify the required parameter 'update_payments' is set
+      if @api_client.config.client_side_validation && update_payments.nil?
+        fail ArgumentError, "Missing the required parameter 'update_payments' when calling SubscriptionsApi.subscriptions_id_payments_put"
+      end
+      # resource path
+      local_var_path = 'rbs/v1/subscriptions/{id}/payments'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(update_payments)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePayments', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["subscriptions_id_payments_put","subscriptions_id_payments_put_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["subscriptions_id_payments_put","subscriptions_id_payments_put_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'GetSubscriptionsPaymentsResponse1',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SubscriptionsApi#subscriptions_id_payments_put\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end

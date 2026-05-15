@@ -21,6 +21,9 @@ module CyberSource
     # The possible values for the reply field are: - `true` : the airline data was included in the request to the processor. - `false` : the airline data was not included in the request to the processor.  Returned by authorization, capture, or credit services. 
     attr_accessor :enhanced_data_enabled
 
+    # Mastercard Digital Enablement Service (MDES) digital service indicators received in the authorization response message for MDES transactions.   This data is provided in the 0110 response in the Field 34—Acceptance Environment Data (TLV Format), Dataset ID 04—Additional Service Result Data, Tag DF1F—Mastercard Digital Enablement Service Indicator for Acquirer to acquirers.  This field is in ANS, EBCDIC format and flows in Field 34, DSID 04 Tag DF1F, mapped to Mastercard Data Element DE119, Sub-element 004.  This field is supported for all flavors of Authorization response only.  #### Used by **Authorization Response** Response field only. 
+    attr_accessor :digital_service_indicator
+
     attr_accessor :capture_options
 
     attr_accessor :authorization_options
@@ -33,6 +36,7 @@ module CyberSource
         :'bank_transfer_options' => :'bankTransferOptions',
         :'payment_solution' => :'paymentSolution',
         :'enhanced_data_enabled' => :'enhancedDataEnabled',
+        :'digital_service_indicator' => :'digitalServiceIndicator',
         :'capture_options' => :'captureOptions',
         :'authorization_options' => :'authorizationOptions',
         :'purchase_options' => :'purchaseOptions'
@@ -45,6 +49,7 @@ module CyberSource
         :'bank_transfer_options' => :'bank_transfer_options',
         :'payment_solution' => :'payment_solution',
         :'enhanced_data_enabled' => :'enhanced_data_enabled',
+        :'digital_service_indicator' => :'digital_service_indicator',
         :'capture_options' => :'capture_options',
         :'authorization_options' => :'authorization_options',
         :'purchase_options' => :'purchase_options'
@@ -57,6 +62,7 @@ module CyberSource
         :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions',
         :'payment_solution' => :'String',
         :'enhanced_data_enabled' => :'BOOLEAN',
+        :'digital_service_indicator' => :'String',
         :'capture_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationCaptureOptions',
         :'authorization_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationAuthorizationOptions',
         :'purchase_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationPurchaseOptions'
@@ -81,6 +87,10 @@ module CyberSource
 
       if attributes.has_key?(:'enhancedDataEnabled')
         self.enhanced_data_enabled = attributes[:'enhancedDataEnabled']
+      end
+
+      if attributes.has_key?(:'digitalServiceIndicator')
+        self.digital_service_indicator = attributes[:'digitalServiceIndicator']
       end
 
       if attributes.has_key?(:'captureOptions')
@@ -115,6 +125,12 @@ module CyberSource
       @payment_solution = payment_solution
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] digital_service_indicator Value to be assigned
+    def digital_service_indicator=(digital_service_indicator)
+      @digital_service_indicator = digital_service_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -123,6 +139,7 @@ module CyberSource
           bank_transfer_options == o.bank_transfer_options &&
           payment_solution == o.payment_solution &&
           enhanced_data_enabled == o.enhanced_data_enabled &&
+          digital_service_indicator == o.digital_service_indicator &&
           capture_options == o.capture_options &&
           authorization_options == o.authorization_options &&
           purchase_options == o.purchase_options
@@ -137,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank_transfer_options, payment_solution, enhanced_data_enabled, capture_options, authorization_options, purchase_options].hash
+      [bank_transfer_options, payment_solution, enhanced_data_enabled, digital_service_indicator, capture_options, authorization_options, purchase_options].hash
     end
 
     # Builds the object from hash
