@@ -90,7 +90,7 @@ public
       # Set the request method, host and resource path in the JWT body as per the specification for all request types
       jwt_payload['request-method'] = request_type
       jwt_payload['request-host'] = merchantconfig_obj.requestHost
-      jwt_payload['request-resource-path'] = extractResourcePath(merchantconfig_obj.requestTarget)
+      jwt_payload['request-resource-path'] = merchantconfig_obj.requestTarget
 
       # Choose issuer claim in the JWT body as per the use_metakey flag in the config file
       if merchantconfig_obj.useMetaKey
@@ -128,14 +128,6 @@ public
       }
 
       return jwt_headers
-    end
-
-    def extractResourcePath(request_target)
-      return '' if request_target.nil? || request_target.empty?
-      
-      # Split the string to remove the query params
-      parts = request_target.split('?', 2)
-      return parts[0]
     end
 
     implements TokenInterface
