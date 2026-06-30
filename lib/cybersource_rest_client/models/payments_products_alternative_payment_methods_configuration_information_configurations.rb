@@ -39,7 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'merchant_category_code' => :'String',
-        :'processors' => :'Hash<String, PaymentsProductsAlternativePaymentMethodsConfigurationInformationConfigurationsProcessors>'
+        :'processors' => :'Hash<String, AlternativePaymentsProcessorConfiguration>'
       }
     end
 

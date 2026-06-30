@@ -162,7 +162,7 @@ module CyberSource
         :'address' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationAddress',
         :'trading_address' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationTradingAddress',
         :'business_contact' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationBusinessContact',
-        :'business_details' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationBusinessDetails',
+        :'business_details' => :'UnderwritingConfigurationBusinessDetails',
         :'owner_information' => :'Array<UnderwritingConfigurationOrganizationInformationBusinessInformationOwnerInformation>',
         :'director_information' => :'Array<UnderwritingConfigurationOrganizationInformationBusinessInformationDirectorInformation>'
       }

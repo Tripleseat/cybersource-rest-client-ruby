@@ -51,7 +51,7 @@ module CyberSource
         :'amount_details' => :'Upv1capturecontextsDataOrderInformationAmountDetails',
         :'bill_to' => :'Upv1capturecontextsDataOrderInformationBillTo',
         :'ship_to' => :'Upv1capturecontextsDataOrderInformationShipTo',
-        :'line_items' => :'Upv1capturecontextsDataOrderInformationLineItems',
+        :'line_items' => :'Array<Upv1capturecontextsDataOrderInformationLineItems>',
         :'invoice_details' => :'Upv1capturecontextsDataOrderInformationInvoiceDetails'
       }
     end
@@ -77,7 +77,9 @@ module CyberSource
       end
 
       if attributes.has_key?(:'lineItems')
-        self.line_items = attributes[:'lineItems']
+        if (value = attributes[:'lineItems']).is_a?(Array)
+          self.line_items = value
+        end
       end
 
       if attributes.has_key?(:'invoiceDetails')

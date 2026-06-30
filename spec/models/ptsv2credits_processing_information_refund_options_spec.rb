@@ -37,4 +37,10 @@ describe 'Ptsv2creditsProcessingInformationRefundOptions' do
     end
   end
 
+  describe 'test attribute "reconciliation_id_alternate"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

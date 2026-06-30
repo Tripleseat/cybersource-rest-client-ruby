@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'commerce_indicator' => :'String',
-        :'authorization_options' => :'Rbsv1subscriptionsProcessingInformationAuthorizationOptions'
+        :'authorization_options' => :'RbsAuthorizationOptions'
       }
     end
 

@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'default_payment_instrument' => :'PatchPaymentInstrumentRequest',
-        :'default_shipping_address' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress'
+        :'default_shipping_address' => :'DefaultShippingAddress'
       }
     end
 

@@ -35,6 +35,9 @@ module CyberSource
     # Merchant Commercial Enhanced Data Program (CEDP) verified indicator for capture/bill requests.  This field is used when the client is doing authorization with a different gateway and capture/settlement with CyberSource.  This field flows in ISO field 34, DSID 02 tag DA, in AN, EBCDIC format.  Possible values: - `Y`: Merchant CEDP verified  #### Used by **Capture Request** Request field for force capture/bill support when auth is done with a different gateway. 
     attr_accessor :cedp_verified_indicator
 
+    # Interchange reimbursement fee program indicator (FPI), which is used when assessing the fee applied to a cross-border or domestic Asia Pacific financial transaction. Acquirers and issues retain and return the FPI value in chargeback and representments.
+    attr_accessor :fee_program_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +48,8 @@ module CyberSource
         :'auth_approval_token' => :'authApprovalToken',
         :'supplementary_transaction_data' => :'supplementaryTransactionData',
         :'response_source_code' => :'responseSourceCode',
-        :'cedp_verified_indicator' => :'cedpVerifiedIndicator'
+        :'cedp_verified_indicator' => :'cedpVerifiedIndicator',
+        :'fee_program_indicator' => :'feeProgramIndicator'
       }
     end
 
@@ -59,7 +63,8 @@ module CyberSource
         :'auth_approval_token' => :'auth_approval_token',
         :'supplementary_transaction_data' => :'supplementary_transaction_data',
         :'response_source_code' => :'response_source_code',
-        :'cedp_verified_indicator' => :'cedp_verified_indicator'
+        :'cedp_verified_indicator' => :'cedp_verified_indicator',
+        :'fee_program_indicator' => :'fee_program_indicator'
       }
     end
 
@@ -73,7 +78,8 @@ module CyberSource
         :'auth_approval_token' => :'String',
         :'supplementary_transaction_data' => :'String',
         :'response_source_code' => :'String',
-        :'cedp_verified_indicator' => :'String'
+        :'cedp_verified_indicator' => :'String',
+        :'fee_program_indicator' => :'String'
       }
     end
 
@@ -115,6 +121,10 @@ module CyberSource
 
       if attributes.has_key?(:'cedpVerifiedIndicator')
         self.cedp_verified_indicator = attributes[:'cedpVerifiedIndicator']
+      end
+
+      if attributes.has_key?(:'feeProgramIndicator')
+        self.fee_program_indicator = attributes[:'feeProgramIndicator']
       end
     end
 
@@ -161,6 +171,12 @@ module CyberSource
       @cedp_verified_indicator = cedp_verified_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] fee_program_indicator Value to be assigned
+    def fee_program_indicator=(fee_program_indicator)
+      @fee_program_indicator = fee_program_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -173,7 +189,8 @@ module CyberSource
           auth_approval_token == o.auth_approval_token &&
           supplementary_transaction_data == o.supplementary_transaction_data &&
           response_source_code == o.response_source_code &&
-          cedp_verified_indicator == o.cedp_verified_indicator
+          cedp_verified_indicator == o.cedp_verified_indicator &&
+          fee_program_indicator == o.fee_program_indicator
     end
 
     # @see the `==` method
@@ -185,7 +202,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pre_approval_token, authorization_options, reversal, network, auth_approval_token, supplementary_transaction_data, response_source_code, cedp_verified_indicator].hash
+      [pre_approval_token, authorization_options, reversal, network, auth_approval_token, supplementary_transaction_data, response_source_code, cedp_verified_indicator, fee_program_indicator].hash
     end
 
     # Builds the object from hash

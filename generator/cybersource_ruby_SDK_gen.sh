@@ -127,6 +127,8 @@ git checkout spec/models/bad_request_error_spec.rb
 git checkout spec/models/create_access_token_request_spec.rb
 git checkout spec/models/resource_not_found_error_spec.rb
 git checkout spec/models/unauthorized_client_error_spec.rb
+git checkout spec/sensitive_logging_spec.rb
+git checkout spec/auth_jwe_utility_spec.rb
 
 # replace hashValue fieldName to hash for supporting hash field name in request body
 cd ./lib/cybersource_rest_client/models

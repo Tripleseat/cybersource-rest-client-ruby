@@ -57,8 +57,8 @@ module CyberSource
         :'jti' => :'String',
         :'transient_token_jwt' => :'String',
         :'customer' => :'Tmsv2tokenizeTokenInformationCustomer',
-        :'shipping_address' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress',
-        :'payment_instrument' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrument',
+        :'shipping_address' => :'DefaultShippingAddress',
+        :'payment_instrument' => :'DefaultPaymentInstrument',
         :'instrument_identifier' => :'TmsEmbeddedInstrumentIdentifier'
       }
     end

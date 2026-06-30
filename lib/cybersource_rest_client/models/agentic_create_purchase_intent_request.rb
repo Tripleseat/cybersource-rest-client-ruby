@@ -66,11 +66,11 @@ module CyberSource
     def self.swagger_types
       {
         :'client_correlation_id' => :'String',
-        :'payment_information' => :'Acpv1tokensPaymentInformation',
-        :'device_information' => :'Acpv1tokensDeviceInformation',
-        :'assurance_data' => :'Array<Acpv1tokensAssuranceData>',
-        :'mandates' => :'Array<Acpv1instructionsMandates>',
-        :'buyer_information' => :'Acpv1tokensBuyerInformation',
+        :'payment_information' => :'Iccv1tokensPaymentInformation',
+        :'device_information' => :'Iccv1tokensDeviceInformation',
+        :'assurance_data' => :'Array<Iccv1tokensAssuranceData>',
+        :'mandates' => :'Array<Iccv1instructionsMandates>',
+        :'buyer_information' => :'Iccv1tokensBuyerInformation',
         :'is_recurring' => :'BOOLEAN',
         :'consumer_prompt' => :'String'
       }

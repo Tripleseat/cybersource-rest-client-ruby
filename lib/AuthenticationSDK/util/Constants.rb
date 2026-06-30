@@ -1,5 +1,4 @@
-  class Constants
-
+class Constants
       GET_REQUEST_TYPE_LOWER = 'get' unless const_defined?(:GET_REQUEST_TYPE_LOWER)
 
       POST_REQUEST_TYPE_LOWER = 'post' unless const_defined?(:POST_REQUEST_TYPE_LOWER)
@@ -42,7 +41,7 @@
 
       SIGNATURE_ALGORITHM = 'HmacSHA256' unless const_defined?(:SIGNATURE_ALGORITHM)
 
-      ALGORITHM = "algorithm=\"" unless const_defined?(:ALGORITHM)
+      ALGORITHM = 'algorithm="' unless const_defined?(:ALGORITHM)
 
       SHA256 = 'SHA-256=' unless const_defined?(:SHA256)
 
@@ -52,11 +51,11 @@
 
       USER_AGENT_VALUE = 'Mozilla/5.0' unless const_defined?(:USER_AGENT_VALUE)
 
-      KEY_ID = "keyid=\"" unless const_defined?(:KEY_ID)
+      KEY_ID = 'keyid="' unless const_defined?(:KEY_ID)
 
-      HEADERS_PARAM = "headers=\"" unless const_defined?(:HEADERS_PARAM)
+      HEADERS_PARAM = 'headers="' unless const_defined?(:HEADERS_PARAM)
 
-      SIGNATURE_PARAM = "signature=\"" unless const_defined?(:SIGNATURE_PARAM)
+      SIGNATURE_PARAM = 'signature="' unless const_defined?(:SIGNATURE_PARAM)
 
       AUTH_TYPE_HTTP = 'HTTP_SIGNATURE' unless const_defined?(:AUTH_TYPE_HTTP)
 
@@ -70,9 +69,12 @@
 
       JWT_KEY_TYPE_SHARED_SECRET = 'SHARED_SECRET' unless const_defined?(:JWT_KEY_TYPE_SHARED_SECRET)
 
-      INVALID_JWT_KEY_TYPE = "Invalid jwtKeyType. Must be 'P12' or 'SHARED_SECRET'." unless const_defined?(:INVALID_JWT_KEY_TYPE)
+      unless const_defined?(:INVALID_JWT_KEY_TYPE)
+        INVALID_JWT_KEY_TYPE = "Invalid jwtKeyType. Must be 'P12' or 'SHARED_SECRET'."
+      end
 
-      OLD_RUN_ENVIRONMENT_CONSTANTS = ['CYBERSOURCE.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.ENVIRONMENT.PRODUCTION', 'CYBERSOURCE.IN.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.IN.ENVIRONMENT.PRODUCTION', 'BANKOFAMERICA.ENVIRONMENT.SANDBOX', 'BANKOFAMERICA.ENVIRONMENT.PRODUCTION']
+      OLD_RUN_ENVIRONMENT_CONSTANTS = ['CYBERSOURCE.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.ENVIRONMENT.PRODUCTION',
+                                       'CYBERSOURCE.IN.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.IN.ENVIRONMENT.PRODUCTION', 'BANKOFAMERICA.ENVIRONMENT.SANDBOX', 'BANKOFAMERICA.ENVIRONMENT.PRODUCTION']
 
       # constants for fall back logic
 
@@ -90,7 +92,7 @@
 
       DEFAULT_LOG_LEVEL = 'debug' unless const_defined?(:DEFAULT_LOG_LEVEL)
 
-      LOG_LEVELS = ['UNKNOWN', 'FATAL', 'ERROR', 'WARN', 'INFO', 'DEBUG'] unless const_defined?(:LOG_LEVELS)
+      LOG_LEVELS = %w[UNKNOWN FATAL ERROR WARN INFO DEBUG] unless const_defined?(:LOG_LEVELS)
 
       # Constant for Fall back logic and Exception Handling
 
@@ -104,29 +106,43 @@
 
       INCORRECT_KEY_PASS = 'The keyPass Entered is Incorrect' unless const_defined?(:INCORRECT_KEY_PASS)
 
-      AUTH_TYPE_MANDATORY= 'AuthenticationType is Mandatory' unless const_defined?(:AUTH_TYPE_MANDATORY)
+      AUTH_TYPE_MANDATORY = 'AuthenticationType is Mandatory' unless const_defined?(:AUTH_TYPE_MANDATORY)
 
       MERCHANT_KEY_ID_MANDATORY = 'MerchantKeyId is Mandatory' unless const_defined?(:MERCHANT_KEY_ID_MANDATORY)
 
-      MERCHANT_SECRET_KEY_MANDATORY = 'MerchantSecretKey is Mandatory' unless const_defined?(:MERCHANT_SECRET_KEY_MANDATORY)
+      unless const_defined?(:MERCHANT_SECRET_KEY_MANDATORY)
+        MERCHANT_SECRET_KEY_MANDATORY = 'MerchantSecretKey is Mandatory'
+      end
 
       PORTFOLIO_ID_MANDATORY = 'PortfolioID is Mandatory' unless const_defined?(:PORTFOLIO_ID_MANDATORY)
 
       KEY_PASS_NULL = 'keyPass is empty, Assigining merchantID value' unless const_defined?(:KEY_PASS_NULL)
 
-      REQUEST_JSON_PATH_EMPTY = 'RequestJsonPath not provided. Using Default Value:'unless const_defined?(:REQUEST_JSON_PATH_EMPTY)
+      unless const_defined?(:REQUEST_JSON_PATH_EMPTY)
+        REQUEST_JSON_PATH_EMPTY = 'RequestJsonPath not provided. Using Default Value:'
+      end
 
       REQUEST_TYPE_EMPTY = 'RequestType Property of Merchant Config Not Set' unless const_defined?(:REQUEST_TYPE_EMPTY)
 
-      INVALID_REQUEST_TYPE_METHOD = 'Entered Request Type should be (GET/POST/PUT)' unless const_defined?(:INVALID_REQUEST_TYPE_METHOD)
+      unless const_defined?(:INVALID_REQUEST_TYPE_METHOD)
+        INVALID_REQUEST_TYPE_METHOD = 'Entered Request Type should be (GET/POST/PUT)'
+      end
 
-      INVALID_LOG_DIRECTORY = 'Entered LogDirectory is Missing/Incorrect. Using Default Path: ' unless const_defined?(:INVALID_LOG_DIRECTORY)
+      unless const_defined?(:INVALID_LOG_DIRECTORY)
+        INVALID_LOG_DIRECTORY = 'Entered LogDirectory is Missing/Incorrect. Using Default Path: '
+      end
 
-      INVALID_MAX_LOG_SIZE = 'Entered MaxLogSize is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_MAX_LOG_SIZE)
+      unless const_defined?(:INVALID_MAX_LOG_SIZE)
+        INVALID_MAX_LOG_SIZE = 'Entered MaxLogSize is Missing/Incorrect. Using Default Value: '
+      end
 
-      INVALID_MAX_LOG_FILES = 'Entered MaxLogFiles is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_MAX_LOG_FILES)
+      unless const_defined?(:INVALID_MAX_LOG_FILES)
+        INVALID_MAX_LOG_FILES = 'Entered MaxLogFiles is Missing/Incorrect. Using Default Value: '
+      end
 
-      INVALID_LOG_LEVEL = 'Entered LogLevel is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_LOG_LEVEL)
+      unless const_defined?(:INVALID_LOG_LEVEL)
+        INVALID_LOG_LEVEL = 'Entered LogLevel is Missing/Incorrect. Using Default Value: '
+      end
 
       RUN_ENVIRONMENT_ERROR = 'Entered RunEnvironment is Incorrect.' unless const_defined?(:RUN_ENVIRONMENT_ERROR)
 
@@ -136,23 +152,50 @@
 
       WARNING_PREFIX = 'Warning: ' unless const_defined?(:WARNING_PREFIX)
 
-      HIDDEN_MERCHANT_PROPERTIES = 'merchantID,merchantKeyId,merchantsecretKey,keyAlias,keyPass' unless const_defined?(:HIDDEN_MERCHANT_PROPERTIES)
+      unless const_defined?(:HIDDEN_MERCHANT_PROPERTIES)
+        HIDDEN_MERCHANT_PROPERTIES = 'merchantID,merchantKeyId,merchantsecretKey,keyAlias,keyPass,'\
+          'keyPassword,sslKeyPassword,clientId,clientSecret,accessToken,refreshToken,'\
+          'privateKey,sslClientCert,responseMlePrivateKey,responseMlePrivateKeyPassword,'\
+          'responseMlePrivateKeyFilePassword,responseMlePrivateKeyFilePath,'\
+          'responseMlePrivateKeyFileName,mleForRequestPublicCertPath,pemFileDirectory,'\
+          'clientCertDirectory,keysDirectory,keyFilename'
+      end
+
+      unless const_defined?(:SENSITIVE_PROPERTY_PATTERNS)
+        # Substrings (case-insensitive) used to redact any configuration key whose name
+        # contains them. Provides defense-in-depth against new/unknown sensitive fields.
+        SENSITIVE_PROPERTY_PATTERNS = %w[secret password passwd pass token privatekey private_key apikey api_key credential cert].freeze
+      end
+
+      REDACTED_VALUE = '***REDACTED***' unless const_defined?(:REDACTED_VALUE)
 
       RUN_ENVIRONMENT = 'RunEnvironment is Mandatory' unless const_defined?(:RUN_ENVIRONMENT)
 
-      KEY_DIRECTORY_EMPTY = 'KeysDirectory not provided. Using Default Path:' unless const_defined?(:KEY_DIRECTORY_EMPTY)
+      unless const_defined?(:KEY_DIRECTORY_EMPTY)
+        KEY_DIRECTORY_EMPTY = 'KeysDirectory not provided. Using Default Path:'
+      end
 
-      FILE_NOT_FOUND = 'File not found, Re-Enter path/file name, Entered path/file name :: ' unless const_defined?(:FILE_NOT_FOUND)
+      unless const_defined?(:FILE_NOT_FOUND)
+        FILE_NOT_FOUND = 'File not found, Re-Enter path/file name, Entered path/file name :: '
+      end
 
       AUTH_ERROR = 'Check Authentication Type (HTTP_Signature/JWT) in cybs.yml.' unless const_defined?(:AUTH_ERROR)
 
-      KEY_FILE_NAME_NULL_EMPTY = 'KeyFilename Empty/Null. Assigining merchantID value' unless const_defined?(:KEY_FILE_NAME_NULL_EMPTY)
+      unless const_defined?(:KEY_FILE_NAME_NULL_EMPTY)
+        KEY_FILE_NAME_NULL_EMPTY = 'KeyFilename Empty/Null. Assigining merchantID value'
+      end
 
-      KEY_ALIAS_NULL_EMPTY = 'KeyAlias Empty/Null. Assigining merchantID value' unless const_defined?(:KEY_ALIAS_NULL_EMPTY)
+      unless const_defined?(:KEY_ALIAS_NULL_EMPTY)
+        KEY_ALIAS_NULL_EMPTY = 'KeyAlias Empty/Null. Assigining merchantID value'
+      end
 
-      INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value' unless const_defined?(:INCORRECT_KEY_ALIAS)
+      unless const_defined?(:INCORRECT_KEY_ALIAS)
+        INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value'
+      end
 
-      INCORRECT_KEY_ALIAS_USE_METAKEY = 'The Entered KeyAlias is Incorrect with useMetaKey set to true. Assigining portfolioID value' unless const_defined?(:INCORRECT_KEY_ALIAS_USE_METAKEY)
+      unless const_defined?(:INCORRECT_KEY_ALIAS_USE_METAKEY)
+        INCORRECT_KEY_ALIAS_USE_METAKEY = 'The Entered KeyAlias is Incorrect with useMetaKey set to true. Assigining portfolioID value'
+      end
 
       ENABLE_CLIENT_CERT_EMPTY = 'Enable Clientcert is Empty/Null.' unless const_defined?(:ENABLE_CLIENT_CERT_EMPTY)
 
@@ -178,15 +221,27 @@
 
       CERTIFICATE_EXPIRY_DATE_WARNING_DAYS = 90 unless const_defined?(:CERTIFICATE_EXPIRY_DATE_WARNING_DAYS)
 
-      MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT = "mleCertFromMerchantConfig"
+      MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT = 'mleCertFromMerchantConfig'
 
-      MLE_CACHE_IDENTIFIER_FOR_P12_CERT = "mleCertFromP12"
+      MLE_CACHE_IDENTIFIER_FOR_P12_CERT = 'mleCertFromP12'
 
-      DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, "resources")
+      DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, 'resources')
 
-      MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY = "mleResponsePrivateKeyFromFile"
+      MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY = 'mleResponsePrivateKeyFromFile'
 
-      PUBLIC_KEY_CACHE_IDENTIFIER = "FlexV2PublicKeys"
-      
-      RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER = "_responseMleP12Pfx"
-  end
+      PUBLIC_KEY_CACHE_IDENTIFIER = 'FlexV2PublicKeys'
+
+      RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER = '_responseMleP12Pfx'
+
+      # Allowed JWE algorithms for decryption (per CGK specification).
+      # Only strong key-encryption and content-encryption algorithms are permitted.
+      # Weak algorithms such as RSA1_5 (Bleichenbacher-vulnerable) and 'dir' are blocked.
+      unless const_defined?(:ALLOWED_JWE_KEY_ENCRYPTION_ALGORITHMS)
+        ALLOWED_JWE_KEY_ENCRYPTION_ALGORITHMS = %w[RSA-OAEP
+                                                   RSA-OAEP-256].freeze
+      end
+      unless const_defined?(:ALLOWED_JWE_CONTENT_ENCRYPTION_ALGORITHMS)
+        ALLOWED_JWE_CONTENT_ENCRYPTION_ALGORITHMS = %w[A128GCM
+                                                       A256GCM].freeze
+      end
+end

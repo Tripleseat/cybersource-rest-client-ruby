@@ -83,7 +83,7 @@ module CyberSource
         :'response_details' => :'String',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
         :'merchant_risk_prediction' => :'String',
-        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
+        :'seller_protection' => :'ProcessorInformationSellerProtection',
         :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end

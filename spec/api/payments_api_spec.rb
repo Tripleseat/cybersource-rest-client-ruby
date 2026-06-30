@@ -94,14 +94,14 @@ describe 'PaymentsApi' do
     end
   end
 
-  # unit tests for update_session_req
+  # unit tests for update_session_request
   # Update Alternative Payments Sessions Request
   # Update Alternative Payments Sessions Request
   # @param create_session_request 
   # @param id The payment ID. This ID is returned from a previous payment request.
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PaymentsPost201Response2]
-  describe 'update_session_req test' do
+  describe 'update_session_request test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

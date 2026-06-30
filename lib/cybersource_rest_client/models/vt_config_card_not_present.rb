@@ -36,7 +36,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'global_payment_information' => :'VTConfigCardNotPresentGlobalPaymentInformation',
+        :'global_payment_information' => :'VirtualTerminalGlobalPaymentSettings',
         :'receipt_information' => :'VTConfigCardNotPresentReceiptInformation'
       }
     end

@@ -1,4 +1,5 @@
 require_relative '../logging/log_factory.rb'
+require_relative '../logging/sensitive_logging.rb'
 require 'jose'
 require 'json'
 require_relative './Cache'
@@ -9,6 +10,28 @@ require_relative './AuthJWEUtility'
 public
   class MLEUtility
     @log_obj = nil
+
+    # Fail-safe gate for the decrypted-MLE-response diagnostic log lines.
+    # Default OFF: even at DEBUG, the decrypted/encrypted bodies are NOT emitted.
+    # Operators who need wire-level diagnostics must explicitly opt in by calling
+    # MLEUtility.enable_mle_plaintext_logging! in application bootstrap code; the
+    # toggle is process-local and not driven by config files or env vars so it
+    # cannot be flipped on accidentally by a deployment change.
+    @mle_plaintext_logging_enabled = false
+
+    class << self
+      def mle_plaintext_logging_enabled?
+        @mle_plaintext_logging_enabled == true
+      end
+
+      def enable_mle_plaintext_logging!
+        @mle_plaintext_logging_enabled = true
+      end
+
+      def disable_mle_plaintext_logging!
+        @mle_plaintext_logging_enabled = false
+      end
+    end
     def self.check_is_mle_for_API(merchant_config, inbound_mle_status, operation_ids)
       is_mle_for_api = false
 
@@ -148,11 +171,28 @@ public
       end
 
       begin
-        @log_obj.logger.info("LOG_NETWORK_RESPONSE_BEFORE_MLE_DECRYPTION: #{responseBody}")
+        # Fail-safe: only emit decrypted-MLE bodies when an operator has explicitly
+        # called MLEUtility.enable_mle_plaintext_logging! AND the logger is at
+        # DEBUG. Even then, route the payload through SensitiveDataFilter so
+        # PCI/PII fields (PAN, CVV, account, expiration, token, ...) are masked
+        # before reaching any appender.
+        plaintext_logging = MLEUtility.mle_plaintext_logging_enabled? && @log_obj.logger.debug?
+
+        if plaintext_logging
+          formatter = SensitiveDataFilter.new
+          @log_obj.logger.debug("LOG_NETWORK_RESPONSE_BEFORE_MLE_DECRYPTION: #{formatter.maskSensitiveDataInJson(responseBody)}")
+        else
+          @log_obj.logger.debug('LOG_NETWORK_RESPONSE_BEFORE_MLE_DECRYPTION: <encrypted payload omitted>')
+        end
 
         decryptedResponse = AuthJWEUtility.decrypt_jwe_using_private_key(mlePrivateKey, jweResponseToken)
 
-        @log_obj.logger.info("LOG_NETWORK_RESPONSE_AFTER_MLE_DECRYPTION: #{decryptedResponse}")
+        if plaintext_logging
+          formatter ||= SensitiveDataFilter.new
+          @log_obj.logger.debug("LOG_NETWORK_RESPONSE_AFTER_MLE_DECRYPTION: #{formatter.maskSensitiveDataInJson(decryptedResponse)}")
+        else
+          @log_obj.logger.debug('LOG_NETWORK_RESPONSE_AFTER_MLE_DECRYPTION: <decrypted payload not logged>')
+        end
 
         return decryptedResponse
       rescue => e

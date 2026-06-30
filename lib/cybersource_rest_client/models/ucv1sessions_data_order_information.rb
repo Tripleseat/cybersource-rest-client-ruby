@@ -54,7 +54,7 @@ module CyberSource
       {
         :'amount_details' => :'Ucv1sessionsDataOrderInformationAmountDetails',
         :'bill_to' => :'Ucv1sessionsDataOrderInformationBillTo',
-        :'ship_to' => :'Upv1capturecontextsDataOrderInformationShipTo',
+        :'ship_to' => :'Ucv1sessionsDataOrderInformationShipTo',
         :'line_items' => :'Array<Ucv1sessionsDataOrderInformationLineItems>',
         :'invoice_details' => :'Ucv1sessionsDataOrderInformationInvoiceDetails',
         :'shipping_details' => :'Ucv1sessionsDataOrderInformationShippingDetails'

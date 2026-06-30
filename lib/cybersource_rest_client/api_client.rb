@@ -12,6 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 require 'json'
 require 'logger'
+require 'openssl'
 require 'tempfile'
 require 'typhoeus'
 require 'addressable/uri'
@@ -168,8 +169,13 @@ module CyberSource
         :maxage_conn => @merchantconfig.keepAliveTime || 118 # Default to 118 seconds as same as default of libcurl
       }
 
-      # set custom cert, if provided
-      req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
+      # set CA cert for SSL verification using the first available source (priority order):
+      # 1. User-provided ssl_ca_cert (via config) — highest priority, explicit override
+      # 2. SSL_CERT_FILE or CURL_CA_BUNDLE env vars — standard curl/system override
+      # 3. Ruby's OpenSSL default cert file — reliable cross-platform fallback
+      # If none are found, cainfo is not set and libcurl uses its built-in default.
+      resolved_ca_cert = resolve_ca_cert_file
+      req_opts[:cainfo] = resolved_ca_cert if resolved_ca_cert
 
       if [:post, :patch, :put, :delete].include?(http_method)
         req_body = build_request_body(header_params, form_params, opts[:body])
@@ -267,6 +273,29 @@ module CyberSource
         request_target = @config.base_path + path
       end
       request_target
+    end
+
+    # Resolves the CA certificate file to use for SSL verification.
+    # Returns the first available file from the following sources (priority order):
+    #   1. User-provided ssl_ca_cert from Configuration (explicit override)
+    #   2. SSL_CERT_FILE or CURL_CA_BUNDLE environment variables
+    #   3. Ruby's OpenSSL default cert file (cross-platform fallback)
+    # @return [String, nil] path to the CA cert file, or nil if none found
+    def resolve_ca_cert_file
+      # Priority 1: User-provided ssl_ca_cert
+      user_ca = @config.ssl_ca_cert
+      return user_ca if user_ca && File.exist?(user_ca)
+
+      # Priority 2: System/curl CA bundle (environment variables)
+      env_ca = ENV['SSL_CERT_FILE'] || ENV['CURL_CA_BUNDLE']
+      return env_ca if env_ca && File.exist?(env_ca)
+
+      # Priority 3: Ruby's OpenSSL default cert file
+      ruby_ca = OpenSSL::X509::DEFAULT_CERT_FILE
+      return ruby_ca if ruby_ca && File.exist?(ruby_ca)
+
+      # No CA cert found — let libcurl use its built-in default
+      nil
     end
 
     # Check if the given MIME is a JSON MIME.

@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'acquirer_code' => :'CardProcessingConfigCommonAcquirerAgreementAcquirerCode'
+        :'acquirer_code' => :'BoardingAcquirerDetails'
       }
     end
 

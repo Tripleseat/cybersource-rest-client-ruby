@@ -66,7 +66,7 @@ module CyberSource
     def self.swagger_types
       {
         :'commerce_indicator' => :'String',
-        :'funding_options' => :'Ptsv1pullfundstransferProcessingInformationFundingOptions',
+        :'funding_options' => :'AftFundingOptions',
         :'recurring_options' => :'Ptsv1pullfundstransferProcessingInformationRecurringOptions',
         :'business_application_id' => :'String',
         :'purpose_of_payment' => :'String',

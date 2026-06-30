@@ -44,10 +44,10 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'token_management' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'account_updater' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'bin_lookup' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'agentic_commerce' => :'InlineResponse2014SetupsPaymentsCardProcessing'
+        :'token_management' => :'PaymentsConfigurationSetupCardProcessing',
+        :'account_updater' => :'PaymentsConfigurationSetupCardProcessing',
+        :'bin_lookup' => :'PaymentsConfigurationSetupCardProcessing',
+        :'agentic_commerce' => :'PaymentsConfigurationSetupCardProcessing'
       }
     end
 

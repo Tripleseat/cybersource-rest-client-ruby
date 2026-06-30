@@ -32,7 +32,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'configurations' => :'PaymentsProductsUnifiedCheckoutConfigurationInformationConfigurations'
+        :'configurations' => :'UcConfigurations'
       }
     end
 

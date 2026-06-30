@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**acquirer_code** | [**CardProcessingConfigCommonAcquirerAgreementAcquirerCode**](CardProcessingConfigCommonAcquirerAgreementAcquirerCode.md) |  | [optional] 
+**acquirer_code** | [**BoardingAcquirerDetails**](BoardingAcquirerDetails.md) |  | [optional] 
 
 

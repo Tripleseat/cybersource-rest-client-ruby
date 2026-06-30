@@ -39,7 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'instrument_id' => :'String',
-        :'challenge' => :'Acpv1mppcredentialsChallenge'
+        :'challenge' => :'Iccv1mppcredentialsChallenge'
       }
     end
 

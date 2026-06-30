@@ -51,7 +51,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'mpp_credentials_request' when calling CredentialsApi.provision_mpp_credentials"
       end
       # resource path
-      local_var_path = 'acp/v1/mpp/credentials'
+      local_var_path = 'icc/v1/mpp/credentials'
 
       # query parameters
       query_params = {}

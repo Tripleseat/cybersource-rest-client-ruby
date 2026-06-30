@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_payment_instrument** | [**Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrument**](Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrument.md) |  | [optional] 
-**default_shipping_address** | [**Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress**](Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress.md) |  | [optional] 
+**default_payment_instrument** | [**DefaultPaymentInstrument**](DefaultPaymentInstrument.md) |  | [optional] 
+**default_shipping_address** | [**DefaultShippingAddress**](DefaultShippingAddress.md) |  | [optional] 
 
 

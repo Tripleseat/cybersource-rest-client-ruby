@@ -39,7 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'ship_to' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddressShipTo'
+        :'ship_to' => :'DefaultShippingAddressShipTo'
       }
     end
 

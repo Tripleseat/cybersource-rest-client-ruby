@@ -1,0 +1,11 @@
+# CyberSource::PaymentsConfigurationSetupAlternativePaymentMethods
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**configuration_status** | [**PaymentsConfigurationSetupAlternativePaymentMethodsConfigurationStatus**](PaymentsConfigurationSetupAlternativePaymentMethodsConfigurationStatus.md) |  | [optional] 
+**subscription_status** | [**PaymentsConfigurationSetupAlternativePaymentMethodsConfigurationStatus**](PaymentsConfigurationSetupAlternativePaymentMethodsConfigurationStatus.md) |  | [optional] 
+**status** | **String** | Possible values: - PROCESSED - PARTIAL_PROCESSED | [optional] 
+**submit_time_utc** | **DateTime** | Time of request in UTC. &#x60;Format: YYYY-MM-DDThh:mm:ssZ&#x60; Example: 2024-09-08T09:37:38+0000  | [optional] 
+
+
