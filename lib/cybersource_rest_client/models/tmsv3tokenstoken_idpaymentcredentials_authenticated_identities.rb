@@ -16,14 +16,17 @@ module CyberSource
     # The id from the authenticated identity.  Base64URL encoded string (RFC4648).   The encoding is the same as Base64, but uses '-' characters instead of '+' and '_' characters instead of '/'. 
     attr_accessor :id
 
-    # The provider of the authenticated identity.  Possible Values:   - VISA_PAYMENT_PASSKEY 
+    # The provider of the authenticated identity.  Possible Values:   - VISA_PAYMENT_PASSKEY   - CLIENT_DEVICE_CERT_JWS 
     attr_accessor :provider
 
-    # The data from the authenticated identity, for FIDO this could be the Attestation. Base64URL encoded string (RFC4648).  The encoding is the same as Base64, but uses '-' characters instead of '+' and '_' characters instead of '/'. 
+    # The data from the authenticated identity. For Passkey this could be the FIDO Attestation. For Classic Cloud Token Framework (CTF) this could be a JWS containing device authentication information signed by a devices private key. Base64URL encoded string (RFC4648). The encoding is the same as Base64, but uses '-' characters instead of '+' and '_' characters instead of '/'. 
     attr_accessor :data
 
-    # The id of the Relying Party.  Base64URL encoded string (RFC4648).   The encoding is the same as Base64, but uses '-' characters instead of '+' and '_' characters instead of '/'. 
+    # The id of the Relying Party.  Base64URL encoded string (RFC4648).  The encoding is the same as Base64, but uses '-' characters instead of '+' and '_' characters instead of '/'. 
     attr_accessor :relying_party_id
+
+    # The method used to authenticate the user.  Possible Values:   - USERNAME_PASSWORD   - PASSCODE_PASSWORD   - PASSCODE   - PASSWORD   - PATTERN   - BIOMETRIC_FINGERPRINT   - BIOMETRIC_FACIAL   - BIOMETRIC_IRIS   - BIOMETRIC_VOICE   - BIOMETRIC_BEHAVIORAL   - DEVICE_UNLOCKED_METHOD_UNKNOWN   - OTP_SMS   - OTP_EMAIL   - OTP_SMS_KNOWLEDGE   - KNOWLEDGE_BASED_AUTHENTICATION   - USER_UNVERIFIED   - BIOMETRIC 
+    attr_accessor :user_authentication_method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -31,7 +34,8 @@ module CyberSource
         :'id' => :'id',
         :'provider' => :'provider',
         :'data' => :'data',
-        :'relying_party_id' => :'relyingPartyId'
+        :'relying_party_id' => :'relyingPartyId',
+        :'user_authentication_method' => :'userAuthenticationMethod'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'id' => :'id',
         :'provider' => :'provider',
         :'data' => :'data',
-        :'relying_party_id' => :'relying_party_id'
+        :'relying_party_id' => :'relying_party_id',
+        :'user_authentication_method' => :'user_authentication_method'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'id' => :'String',
         :'provider' => :'String',
         :'data' => :'String',
-        :'relying_party_id' => :'String'
+        :'relying_party_id' => :'String',
+        :'user_authentication_method' => :'String'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'relyingPartyId')
         self.relying_party_id = attributes[:'relyingPartyId']
+      end
+
+      if attributes.has_key?(:'userAuthenticationMethod')
+        self.user_authentication_method = attributes[:'userAuthenticationMethod']
       end
     end
 
@@ -146,7 +156,8 @@ module CyberSource
           id == o.id &&
           provider == o.provider &&
           data == o.data &&
-          relying_party_id == o.relying_party_id
+          relying_party_id == o.relying_party_id &&
+          user_authentication_method == o.user_authentication_method
     end
 
     # @see the `==` method
@@ -158,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, provider, data, relying_party_id].hash
+      [id, provider, data, relying_party_id, user_authentication_method].hash
     end
 
     # Builds the object from hash

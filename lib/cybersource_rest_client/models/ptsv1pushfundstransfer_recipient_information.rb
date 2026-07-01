@@ -106,7 +106,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_information' => :'Ptsv1pushfundstransferRecipientInformationPaymentInformation',
+        :'payment_information' => :'PushFundsTransferPaymentInformation',
         :'address1' => :'String',
         :'address2' => :'String',
         :'locality' => :'String',

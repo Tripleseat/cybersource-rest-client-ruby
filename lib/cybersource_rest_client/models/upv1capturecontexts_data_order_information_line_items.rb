@@ -205,7 +205,7 @@ module CyberSource
         :'discount_applied' => :'BOOLEAN',
         :'discount_rate' => :'String',
         :'invoice_number' => :'String',
-        :'tax_details' => :'Upv1capturecontextsDataOrderInformationLineItemsTaxDetails',
+        :'tax_details' => :'Upv1capturecontextsDataOrderInformationTaxDetails',
         :'fulfillment_type' => :'String',
         :'weight' => :'String',
         :'weight_identifier' => :'String',
@@ -217,7 +217,7 @@ module CyberSource
         :'gift_card_currency' => :'String',
         :'shipping_destination_types' => :'String',
         :'gift' => :'BOOLEAN',
-        :'passenger' => :'Upv1capturecontextsDataOrderInformationLineItemsPassenger'
+        :'passenger' => :'Upv1capturecontextsDataOrderInformationPassenger'
       }
     end
 

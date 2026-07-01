@@ -65,9 +65,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -146,9 +146,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -227,9 +227,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -314,9 +314,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -401,9 +401,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -450,8 +450,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsPost201Response2]
     #
-    def update_session_req(create_session_request, id, opts = {})
-      data, status_code, headers = update_session_req_with_http_info(create_session_request, id, opts)
+    def update_session_request(create_session_request, id, opts = {})
+      data, status_code, headers = update_session_request_with_http_info(create_session_request, id, opts)
       return data, status_code, headers
     end
 
@@ -461,23 +461,23 @@ module CyberSource
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsPost201Response2, Fixnum, Hash)>] PtsV2PaymentsPost201Response2 data, response status code and response headers
-    def update_session_req_with_http_info(create_session_request, id, opts = {})
+    def update_session_request_with_http_info(create_session_request, id, opts = {})
 
       if @api_client.config.debugging
           begin
             raise
-                @api_client.config.logger.debug 'Calling API: PaymentsApi.update_session_req ...'
+                @api_client.config.logger.debug 'Calling API: PaymentsApi.update_session_request ...'
             rescue
                 puts 'Cannot write to log'
             end
       end
       # verify the required parameter 'create_session_request' is set
       if @api_client.config.client_side_validation && create_session_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_session_request' when calling PaymentsApi.update_session_req"
+        fail ArgumentError, "Missing the required parameter 'create_session_request' when calling PaymentsApi.update_session_request"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling PaymentsApi.update_session_req"
+        fail ArgumentError, "Missing the required parameter 'id' when calling PaymentsApi.update_session_request"
       end
       # resource path
       local_var_path = 'pts/v2/payment-references/{id}'.sub('{' + 'id' + '}', id.to_s)
@@ -488,9 +488,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -500,7 +500,7 @@ module CyberSource
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSessionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_session_req","update_session_req_with_http_info"])
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_session_request","update_session_request_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
         rescue
@@ -508,7 +508,7 @@ module CyberSource
         end
       end
 
-      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_session_req","update_session_req_with_http_info"])
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_session_request","update_session_request_with_http_info"])
 
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
@@ -522,7 +522,7 @@ module CyberSource
       if @api_client.config.debugging
         begin
         raise
-            @api_client.config.logger.debug "API called: PaymentsApi#update_session_req\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+            @api_client.config.logger.debug "API called: PaymentsApi#update_session_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end

@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'transaction_response_complete' => :'AgenticRetrievePaymentCredentialsResponse200TransactionResponseComplete',
-        :'transaction_response_with_pending_events' => :'AgenticRetrievePaymentCredentialsResponse200TransactionResponseWithPendingEvents'
+        :'transaction_response_with_pending_events' => :'IccTransactionResponsePendingEvents'
       }
     end
 

@@ -44,7 +44,7 @@ module CyberSource
       {
         :'ip_country_confidence' => :'Integer',
         :'info_codes' => :'Array<String>',
-        :'watch_list' => :'PtsV2PaymentsPost201ResponseWatchlistScreeningInformationWatchList'
+        :'watch_list' => :'ExportComplianceWatchList'
       }
     end
 

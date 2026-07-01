@@ -50,11 +50,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddressLinks',
+        :'_links' => :'DefaultShippingAddressLinks',
         :'id' => :'String',
         :'default' => :'BOOLEAN',
-        :'ship_to' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddressShipTo',
-        :'metadata' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddressMetadata'
+        :'ship_to' => :'DefaultShippingAddressShipTo',
+        :'metadata' => :'DefaultShippingAddressMetadata'
       }
     end
 

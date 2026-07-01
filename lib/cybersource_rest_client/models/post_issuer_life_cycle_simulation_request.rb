@@ -44,7 +44,7 @@ module CyberSource
       {
         :'state' => :'String',
         :'card' => :'Tmsv2tokenizedcardstokenizedCardIdissuerlifecycleeventsimulationsCard',
-        :'metadata' => :'Tmsv2tokenizedcardstokenizedCardIdissuerlifecycleeventsimulationsMetadata'
+        :'metadata' => :'TmsIssuerLifeCycleEventSimulationMetadata'
       }
     end
 

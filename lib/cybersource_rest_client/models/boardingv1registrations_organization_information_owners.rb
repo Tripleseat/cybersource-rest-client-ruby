@@ -103,7 +103,7 @@ module CyberSource
         :'ownership_percentage' => :'Float',
         :'phone_number' => :'String',
         :'email' => :'String',
-        :'address' => :'Boardingv1registrationsOrganizationInformationBusinessInformationAddress'
+        :'address' => :'BoardingBusinessInformationAddress'
       }
     end
 

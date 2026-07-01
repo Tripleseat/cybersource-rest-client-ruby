@@ -291,7 +291,7 @@ module CyberSource
         :'complete_url' => :'String',
         :'signature' => :'String',
         :'public_key' => :'String',
-        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
+        :'seller_protection' => :'ProcessorInformationSellerProtection',
         :'transaction_expiry_date' => :'String',
         :'custom_url' => :'String',
         :'scheme_assigned_id' => :'String',

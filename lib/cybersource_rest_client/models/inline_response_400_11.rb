@@ -13,50 +13,47 @@ require 'date'
 
 module CyberSource
   class InlineResponse40011
-    # Time verification was requested  Format: `YYYY-MM-DDThhmmssZ`, where: - `T`:  Separates the date and the time - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)  Example:  `2020-01-11T224757Z` equals January 11, 2020, at 22:47:57 (10:47:57 p.m.) 
-    attr_accessor :submit_time_utc
-
-    # Possible values:   - `INVALID_REQUEST` 
-    attr_accessor :status
-
-    # The detail message related to the status and reason
-    attr_accessor :message
-
-    # The reason of the status.  Possible values:   - `INVALID_REQUEST` 
-    attr_accessor :reason
+    attr_accessor :correlation_id
 
     attr_accessor :details
+
+    attr_accessor :information_link
+
+    attr_accessor :message
+
+    # Possible values: - INVALID_APIKEY - INVALID_SHIPPING_INPUT_PARAMS - CAPTURE_CONTEXT_INVALID - CAPTURE_CONTEXT_EXPIRED - SDK_XHR_ERROR - UNIFIEDPAYMENTS_VALIDATION_PARAMS - UNIFIEDPAYMENTS_VALIDATION_FIELDS - UNIFIEDPAYMENT_PAYMENT_PARAMITERS - CREATE_TOKEN_TIMEOUT - CREATE_TOKEN_XHR_ERROR - SHOW_LOAD_CONTAINER_SELECTOR - SHOW_LOAD_INVALID_CONTAINER - SHOW_TOKEN_TIMEOUT - SHOW_TOKEN_XHR_ERROR - SHOW_PAYMENT_TIMEOUT
+    attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
+        :'correlation_id' => :'correlationId',
+        :'details' => :'details',
+        :'information_link' => :'informationLink',
         :'message' => :'message',
-        :'reason' => :'reason',
-        :'details' => :'details'
+        :'reason' => :'reason'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
+        :'correlation_id' => :'correlation_id',
+        :'details' => :'details',
+        :'information_link' => :'information_link',
         :'message' => :'message',
-        :'reason' => :'reason',
-        :'details' => :'details'
+        :'reason' => :'reason'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
+        :'correlation_id' => :'String',
+        :'details' => :'Array<InlineResponse4001Details>',
+        :'information_link' => :'String',
         :'message' => :'String',
-        :'reason' => :'String',
-        :'details' => :'Array<InlineResponse40011Details>'
+        :'reason' => :'String'
       }
     end
 
@@ -68,12 +65,18 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'correlationId')
+        self.correlation_id = attributes[:'correlationId']
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Array)
+          self.details = value
+        end
+      end
+
+      if attributes.has_key?(:'informationLink')
+        self.information_link = attributes[:'informationLink']
       end
 
       if attributes.has_key?(:'message')
@@ -83,24 +86,28 @@ module CyberSource
       if attributes.has_key?(:'reason')
         self.reason = attributes[:'reason']
       end
-
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @message.nil?
+        invalid_properties.push('invalid value for "message", message cannot be nil.')
+      end
+
+      if @reason.nil?
+        invalid_properties.push('invalid value for "reason", reason cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @message.nil?
+      return false if @reason.nil?
       true
     end
 
@@ -109,11 +116,11 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
+          correlation_id == o.correlation_id &&
+          details == o.details &&
+          information_link == o.information_link &&
           message == o.message &&
-          reason == o.reason &&
-          details == o.details
+          reason == o.reason
     end
 
     # @see the `==` method
@@ -125,7 +132,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, message, reason, details].hash
+      [correlation_id, details, information_link, message, reason].hash
     end
 
     # Builds the object from hash

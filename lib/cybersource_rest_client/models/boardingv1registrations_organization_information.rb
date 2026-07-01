@@ -74,7 +74,7 @@ module CyberSource
         :'type' => :'String',
         :'status' => :'String',
         :'configurable' => :'BOOLEAN',
-        :'business_information' => :'Boardingv1registrationsOrganizationInformationBusinessInformation',
+        :'business_information' => :'BoardingBusinessInformation',
         :'kyc' => :'Boardingv1registrationsOrganizationInformationKYC',
         :'owners' => :'Array<Boardingv1registrationsOrganizationInformationOwners>'
       }

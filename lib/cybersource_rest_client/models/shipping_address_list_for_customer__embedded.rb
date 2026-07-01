@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'shipping_addresses' => :'Array<Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress>'
+        :'shipping_addresses' => :'Array<DefaultShippingAddress>'
       }
     end
 

@@ -41,6 +41,8 @@ module CyberSource
 
     attr_accessor :processing_information
 
+    attr_accessor :issuer_information
+
     attr_accessor :_links
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -58,6 +60,7 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'payment_information' => :'paymentInformation',
         :'processing_information' => :'processingInformation',
+        :'issuer_information' => :'issuerInformation',
         :'_links' => :'_links'
       }
     end
@@ -77,6 +80,7 @@ module CyberSource
         :'order_information' => :'order_information',
         :'payment_information' => :'payment_information',
         :'processing_information' => :'processing_information',
+        :'issuer_information' => :'issuer_information',
         :'_links' => :'_links'
       }
     end
@@ -96,6 +100,7 @@ module CyberSource
         :'order_information' => :'PushFunds201ResponseOrderInformation',
         :'payment_information' => :'PushFunds201ResponsePaymentInformation',
         :'processing_information' => :'PushFunds201ResponseProcessingInformation',
+        :'issuer_information' => :'PushFunds201ResponseIssuerInformation',
         :'_links' => :'PushFunds201ResponseLinks'
       }
     end
@@ -154,6 +159,10 @@ module CyberSource
 
       if attributes.has_key?(:'processingInformation')
         self.processing_information = attributes[:'processingInformation']
+      end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
       end
 
       if attributes.has_key?(:'_links')
@@ -215,6 +224,7 @@ module CyberSource
           order_information == o.order_information &&
           payment_information == o.payment_information &&
           processing_information == o.processing_information &&
+          issuer_information == o.issuer_information &&
           _links == o._links
     end
 
@@ -227,7 +237,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_utc, status, reconciliation_id, client_reference_information, recipient_information, merchant_information, error_information, processor_information, order_information, payment_information, processing_information, _links].hash
+      [id, submit_time_utc, status, reconciliation_id, client_reference_information, recipient_information, merchant_information, error_information, processor_information, order_information, payment_information, processing_information, issuer_information, _links].hash
     end
 
     # Builds the object from hash

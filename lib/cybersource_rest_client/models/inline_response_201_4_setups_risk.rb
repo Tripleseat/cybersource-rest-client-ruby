@@ -40,9 +40,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'fraud_management_essentials' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'decision_manager' => :'InlineResponse2014SetupsPaymentsCardProcessing',
-        :'enhanced_authentication' => :'InlineResponse2014SetupsPaymentsCardProcessing'
+        :'fraud_management_essentials' => :'PaymentsConfigurationSetupCardProcessing',
+        :'decision_manager' => :'PaymentsConfigurationSetupCardProcessing',
+        :'enhanced_authentication' => :'PaymentsConfigurationSetupCardProcessing'
       }
     end
 

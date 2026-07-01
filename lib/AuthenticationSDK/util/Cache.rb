@@ -21,7 +21,7 @@ public
       merchantId = merchantConfig.merchantId
       certificateFilePath = merchantConfig.p12KeyFilePath
 
-      cacheKey = merchantConfig.keyFilename + "_JWT"
+      cacheKey = File.expand_path(certificateFilePath) + "_JWT"
 
       @@mutex.synchronize do
         cachedCertificateInfo = @@cache_obj.read(cacheKey)
@@ -179,8 +179,8 @@ public
     end
 
     def get_mle_kid_data_from_cache(merchant_config)
-      cache_key = merchant_config.responseMlePrivateKeyFilePath + Constants::RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER
       file_path = merchant_config.responseMlePrivateKeyFilePath
+      cache_key = File.expand_path(file_path) + Constants::RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER
 
       @@mutex.synchronize do
         if !@@cache_obj.exist?(cache_key)
@@ -216,7 +216,7 @@ public
         logger = @@logger.logger
 
         file_path = merchant_config.responseMlePrivateKeyFilePath
-        cache_key = merchant_config.responseMlePrivateKeyFilePath + Constants::RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER
+        cache_key = File.expand_path(file_path) + Constants::RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER
 
         # Get certificate from P12 file
         _, certificate_list = Utility.getCertificateCollectionAndPrivateKeyFromP12(
@@ -272,21 +272,26 @@ public
     def fetchPEMFileForNetworkTokenization(filePath)
       warn("[DEPRECATED] 'fetchPEMFileForNetworkTokenization' method is deprecated and will be removed in coming releases.")
 
+      # Use normalised filePath-scoped cache keys to prevent cross-tenant data leakage
+      normalised_path = File.expand_path(filePath)
+      pem_cache_key = "privateKeyFromPEMFile_#{normalised_path}"
+      pem_time_cache_key = "cachedLastModifiedTimeOfPEMFile_#{normalised_path}"
+
       # Thread-safe cache access for deprecated method
       @@mutex.synchronize do
-        pem_file_cache = @@cache_obj.read('privateKeyFromPEMFile')
-        cached_pem_file_last_updated_time = @@cache_obj.read('cachedLastModifiedTimeOfPEMFile')
+        pem_file_cache = @@cache_obj.read(pem_cache_key)
+        cached_pem_file_last_updated_time = @@cache_obj.read(pem_time_cache_key)
 
         if File.exist?(filePath)
           current_last_modified_time_of_PEM_file = File.mtime(filePath)
           if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
             private_key = JOSE::JWK.from_pem_file filePath
-            @@cache_obj.write('privateKeyFromPEMFile', private_key)
-            @@cache_obj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
+            @@cache_obj.write(pem_cache_key, private_key)
+            @@cache_obj.write(pem_time_cache_key, current_last_modified_time_of_PEM_file)
           end
         end
 
-        return @@cache_obj.read('privateKeyFromPEMFile')
+        return @@cache_obj.read(pem_cache_key)
       end
     end
 

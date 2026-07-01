@@ -16,24 +16,30 @@ module CyberSource
     # The reason for the refund.
     attr_accessor :reason
 
+    # Alternative reference number that can be up to 12 characters in length. If this field is used, it overrides any data added to the ccCaptureService_reconciliationID field. You can use this value to reconcile Cybersource reports with processor reports.
+    attr_accessor :reconciliation_id_alternate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'reconciliation_id_alternate' => :'reconciliationIdAlternate'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'reconciliation_id_alternate' => :'reconciliation_id_alternate'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'reason' => :'String'
+        :'reason' => :'String',
+        :'reconciliation_id_alternate' => :'String'
       }
     end
 
@@ -47,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'reason')
         self.reason = attributes[:'reason']
+      end
+
+      if attributes.has_key?(:'reconciliationIdAlternate')
+        self.reconciliation_id_alternate = attributes[:'reconciliationIdAlternate']
       end
     end
 
@@ -63,12 +73,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id_alternate Value to be assigned
+    def reconciliation_id_alternate=(reconciliation_id_alternate)
+      @reconciliation_id_alternate = reconciliation_id_alternate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          reason == o.reason
+          reason == o.reason &&
+          reconciliation_id_alternate == o.reconciliation_id_alternate
     end
 
     # @see the `==` method
@@ -80,7 +97,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reason].hash
+      [reason, reconciliation_id_alternate].hash
     end
 
     # Builds the object from hash

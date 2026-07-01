@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'credential_stored_on_file' => :'BOOLEAN',
-        :'merchant_initiated_transaction' => :'Upv1capturecontextsDataProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction'
+        :'merchant_initiated_transaction' => :'UnifiedCheckoutMerchantInitiatedTransaction'
       }
     end
 

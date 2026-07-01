@@ -43,6 +43,12 @@ describe 'Ucv1sessionsPaymentConfigurations' do
     end
   end
 
+  describe 'test attribute "paypal"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "tms_token"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

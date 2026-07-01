@@ -48,11 +48,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'reporting' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
-        :'transaction_search' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
-        :'bank_account_validation' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
-        :'flexapi' => :'InlineResponse2014SetupsPaymentsDigitalPayments',
-        :'webhooks' => :'InlineResponse2014SetupsPaymentsDigitalPayments'
+        :'reporting' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'transaction_search' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'bank_account_validation' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'flexapi' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'webhooks' => :'PaymentsConfigurationSetupDigitalPayments'
       }
     end
 

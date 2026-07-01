@@ -49,7 +49,7 @@ module CyberSource
         :'enabled' => :'BOOLEAN',
         :'enablement_status' => :'String',
         :'self_serviceability' => :'String',
-        :'features' => :'PaymentsProductsUnifiedCheckoutSubscriptionInformationFeatures'
+        :'features' => :'UcFeatureSubscription'
       }
     end
 

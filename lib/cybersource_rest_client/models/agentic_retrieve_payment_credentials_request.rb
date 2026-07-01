@@ -43,8 +43,8 @@ module CyberSource
     def self.swagger_types
       {
         :'client_correlation_id' => :'String',
-        :'payment_information' => :'Acpv1tokensPaymentInformation',
-        :'transaction_data' => :'Array<Acpv1instructionsinstructionIdcredentialsTransactionData>'
+        :'payment_information' => :'Iccv1tokensPaymentInformation',
+        :'transaction_data' => :'Array<Iccv1instructionsinstructionIdcredentialsTransactionData>'
       }
     end
 

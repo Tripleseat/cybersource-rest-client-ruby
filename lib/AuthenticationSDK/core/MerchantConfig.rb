@@ -590,19 +590,20 @@ public
 
     def logAllProperties(merchantPropertyObj)
       propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))
-      merchantConfig = ''
-      hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
-      hiddenPropArray = Array.new
-      hiddenProperties.each do |value|
-        hiddenPropArray << value.strip
-      end
-      hiddenPropArray.each do |prop|
-        propertyObj.each do |key, value|
-          if key == prop
-            propertyObj.delete(key)
+      hiddenProperties = Constants::HIDDEN_MERCHANT_PROPERTIES.split(',').map(&:strip)
+      hiddenPropertiesLower = hiddenProperties.map(&:downcase)
+      sensitivePatterns = Constants::SENSITIVE_PROPERTY_PATTERNS
+
+      if propertyObj.respond_to?(:each_pair)
+        propertyObj.each_key do |key|
+          keyStr = key.to_s
+          keyLower = keyStr.downcase
+          if hiddenPropertiesLower.include?(keyLower) || sensitivePatterns.any? { |p| keyLower.include?(p) }
+            propertyObj[key] = Constants::REDACTED_VALUE
           end
         end
       end
+
       @log_obj.logger.info('Merchant Configuration :\n' + propertyObj.to_s)
     end
 

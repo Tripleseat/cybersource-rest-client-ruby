@@ -83,7 +83,7 @@ module CyberSource
         :'aggregator_information' => :'Ucv1sessionsDataAggregatorInformation',
         :'order_information' => :'Ucv1sessionsDataOrderInformation',
         :'buyer_information' => :'Ucv1sessionsDataBuyerInformation',
-        :'client_reference_information' => :'Upv1capturecontextsDataClientReferenceInformation',
+        :'client_reference_information' => :'Ucv1sessionsDataClientReferenceInformation',
         :'consumer_authentication_information' => :'Ucv1sessionsDataConsumerAuthenticationInformation',
         :'merchant_information' => :'Ucv1sessionsDataMerchantInformation',
         :'processing_information' => :'Ucv1sessionsDataProcessingInformation',

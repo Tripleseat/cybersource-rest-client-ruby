@@ -13,12 +13,72 @@ require 'date'
 
 module CyberSource
   class PtsV2PayoutsPost201ResponseIssuerInformation
+    # Domestic indicator for Push funds (OCT). If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_domestic_participant_indicator
+
+    # Cross-border indicator for push funds (OCT). If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_cross_border_participant_indicator
+
+    # Indicates whether domestic money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.        Supported for Visa Direct. 
+    attr_accessor :oct_money_transfer_domestic_indicator
+
+    # Indicates whether cross-border money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_money_transfer_cross_border_indicator
+
+    # Indicates whether domestic money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_money_transfer_fast_funds_domestic_indicator
+
+    # Indicates whether cross-border money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_money_transfer_fast_funds_cross_border_indicator
+
+    # This field indicates if the recipient issuer can accept push funds (OCT) transactions from the merchant country.  If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_money_transfer_merchant_country_restricted
+
+    # Indicates whether domestic non-money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_non_money_transfer_domestic_indicator
+
+    # Indicates whether cross-border non-money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_non_money_transfer_cross_border_indicator
+
+    # Indicates whether domestic non-money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_non_money_transfer_fast_funds_domestic_indicator
+
+    # Indicates whether cross-border non-money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_non_money_transfer_fast_funds_cross_border_indicator
+
+    # Indicates whether domestic gambling OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_online_gambling_domestic_indicator
+
+    # Indicates whether cross-border gambling OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_online_gambling_cross_border_indicator
+
+    # Indicates whether domestic gambling OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_online_gambling_fast_funds_domestic_indicator
+
+    # Indicates whether cross-border gambling OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted.   Supported for Visa Direct. 
+    attr_accessor :oct_online_gambling_fast_funds_cross_border_indicator
+
     # This field contains values that identify the service type under which the transaction should be processed. The valid value for the Visa Alias Directory Service is A0 (Alias) and 00 (normal transaction). 
     attr_accessor :service_processing_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'oct_domestic_participant_indicator' => :'octDomesticParticipantIndicator',
+        :'oct_cross_border_participant_indicator' => :'octCrossBorderParticipantIndicator',
+        :'oct_money_transfer_domestic_indicator' => :'octMoneyTransferDomesticIndicator',
+        :'oct_money_transfer_cross_border_indicator' => :'octMoneyTransferCrossBorderIndicator',
+        :'oct_money_transfer_fast_funds_domestic_indicator' => :'octMoneyTransferFastFundsDomesticIndicator',
+        :'oct_money_transfer_fast_funds_cross_border_indicator' => :'octMoneyTransferFastFundsCrossBorderIndicator',
+        :'oct_money_transfer_merchant_country_restricted' => :'octMoneyTransferMerchantCountryRestricted',
+        :'oct_non_money_transfer_domestic_indicator' => :'octNonMoneyTransferDomesticIndicator',
+        :'oct_non_money_transfer_cross_border_indicator' => :'octNonMoneyTransferCrossBorderIndicator',
+        :'oct_non_money_transfer_fast_funds_domestic_indicator' => :'octNonMoneyTransferFastFundsDomesticIndicator',
+        :'oct_non_money_transfer_fast_funds_cross_border_indicator' => :'octNonMoneyTransferFastFundsCrossBorderIndicator',
+        :'oct_online_gambling_domestic_indicator' => :'octOnlineGamblingDomesticIndicator',
+        :'oct_online_gambling_cross_border_indicator' => :'octOnlineGamblingCrossBorderIndicator',
+        :'oct_online_gambling_fast_funds_domestic_indicator' => :'octOnlineGamblingFastFundsDomesticIndicator',
+        :'oct_online_gambling_fast_funds_cross_border_indicator' => :'octOnlineGamblingFastFundsCrossBorderIndicator',
         :'service_processing_type' => :'serviceProcessingType'
       }
     end
@@ -26,6 +86,21 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'oct_domestic_participant_indicator' => :'oct_domestic_participant_indicator',
+        :'oct_cross_border_participant_indicator' => :'oct_cross_border_participant_indicator',
+        :'oct_money_transfer_domestic_indicator' => :'oct_money_transfer_domestic_indicator',
+        :'oct_money_transfer_cross_border_indicator' => :'oct_money_transfer_cross_border_indicator',
+        :'oct_money_transfer_fast_funds_domestic_indicator' => :'oct_money_transfer_fast_funds_domestic_indicator',
+        :'oct_money_transfer_fast_funds_cross_border_indicator' => :'oct_money_transfer_fast_funds_cross_border_indicator',
+        :'oct_money_transfer_merchant_country_restricted' => :'oct_money_transfer_merchant_country_restricted',
+        :'oct_non_money_transfer_domestic_indicator' => :'oct_non_money_transfer_domestic_indicator',
+        :'oct_non_money_transfer_cross_border_indicator' => :'oct_non_money_transfer_cross_border_indicator',
+        :'oct_non_money_transfer_fast_funds_domestic_indicator' => :'oct_non_money_transfer_fast_funds_domestic_indicator',
+        :'oct_non_money_transfer_fast_funds_cross_border_indicator' => :'oct_non_money_transfer_fast_funds_cross_border_indicator',
+        :'oct_online_gambling_domestic_indicator' => :'oct_online_gambling_domestic_indicator',
+        :'oct_online_gambling_cross_border_indicator' => :'oct_online_gambling_cross_border_indicator',
+        :'oct_online_gambling_fast_funds_domestic_indicator' => :'oct_online_gambling_fast_funds_domestic_indicator',
+        :'oct_online_gambling_fast_funds_cross_border_indicator' => :'oct_online_gambling_fast_funds_cross_border_indicator',
         :'service_processing_type' => :'service_processing_type'
       }
     end
@@ -33,6 +108,21 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'oct_domestic_participant_indicator' => :'BOOLEAN',
+        :'oct_cross_border_participant_indicator' => :'BOOLEAN',
+        :'oct_money_transfer_domestic_indicator' => :'BOOLEAN',
+        :'oct_money_transfer_cross_border_indicator' => :'BOOLEAN',
+        :'oct_money_transfer_fast_funds_domestic_indicator' => :'BOOLEAN',
+        :'oct_money_transfer_fast_funds_cross_border_indicator' => :'BOOLEAN',
+        :'oct_money_transfer_merchant_country_restricted' => :'BOOLEAN',
+        :'oct_non_money_transfer_domestic_indicator' => :'BOOLEAN',
+        :'oct_non_money_transfer_cross_border_indicator' => :'BOOLEAN',
+        :'oct_non_money_transfer_fast_funds_domestic_indicator' => :'BOOLEAN',
+        :'oct_non_money_transfer_fast_funds_cross_border_indicator' => :'BOOLEAN',
+        :'oct_online_gambling_domestic_indicator' => :'BOOLEAN',
+        :'oct_online_gambling_cross_border_indicator' => :'BOOLEAN',
+        :'oct_online_gambling_fast_funds_domestic_indicator' => :'BOOLEAN',
+        :'oct_online_gambling_fast_funds_cross_border_indicator' => :'BOOLEAN',
         :'service_processing_type' => :'String'
       }
     end
@@ -44,6 +134,66 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'octDomesticParticipantIndicator')
+        self.oct_domestic_participant_indicator = attributes[:'octDomesticParticipantIndicator']
+      end
+
+      if attributes.has_key?(:'octCrossBorderParticipantIndicator')
+        self.oct_cross_border_participant_indicator = attributes[:'octCrossBorderParticipantIndicator']
+      end
+
+      if attributes.has_key?(:'octMoneyTransferDomesticIndicator')
+        self.oct_money_transfer_domestic_indicator = attributes[:'octMoneyTransferDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octMoneyTransferCrossBorderIndicator')
+        self.oct_money_transfer_cross_border_indicator = attributes[:'octMoneyTransferCrossBorderIndicator']
+      end
+
+      if attributes.has_key?(:'octMoneyTransferFastFundsDomesticIndicator')
+        self.oct_money_transfer_fast_funds_domestic_indicator = attributes[:'octMoneyTransferFastFundsDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octMoneyTransferFastFundsCrossBorderIndicator')
+        self.oct_money_transfer_fast_funds_cross_border_indicator = attributes[:'octMoneyTransferFastFundsCrossBorderIndicator']
+      end
+
+      if attributes.has_key?(:'octMoneyTransferMerchantCountryRestricted')
+        self.oct_money_transfer_merchant_country_restricted = attributes[:'octMoneyTransferMerchantCountryRestricted']
+      end
+
+      if attributes.has_key?(:'octNonMoneyTransferDomesticIndicator')
+        self.oct_non_money_transfer_domestic_indicator = attributes[:'octNonMoneyTransferDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octNonMoneyTransferCrossBorderIndicator')
+        self.oct_non_money_transfer_cross_border_indicator = attributes[:'octNonMoneyTransferCrossBorderIndicator']
+      end
+
+      if attributes.has_key?(:'octNonMoneyTransferFastFundsDomesticIndicator')
+        self.oct_non_money_transfer_fast_funds_domestic_indicator = attributes[:'octNonMoneyTransferFastFundsDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octNonMoneyTransferFastFundsCrossBorderIndicator')
+        self.oct_non_money_transfer_fast_funds_cross_border_indicator = attributes[:'octNonMoneyTransferFastFundsCrossBorderIndicator']
+      end
+
+      if attributes.has_key?(:'octOnlineGamblingDomesticIndicator')
+        self.oct_online_gambling_domestic_indicator = attributes[:'octOnlineGamblingDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octOnlineGamblingCrossBorderIndicator')
+        self.oct_online_gambling_cross_border_indicator = attributes[:'octOnlineGamblingCrossBorderIndicator']
+      end
+
+      if attributes.has_key?(:'octOnlineGamblingFastFundsDomesticIndicator')
+        self.oct_online_gambling_fast_funds_domestic_indicator = attributes[:'octOnlineGamblingFastFundsDomesticIndicator']
+      end
+
+      if attributes.has_key?(:'octOnlineGamblingFastFundsCrossBorderIndicator')
+        self.oct_online_gambling_fast_funds_cross_border_indicator = attributes[:'octOnlineGamblingFastFundsCrossBorderIndicator']
+      end
 
       if attributes.has_key?(:'serviceProcessingType')
         self.service_processing_type = attributes[:'serviceProcessingType']
@@ -74,6 +224,21 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          oct_domestic_participant_indicator == o.oct_domestic_participant_indicator &&
+          oct_cross_border_participant_indicator == o.oct_cross_border_participant_indicator &&
+          oct_money_transfer_domestic_indicator == o.oct_money_transfer_domestic_indicator &&
+          oct_money_transfer_cross_border_indicator == o.oct_money_transfer_cross_border_indicator &&
+          oct_money_transfer_fast_funds_domestic_indicator == o.oct_money_transfer_fast_funds_domestic_indicator &&
+          oct_money_transfer_fast_funds_cross_border_indicator == o.oct_money_transfer_fast_funds_cross_border_indicator &&
+          oct_money_transfer_merchant_country_restricted == o.oct_money_transfer_merchant_country_restricted &&
+          oct_non_money_transfer_domestic_indicator == o.oct_non_money_transfer_domestic_indicator &&
+          oct_non_money_transfer_cross_border_indicator == o.oct_non_money_transfer_cross_border_indicator &&
+          oct_non_money_transfer_fast_funds_domestic_indicator == o.oct_non_money_transfer_fast_funds_domestic_indicator &&
+          oct_non_money_transfer_fast_funds_cross_border_indicator == o.oct_non_money_transfer_fast_funds_cross_border_indicator &&
+          oct_online_gambling_domestic_indicator == o.oct_online_gambling_domestic_indicator &&
+          oct_online_gambling_cross_border_indicator == o.oct_online_gambling_cross_border_indicator &&
+          oct_online_gambling_fast_funds_domestic_indicator == o.oct_online_gambling_fast_funds_domestic_indicator &&
+          oct_online_gambling_fast_funds_cross_border_indicator == o.oct_online_gambling_fast_funds_cross_border_indicator &&
           service_processing_type == o.service_processing_type
     end
 
@@ -86,7 +251,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [service_processing_type].hash
+      [oct_domestic_participant_indicator, oct_cross_border_participant_indicator, oct_money_transfer_domestic_indicator, oct_money_transfer_cross_border_indicator, oct_money_transfer_fast_funds_domestic_indicator, oct_money_transfer_fast_funds_cross_border_indicator, oct_money_transfer_merchant_country_restricted, oct_non_money_transfer_domestic_indicator, oct_non_money_transfer_cross_border_indicator, oct_non_money_transfer_fast_funds_domestic_indicator, oct_non_money_transfer_fast_funds_cross_border_indicator, oct_online_gambling_domestic_indicator, oct_online_gambling_cross_border_indicator, oct_online_gambling_fast_funds_domestic_indicator, oct_online_gambling_fast_funds_cross_border_indicator, service_processing_type].hash
     end
 
     # Builds the object from hash

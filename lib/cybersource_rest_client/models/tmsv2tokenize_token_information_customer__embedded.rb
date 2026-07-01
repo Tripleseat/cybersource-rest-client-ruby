@@ -37,8 +37,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'default_payment_instrument' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrument',
-        :'default_shipping_address' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddress'
+        :'default_payment_instrument' => :'DefaultPaymentInstrument',
+        :'default_shipping_address' => :'DefaultShippingAddress'
       }
     end
 

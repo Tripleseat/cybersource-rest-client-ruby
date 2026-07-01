@@ -105,7 +105,7 @@ module CyberSource
         :'source' => :'String',
         :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation',
         :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
-        :'point_of_sale_information' => :'TmsEmbeddedInstrumentIdentifierPointOfSaleInformation',
+        :'point_of_sale_information' => :'TmsPointOfSaleInformation',
         :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
         :'tokenized_card' => :'Tmsv2TokenizedCard',
         :'issuer' => :'TmsEmbeddedInstrumentIdentifierIssuer',

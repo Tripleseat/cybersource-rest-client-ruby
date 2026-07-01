@@ -76,7 +76,7 @@ module CyberSource
         :'status' => :'String',
         :'message' => :'String',
         :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
-        :'address_verification_information' => :'RiskV1AddressVerificationsPost201ResponseAddressVerificationInformation',
+        :'address_verification_information' => :'RiskAddressVerificationInformation',
         :'error_information' => :'RiskV1AddressVerificationsPost201ResponseErrorInformation'
       }
     end

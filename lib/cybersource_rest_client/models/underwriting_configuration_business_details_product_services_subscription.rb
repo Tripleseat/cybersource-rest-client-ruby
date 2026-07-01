@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  class UnderwritingConfigurationOrganizationInformationBusinessInformationBusinessDetailsProductServicesSubscription
+  class UnderwritingConfigurationBusinessDetailsProductServicesSubscription
     # Name of the product, service, or subscription.
     attr_accessor :product_service_name
 

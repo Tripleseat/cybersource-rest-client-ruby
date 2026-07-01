@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**create_session_request**](PaymentsApi.md#create_session_request) | **POST** /pts/v2/payment-references | Create Alternative Payments Sessions Request
 [**increment_auth**](PaymentsApi.md#increment_auth) | **PATCH** /pts/v2/payments/{id} | Increment an Authorization
 [**refresh_payment_status**](PaymentsApi.md#refresh_payment_status) | **POST** /pts/v2/refresh-payment-status/{id} | Check a Payment Status
-[**update_session_req**](PaymentsApi.md#update_session_req) | **PATCH** /pts/v2/payment-references/{id} | Update Alternative Payments Sessions Request
+[**update_session_request**](PaymentsApi.md#update_session_request) | **PATCH** /pts/v2/payment-references/{id} | Update Alternative Payments Sessions Request
 
 
 # **create_order_request**
@@ -57,8 +57,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 
@@ -104,8 +104,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 
@@ -151,8 +151,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 
@@ -201,8 +201,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 
@@ -251,13 +251,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 
-# **update_session_req**
-> PtsV2PaymentsPost201Response2 update_session_req(create_session_request, id)
+# **update_session_request**
+> PtsV2PaymentsPost201Response2 update_session_request(create_session_request, id)
 
 Update Alternative Payments Sessions Request
 
@@ -277,10 +277,10 @@ id = 'id_example' # String | The payment ID. This ID is returned from a previous
 
 begin
   #Update Alternative Payments Sessions Request
-  result = api_instance.update_session_req(create_session_request, id)
+  result = api_instance.update_session_request(create_session_request, id)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling PaymentsApi->update_session_req: #{e}"
+  puts "Exception when calling PaymentsApi->update_session_request: #{e}"
 end
 ```
 
@@ -301,8 +301,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Content-Type**: application/json, application/json; charset=utf-8
+ - **Accept**: application/hal+json
 
 
 

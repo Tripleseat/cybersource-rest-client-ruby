@@ -67,7 +67,7 @@ module CyberSource
         :'attributes' => :'Array<ReportingV3ReportDefinitionsNameGet200ResponseAttributes>',
         :'supported_formats' => :'Array<String>',
         :'description' => :'String',
-        :'default_settings' => :'ReportingV3ReportDefinitionsNameGet200ResponseDefaultSettings',
+        :'default_settings' => :'ReportDefinitionDefaultSettings',
         :'subscription_type' => :'String'
       }
     end

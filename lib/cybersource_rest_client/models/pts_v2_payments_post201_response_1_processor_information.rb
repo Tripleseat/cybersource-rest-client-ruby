@@ -72,7 +72,7 @@ module CyberSource
         :'raw_response_local' => :'String',
         :'response_details' => :'String',
         :'response_code' => :'String',
-        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
+        :'seller_protection' => :'ProcessorInformationSellerProtection',
         :'avs' => :'PtsV2PaymentsPost201Response1ProcessorInformationAvs'
       }
     end

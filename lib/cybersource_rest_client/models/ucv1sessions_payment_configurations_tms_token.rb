@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Allows a single Token Management Service (TMS) token to be presented within the Unified Checkout user interface. This enables customers to complete a payment using an existing stored credential.  Supported token types: - customer - instrumentIdentifiers - paymentInstruments  **Important note:** If a customer token ID is provided and token creation (tokenCreate) is enabled for a paymentInstrument or instrumentIdentifier within the Complete Mandate, Unified Checkout will create a new payment instrument or instrument identifier and associate it with the specified customer token. 
+  # Allows a single Token Management Service (TMS) token to be presented within the Unified Checkout user interface. This enables customers to complete a payment using an existing stored credential.  Supported token types: - customer - instrumentIdentifiers - paymentInstruments<br><br>  The allowedPaymentTypes field must also include TMS_TOKEN as shown below for the token to show in Unified Checkout:    \"allowedPaymentTypes\": [\"TMS-TOKEN\"] <br><br>  **Important note:** If a customer token ID is provided and token creation (tokenCreate) is enabled for a paymentInstrument or instrumentIdentifier within the Complete Mandate, Unified Checkout will create a new payment instrument or instrument identifier and associate it with the specified customer token. 
   class Ucv1sessionsPaymentConfigurationsTMSTOKEN
     attr_accessor :customer
 

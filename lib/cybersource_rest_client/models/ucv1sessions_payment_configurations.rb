@@ -18,6 +18,8 @@ module CyberSource
 
     attr_accessor :clicktopay
 
+    attr_accessor :paypal
+
     attr_accessor :tms_token
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -25,6 +27,7 @@ module CyberSource
       {
         :'googlepay' => :'GOOGLEPAY',
         :'clicktopay' => :'CLICKTOPAY',
+        :'paypal' => :'PAYPAL',
         :'tms_token' => :'TMS_TOKEN'
       }
     end
@@ -34,6 +37,7 @@ module CyberSource
       {
         :'googlepay' => :'googlepay',
         :'clicktopay' => :'clicktopay',
+        :'paypal' => :'paypal',
         :'tms_token' => :'tms_token'
       }
     end
@@ -43,6 +47,7 @@ module CyberSource
       {
         :'googlepay' => :'Ucv1sessionsPaymentConfigurationsGOOGLEPAY',
         :'clicktopay' => :'Ucv1sessionsPaymentConfigurationsCLICKTOPAY',
+        :'paypal' => :'Ucv1sessionsPaymentConfigurationsPAYPAL',
         :'tms_token' => :'Ucv1sessionsPaymentConfigurationsTMSTOKEN'
       }
     end
@@ -61,6 +66,10 @@ module CyberSource
 
       if attributes.has_key?(:'CLICKTOPAY')
         self.clicktopay = attributes[:'CLICKTOPAY']
+      end
+
+      if attributes.has_key?(:'PAYPAL')
+        self.paypal = attributes[:'PAYPAL']
       end
 
       if attributes.has_key?(:'TMS_TOKEN')
@@ -88,6 +97,7 @@ module CyberSource
       self.class == o.class &&
           googlepay == o.googlepay &&
           clicktopay == o.clicktopay &&
+          paypal == o.paypal &&
           tms_token == o.tms_token
     end
 
@@ -100,7 +110,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [googlepay, clicktopay, tms_token].hash
+      [googlepay, clicktopay, paypal, tms_token].hash
     end
 
     # Builds the object from hash
