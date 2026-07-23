@@ -6,7 +6,10 @@ require_relative '../util/ExceptionHandler.rb'
 require_relative '../logging/log_factory.rb'
 public
 # This function calls for the generation of Signature message depending on the authentication type.
-    class Authorization
+# Tripleseat fork: renamed from bare `Authorization` (upstream 0.0.85) back to `CybersourceAuthorization`
+# (the name this class had in the 0.0.47 vendored copy) to avoid colliding with the top-level
+# `Authorization` module from the declarative_authorization gem used elsewhere in the host app.
+    class CybersourceAuthorization
         @log_obj
         def getToken(merchantconfig_obj, gmtdatetime, isResponseMLEForApi)
             @log_obj = Log.new merchantconfig_obj.log_config, "Authorization"

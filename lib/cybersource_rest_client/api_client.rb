@@ -228,7 +228,7 @@ module CyberSource
       @merchantconfig.requestUrl = url
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
-      token = Authorization.new.getToken(@merchantconfig, gmtDateTime, isResponseMLEForApi)
+      token = CybersourceAuthorization.new.getToken(@merchantconfig, gmtDateTime, isResponseMLEForApi)
 
       # Adding client ID header
       header_params['v-c-client-id'] = @client_id
