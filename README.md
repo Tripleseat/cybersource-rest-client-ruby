@@ -1,4 +1,15 @@
 
+## Tripleseat fork
+
+This is a Tripleseat-owned fork of upstream [`CyberSource/cybersource-rest-client-ruby`](https://github.com/CyberSource/cybersource-rest-client-ruby), created for [TPD-12070](https://tripleseat.atlassian.net/browse/TPD-12070) to get the monolith off a vendored 0.0.47 copy of this gem.
+
+The only intentional divergence from upstream is in `cybersource_rest_client.gemspec`:
+- `activesupport` is loosened from `~> 7.2` to an open-ended `>= 7.2.3.1` (upstream's pin is incompatible with Rails 8's `activesupport 8.1.2`; tracked upstream as [issue #121](https://github.com/CyberSource/cybersource-rest-client-ruby/issues/121), unmerged fix in [PR #125](https://github.com/CyberSource/cybersource-rest-client-ruby/pull/125)).
+- `jwt` is loosened from `~> 3.1` to `>= 2.10, < 4`. **This is a temporary IOU, not a fix** — it exists only so this app's `omniauth-facebook -> oauth2 -> jwt (< 3.0)` chain keeps resolving. Remove it once [TPD-12071](https://tripleseat.atlassian.net/browse/TPD-12071) (HTTP Signature -> JWT+MLE auth migration) fixes the unverified `JWT.decode` call sites in `cybersource_account.rb` and the omniauth-facebook dependency chain.
+
+**Syncing with upstream is manual.** Dependabot watches this fork's tags and will PR a `Gemfile` tag bump in the `tripleseat` app when a new tag lands here, but it will not notice or pull in new upstream CyberSource releases on its own — that rebase-and-retag step needs to be done by hand (or via a small scheduled GitHub Action added to this repo later) whenever CyberSource cuts a new release.
+
+---
 # Ruby Client SDK for the CyberSource REST APIs
 
 ## Description

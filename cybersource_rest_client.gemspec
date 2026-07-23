@@ -30,9 +30,16 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'typhoeus', '~> 1.5','>=1.5.0'
   s.add_runtime_dependency 'json', '~>2.18', '>= 2.18.1'
-  s.add_runtime_dependency 'activesupport', '~> 7.2', '>= 7.2.3.1'
+  # Tripleseat fork: upstream pins '~> 7.2' (<8.0), unresolvable against this app's activesupport 8.1.2 (Rails 8).
+  # See https://github.com/CyberSource/cybersource-rest-client-ruby/issues/121 (open, unmerged PR #125).
+  s.add_runtime_dependency 'activesupport', '>= 7.2.3.1'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.5'
-  s.add_runtime_dependency 'jwt', '~> 3.1', '>= 3.1.2'
+  # Tripleseat fork IOU, tied to TPD-12071: loosened from upstream's '~> 3.1' so this app's
+  # omniauth-facebook -> oauth2 -> jwt (< 3.0) chain still resolves. This is a temporary shim, not
+  # a fix - jwt 3.x requires signature verification before payload access, which breaks the
+  # unverified JWT.decode calls in cybersource_account.rb. Remove this override once TPD-12071
+  # (HTTP Signature -> JWT+MLE migration) fixes those call sites and the omniauth-facebook chain.
+  s.add_runtime_dependency 'jwt', '>= 2.10', '< 4'
   s.add_runtime_dependency 'addressable', '~> 2.8', '>= 2.8.8'
   s.add_runtime_dependency 'time', '~>0.4.2'
   s.add_runtime_dependency 'jose', '~> 1.2'
